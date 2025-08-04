@@ -1,341 +1,377 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Casamento André & Maria</title>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Great+Vibes&display=swap" rel="stylesheet" />
 <style>
-/* ===== Fundo com fotos ===== */
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  color: #333;
-}
-.bg-slideshow {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  z-index: -1;
-  overflow: hidden;
-}
-.bg-slideshow img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  animation: fade 30s infinite;
-}
-.bg-slideshow img:nth-child(1) { animation-delay: 0s; }
-.bg-slideshow img:nth-child(2) { animation-delay: 10s; }
-.bg-slideshow img:nth-child(3) { animation-delay: 20s; }
-@keyframes fade {
-  0% { opacity: 0; }
-  10% { opacity: 1; }
-  30% { opacity: 1; }
-  40% { opacity: 0; }
-  100% { opacity: 0; }
-}
-
-/* ===== Cabeçalho ===== */
-header {
-  background: rgba(255, 182, 193, 0.85);
-  padding: 30px 10px;
-  text-align: center;
-  color: #fff;
-}
-header h1 {
-  font-family: 'Great Vibes', cursive;
-  font-size: 3rem;
-}
-
-/* ===== Menu ===== */
-menu {
-  background-color: rgba(255, 240, 244, 0.85);
-  padding: 10px 0;
-}
-menu ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 0;
-  margin: 0;
-}
-menu a {
-  text-decoration: none;
-  color: #ff4f73;
-  font-weight: bold;
-  padding: 8px 15px;
-  transition: background 0.3s;
-}
-menu a:hover {
-  background-color: #ffe1eb;
-  border-radius: 5px;
-}
-
-/* ===== Conteúdo ===== */
-main {
-  max-width: 1000px;
-  margin: auto;
-  padding: 20px;
-  background-color: rgba(255, 247, 249, 0.9);
-  border-radius: 10px;
-}
-h2 {
-  text-align: center;
-  margin-bottom: 15px;
-  font-size: 2rem;
-  color: #ff4f73;
-  font-family: 'Dancing Script', cursive;
-}
-section { margin-bottom: 50px; }
-
-/* ===== Contagem regressiva ===== */
-.countdown {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  font-size: 1.5rem;
-  color: #ff4f73;
-  font-weight: bold;
-  flex-wrap: wrap;
-}
-.countdown div {
-  text-align: center;
-  background: rgba(255, 225, 235, 0.9);
-  padding: 15px;
-  border-radius: 10px;
-  min-width: 70px;
-}
-
-/* ===== Galerias ===== */
-.galeria {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 15px;
-}
-.galeria img {
-  width: 100%;
-  border-radius: 8px;
-}
-
-/* ===== Lista de presentes ===== */
-.presentes {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-}
-.presente-item {
-  background: rgba(255, 225, 235, 0.9);
-  padding: 15px;
-  border-radius: 10px;
-  text-align: center;
-}
-.presente-item img {
-  max-width: 100%;
-  border-radius: 8px;
-}
-.presente-item .qr {
-  width: 150px;
-  margin: 10px auto;
-  display: block;
-}
-.presente-item textarea {
-  width: 100%;
-  height: 60px;
-  font-size: 0.8rem;
-  padding: 5px;
-  border-radius: 5px;
-  border: none;
-  resize: none;
-}
-
-/* ===== Botão música ===== */
-#btnMusica {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #ff4f73;
-  color: #fff;
-  padding: 15px;
-  border-radius: 50%;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
-  z-index: 10;
-  transition: transform 0.2s;
-}
-#btnMusica:hover { transform: scale(1.1); }
-
-/* ===== Pop-up música ===== */
-#popupMusica {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 20;
-}
-#popupMusica div {
-  background: #fff;
-  padding: 30px;
-  border-radius: 10px;
-  text-align: center;
-}
-#popupMusica button {
-  margin: 10px;
-  padding: 10px 20px;
-  border: none;
-  background: #ff4f73;
-  color: #fff;
-  font-size: 1rem;
-  cursor: pointer;
-  border-radius: 5px;
-}
-#popupMusica button:hover { background: #ff1e57; }
-
-/* ===== Responsivo ===== */
-@media (max-width: 768px) {
-  menu ul { flex-direction: column; align-items: center; }
-}
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #fff0f5;
+    color: #333;
+  }
+  header {
+    background: rgba(255, 182, 193, 0.9);
+    padding: 25px 10px;
+    text-align: center;
+    color: #fff;
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.5rem;
+    user-select: none;
+  }
+  nav {
+    background-color: rgba(255, 240, 244, 0.95);
+  }
+  nav ul {
+    margin: 0; padding: 0;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    flex-wrap: wrap;
+  }
+  nav ul li {
+    margin: 0 15px;
+  }
+  nav a {
+    text-decoration: none;
+    color: #ff4f73;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 10px 15px;
+    display: inline-block;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+  nav a.active, nav a:hover {
+    background-color: #ffe1eb;
+  }
+  main {
+    max-width: 900px;
+    margin: 30px auto 60px;
+    background: rgba(255, 247, 249, 0.95);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(255, 105, 135, 0.2);
+  }
+  section {
+    display: none;
+  }
+  section.active {
+    display: block;
+  }
+  h2 {
+    font-family: 'Dancing Script', cursive;
+    color: #ff4f73;
+    font-size: 2.8rem;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .countdown {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    font-weight: 700;
+    color: #ff4f73;
+  }
+  .countdown div {
+    background: #ffd6e7;
+    padding: 15px 20px;
+    border-radius: 15px;
+    min-width: 80px;
+    text-align: center;
+    font-size: 1.5rem;
+  }
+  .countdown div span {
+    font-size: 2.4rem;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .galeria {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+  .galeria img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 6px 14px rgba(255, 105, 135, 0.3);
+    object-fit: cover;
+    height: 180px;
+  }
+  .presentes {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+  .presente-item {
+    background: #fff0f5;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 5px 12px rgba(255, 105, 135, 0.2);
+    text-align: center;
+  }
+  .presente-item img {
+    width: 150px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    object-fit: cover;
+    height: 150px;
+  }
+  .presente-item h3 {
+    color: #ff4f73;
+    margin-bottom: 8px;
+  }
+  .presente-item p {
+    margin: 6px 0;
+  }
+  .qr {
+    margin: 12px auto 10px;
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+  }
+  textarea {
+    resize: none;
+    border-radius: 8px;
+    border: 1px solid #ff9bb5;
+    padding: 10px;
+    font-family: monospace;
+    font-size: 0.9rem;
+    width: 100%;
+    height: 70px;
+    background: #fff0f5;
+  }
+  #btnMusica {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #ff4f73;
+    border: none;
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    font-size: 1.8rem;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 79, 115, 0.6);
+    transition: transform 0.2s ease;
+    z-index: 20;
+  }
+  #btnMusica:hover {
+    transform: scale(1.1);
+  }
+  @media (max-width: 600px) {
+    .galeria img {
+      height: 140px;
+    }
+    .presente-item img {
+      height: 120px;
+      width: 120px;
+    }
+  }
+  /* Pequenos ajustes */
+  p.text-center {
+    text-align: center;
+  }
 </style>
 </head>
 <body>
 
-<!-- Fundo slideshow -->
-<div class="bg-slideshow">
-  <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1920&q=80" alt="Casal 1">
-  <img src="https://images.unsplash.com/photo-1528747045269-390fe33c19d4?auto=format&fit=crop&w=1920&q=80" alt="Casal 2">
-  <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=1920&q=80" alt="Casal 3">
-</div>
+<header>Casamento André & Maria</header>
 
-<header>
-  <h1>Casamento André & Maria</h1>
-</header>
-
-<menu>
+<nav>
   <ul>
-    <li><a href="#contagem">Contagem Regressiva</a></li>
-    <li><a href="#historia">Nossa História</a></li>
-    <li><a href="#presentes">Presentes</a></li>
-    <li><a href="#local">Local</a></li>
-    <li><a href="#padrinhos">Padrinhos</a></li>
+    <li><a href="#contagem" class="active" onclick="showSection(event)">Contagem Regressiva</a></li>
+    <li><a href="#historia" onclick="showSection(event)">Nossa História</a></li>
+    <li><a href="#presentes" onclick="showSection(event)">Presentes</a></li>
+    <li><a href="#local" onclick="showSection(event)">Local Cerimônia</a></li>
+    <li><a href="#padrinhos" onclick="showSection(event)">Padrinhos</a></li>
+    <li><a href="#lua" onclick="showSection(event)">Lua de Mel</a></li>
   </ul>
-</menu>
+</nav>
 
 <main>
-<section id="contagem">
+
+<section id="contagem" class="active">
   <h2>Contagem Regressiva</h2>
   <div class="countdown">
-    <div><span id="dias">0</span><br>Dias</div>
-    <div><span id="horas">0</span><br>Horas</div>
-    <div><span id="minutos">0</span><br>Min</div>
-    <div><span id="segundos">0</span><br>Seg</div>
+    <div><span id="dias">0</span> Dias</div>
+    <div><span id="horas">0</span> Horas</div>
+    <div><span id="minutos">0</span> Minutos</div>
+    <div><span id="segundos">0</span> Segundos</div>
   </div>
 </section>
 
 <section id="historia">
   <h2>Nossa História</h2>
-  <p style="text-align:center; max-width:700px; margin:auto;">
-    Tudo começou com um simples olhar... e hoje estamos aqui, prontos para dizer "sim" diante de Deus e das pessoas que amamos.
-  </p>
-  <div class="galeria" style="margin-top:20px;">
-    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80" alt="Nossa História">
+  <p>Nosso amor começou com um simples olhar que se transformou em uma linda jornada juntos. Estamos felizes em compartilhar este momento com você!</p>
+  <div class="galeria">
+    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Nossa História" />
   </div>
 </section>
 
 <section id="presentes">
-  <h2>Lista de Presentes</h2>
+  <h2>Presentes</h2>
   <div class="presentes">
     <div class="presente-item">
-      <img src="https://images.unsplash.com/photo-1616628182501-cb6dd70b8b58?auto=format&fit=crop&w=800&q=80" alt="Presente 1">
+      <img src="https://cdn.pixabay.com/photo/2016/11/29/05/09/cookware-1869617_1280.jpg" alt="Jogo de Panelas" />
       <h3>Jogo de Panelas Inox</h3>
       <p><strong>Valor:</strong> R$ 250,00</p>
-      <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=PIX1" alt="QR Code PIX">
-      <p><strong>Pix copia e cola:</strong></p>
-      <textarea readonly>0002012633...PIX...6304ABCD</textarea>
+      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Qr-QR-code.svg" alt="QR Code PIX" />
+      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551199999999952041234560000000000123456789520400005303986540325.005802BR5908André e Maria6009São Paulo61080540900062070503***6304ABCD</textarea>
+    </div>
+    <div class="presente-item">
+      <img src="https://cdn.pixabay.com/photo/2017/01/31/17/15/sofa-2022443_1280.jpg" alt="Sofá Moderno" />
+      <h3>Sofá Moderno</h3>
+      <p><strong>Valor:</strong> R$ 1.200,00</p>
+      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Qr-QR-code.svg" alt="QR Code PIX" />
+      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+55118888888885204123456000000000012345678952040000530398654031200.005802BR5908André e Maria6009São Paulo61080540900062070503***6304EFGH</textarea>
+    </div>
+    <div class="presente-item">
+      <img src="https://cdn.pixabay.com/photo/2016/11/18/22/18/dining-room-1836481_1280.jpg" alt="Conjunto de Mesa" />
+      <h3>Conjunto de Mesa</h3>
+      <p><strong>Valor:</strong> R$ 600,00</p>
+      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Qr-QR-code.svg" alt="QR Code PIX" />
+      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+5511777777777520412345600000000001234567895204000053039865403600.005802BR5908André e Maria6009São Paulo61080540900062070503***6304IJKL</textarea>
+    </div>
+    <div class="presente-item">
+      <img src="https://cdn.pixabay.com/photo/2016/11/18/22/18/kitchen-1836481_1280.jpg" alt="Liquidificador" />
+      <h3>Liquidificador</h3>
+      <p><strong>Valor:</strong> R$ 180,00</p>
+      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Qr-QR-code.svg" alt="QR Code PIX" />
+      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+5511666666666520412345600000000001234567895204000053039865403180.005802BR5908André e Maria6009São Paulo61080540900062070503***6304MNOP</textarea>
+    </div>
+    <div class="presente-item">
+      <img src="https://cdn.pixabay.com/photo/2015/04/20/13/26/bed-731126_1280.jpg" alt="Cama de Casal" />
+      <h3>Cama de Casal Queen</h3>
+      <p><strong>Valor:</strong> R$ 2.500,00</p>
+      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Qr-QR-code.svg" alt="QR Code PIX" />
+      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+55115555555555204123456000000000012345678952040000530398654032500.005802BR5908André e Maria6009São Paulo61080540900062070503***6304QRST</textarea>
+    </div>
+    <div class="presente-item">
+      <img src="https://cdn.pixabay.com/photo/2016/11/21/15/23/dining-table-1845885_1280.jpg" alt="Mesa de Jantar" />
+      <h3>Mesa de Jantar</h3>
+      <p><strong>Valor:</strong> R$ 1.000,00</p>
+      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Qr-QR-code.svg" alt="QR Code PIX" />
+      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+55114444444445204123456000000000012345678952040000530398654031000.005802BR5908André e Maria6009São Paulo61080540900062070503***6304UVWX</textarea>
+    </div>
+    <div class="presente-item">
+      <img src="https://cdn.pixabay.com/photo/2017/07/31/20/48/mirror-2555506_1280.jpg" alt="Espelho Decorativo" />
+      <h3>Espelho Decorativo</h3>
+      <p><strong>Valor:</strong> R$ 300,00</p>
+      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Qr-QR-code.svg" alt="QR Code PIX" />
+      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+5511333333333520412345600000000001234567895204000053039865403300.005802BR5908André e Maria6009São Paulo61080540900062070503***6304YZ12</textarea>
+    </div>
+    <div class="presente-item">
+      <img src="https://cdn.pixabay.com/photo/2016/11/21/15/36/couch-1845914_1280.jpg" alt="Poltrona Confortável" />
+      <h3>Poltrona Confortável</h3>
+      <p><strong>Valor:</strong> R$ 700,00</p>
+      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Qr-QR-code.svg" alt="QR Code PIX" />
+      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+5511222222222520412345600000000001234567895204000053039865403700.005802BR5908André e Maria6009São Paulo61080540900062070503***6304AB34</textarea>
+    </div>
+    <div class="presente-item">
+      <img src="https://cdn.pixabay.com/photo/2017/06/02/19/11/table-lamp-2361376_1280.jpg" alt="Luminária de Mesa" />
+      <h3>Luminária de Mesa</h3>
+      <p><strong>Valor:</strong> R$ 120,00</p>
+      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Qr-QR-code.svg" alt="QR Code PIX" />
+      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+5511111111111520412345600000000001234567895204000053039865403120.005802BR5908André e Maria6009São Paulo61080540900062070503***6304CD56</textarea>
+    </div>
+    <div class="presente-item">
+      <img src="https://cdn.pixabay.com/photo/2016/11/18/22/23/kitchen-1836512_1280.jpg" alt="Jogo de Talheres" />
+      <h3>Jogo de Talheres</h3>
+      <p><strong>Valor:</strong> R$ 220,00</p>
+      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Qr-QR-code.svg" alt="QR Code PIX" />
+      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+5511000000000520412345600000000001234567895204000053039865403220.005802BR5908André e Maria6009São Paulo61080540900062070503***6304EF78</textarea>
     </div>
   </div>
 </section>
 
 <section id="local">
   <h2>Local da Cerimônia</h2>
-  <p style="text-align:center;">Dois locais especiais para este dia inesquecível:</p>
+  <p class="text-center">Dois locais especiais para esse dia inesquecível:</p>
   <div class="galeria">
-    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Local 1">
-    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80" alt="Local 2">
+    <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80" alt="Local Cerimônia 1" />
+    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Local Cerimônia 2" />
   </div>
 </section>
 
 <section id="padrinhos">
   <h2>Padrinhos</h2>
   <div class="galeria">
-    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" alt="Padrinho 1">
-    <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=400&q=80" alt="Padrinho 2">
-    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=400&q=80" alt="Padrinho 3">
-    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" alt="Padrinho 4">
-    <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=400&q=80" alt="Padrinho 5">
-    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=400&q=80" alt="Padrinho 6">
+    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Padrinho 1" />
+    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Padrinha 2" />
+    <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Padrinho 3" />
+    <img src="https://randomuser.me/api/portraits/women/21.jpg" alt="Padrinha 4" />
+    <img src="https://randomuser.me/api/portraits/men/16.jpg" alt="Padrinho 5" />
+    <img src="https://randomuser.me/api/portraits/women/48.jpg" alt="Padrinha 6" />
   </div>
 </section>
-</main>
 
-<!-- Música -->
-<audio id="musica" loop>
-  <!-- Substitua pelo seu arquivo MP3 -->
-  <source src="prasonhar.mp3" type="audio/mpeg">
-</audio>
-
-<!-- Botão flutuante -->
-<button id="btnMusica" onclick="toggleMusica()">🎵</button>
-
-<!-- Pop-up música -->
-<div id="popupMusica">
-  <div>
-    <h2>Deseja ouvir nossa música?</h2>
-    <button onclick="playMusica()">Sim</button>
-    <button onclick="fecharPopup()">Não</button>
+<section id="lua">
+  <h2>Nossa Lua de Mel - Cruzeiro dos Sonhos</h2>
+  <p class="text-center">Estamos planejando a lua de mel dos sonhos e sua contribuição será muito bem-vinda!</p>
+  <div style="max-width:300px; margin: 0 auto; text-align:center;">
+    <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Qr-QR-code.svg" alt="QR Code Lua de Mel" />
+    <textarea readonly style="margin-top: 15px;">00020126330014BR.GOV.BCB.PIX0114+551199999999952041234560000000000123456789520400005303986540100.005802BR5908Lua de Mel6009São Paulo61080540900062070503***6304ZXCV</textarea>
   </div>
-</div>
+</section>
+
+<!-- Player de música -->
+<audio id="musica" loop>
+  <source src="prasonhar.mp3" type="audio/mpeg" />
+  Seu navegador não suporta áudio.
+</audio>
+<button id="btnMusica" onclick="toggleMusica()" title="Tocar / Pausar música">🎵</button>
 
 <script>
-// Contagem regressiva
-const dataCasamento = new Date("Nov 15, 2025 17:00:00").getTime();
-setInterval(function(){
-  const agora = new Date().getTime();
-  const distancia = dataCasamento - agora;
-  const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
-  const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
-  const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
-  document.getElementById("dias").innerHTML = dias;
-  document.getElementById("horas").innerHTML = horas;
-  document.getElementById("minutos").innerHTML = minutos;
-  document.getElementById("segundos").innerHTML = segundos;
-}, 1000);
-
-// Música
-function playMusica(){
-  const musica = document.getElementById("musica");
-  musica.play().catch(err => console.log("Erro ao reproduzir música:", err));
-  document.getElementById("popupMusica").style.display = "none";
-}
-function fecharPopup(){
-  document.getElementById("popupMusica").style.display = "none";
-}
-function toggleMusica(){
-  const musica = document.getElementById("musica");
-  if(musica.paused){
-    musica.play();
-  } else {
-    musica.pause();
+  // Navegação abas
+  function showSection(event){
+    event.preventDefault();
+    const links = document.querySelectorAll('nav a');
+    links.forEach(link => link.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    const sections = document.querySelectorAll('main section');
+    sections.forEach(sec => sec.classList.remove('active'));
+    
+    const id = event.target.getAttribute('href').substring(1);
+    document.getElementById(id).classList.add('active');
   }
-}
+
+  // Contagem regressiva
+  const casamentoData = new Date("Nov 15, 2025 17:00:00").getTime();
+  const diasEl = document.getElementById("dias");
+  const horasEl = document.getElementById("horas");
+  const minutosEl = document.getElementById("minutos");
+  const segundosEl = document.getElementById("segundos");
+
+  setInterval(() => {
+    const agora = new Date().getTime();
+    const distancia = casamentoData - agora;
+
+    const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+    const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+    diasEl.innerText = dias >= 0 ? dias : 0;
+    horasEl.innerText = horas >= 0 ? horas : 0;
+    minutosEl.innerText = minutos >= 0 ? minutos : 0;
+    segundosEl.innerText = segundos >= 0 ? segundos : 0;
+  }, 1000);
+
+  // Música
+  function toggleMusica() {
+    const musica = document.getElementById("musica");
+    if (musica.paused) {
+      musica.play().catch(() => alert("Por favor, interaja com a página para iniciar a música."));
+    } else {
+      musica.pause();
+    }
+  }
 </script>
 
 </body>
