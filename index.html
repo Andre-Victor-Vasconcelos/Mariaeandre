@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Casamento André & Maria</title>
 
-<!-- Fonte romântica -->
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
@@ -16,9 +15,7 @@ body {
   background-color: #fff7f9;
   color: #333;
   line-height: 1.6;
-  position: relative;
 }
-
 .bg-slideshow {
   position: fixed;
   top: 0; left: 0;
@@ -26,7 +23,6 @@ body {
   z-index: -1;
   overflow: hidden;
 }
-
 .bg-slideshow img {
   position: absolute;
   width: 100%;
@@ -35,11 +31,9 @@ body {
   opacity: 0;
   animation: fade 30s infinite;
 }
-
 .bg-slideshow img:nth-child(1) { animation-delay: 0s; }
 .bg-slideshow img:nth-child(2) { animation-delay: 10s; }
 .bg-slideshow img:nth-child(3) { animation-delay: 20s; }
-
 @keyframes fade {
   0% { opacity: 0; }
   10% { opacity: 1; }
@@ -92,7 +86,6 @@ main {
   background-color: rgba(255, 247, 249, 0.85);
   border-radius: 10px;
 }
-
 h2 {
   text-align: center;
   margin-bottom: 15px;
@@ -100,10 +93,7 @@ h2 {
   color: #ff4f73;
   font-family: 'Dancing Script', cursive;
 }
-
-section {
-  margin-bottom: 50px;
-}
+section { margin-bottom: 50px; }
 
 /* ===== Contagem regressiva ===== */
 .countdown {
@@ -113,6 +103,7 @@ section {
   font-size: 1.5rem;
   color: #ff4f73;
   font-weight: bold;
+  flex-wrap: wrap;
 }
 .countdown div {
   text-align: center;
@@ -122,82 +113,55 @@ section {
   min-width: 70px;
 }
 
-/* ===== História ===== */
-.historia {
-  background: rgba(255, 240, 244, 0.9);
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  font-size: 1.1rem;
-}
-
-/* ===== Dicas ===== */
-ul.dicas {
-  list-style: none;
-  padding: 0;
-}
-ul.dicas li {
-  background: rgba(255, 225, 235, 0.9);
-  padding: 10px;
-  border-radius: 8px;
-  margin: 5px 0;
-  text-align: center;
-}
-
-/* ===== Presentes ===== */
+/* ===== Lista de presentes ===== */
 .presentes {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
 }
-.presentes a {
+.presente-item {
   background: rgba(255, 225, 235, 0.9);
   padding: 15px;
-  text-align: center;
-  text-decoration: none;
-  color: #ff4f73;
-  font-weight: bold;
-  border-radius: 10px;
-  transition: transform 0.3s;
-}
-.presentes a:hover { transform: scale(1.05); }
-
-/* ===== Local ===== */
-.local {
-  background: rgba(255, 240, 244, 0.9);
-  padding: 20px;
   border-radius: 10px;
   text-align: center;
 }
-
-/* ===== Padrinhos ===== */
-.padrinhos {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+.presente-item img {
+  max-width: 100%;
+  border-radius: 8px;
 }
-.padrinhos img {
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border: 4px solid #ffb6c1;
+.presente-item .qr {
+  width: 150px;
+  margin: 10px auto;
   display: block;
-  margin: auto;
 }
-.padrinhos p {
-  text-align: center;
-  margin-top: 5px;
+.presente-item textarea {
+  width: 100%;
+  height: 60px;
+  font-size: 0.8rem;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  resize: none;
 }
 
-/* ===== Rodapé ===== */
-footer {
-  text-align: center;
-  background: rgba(255, 182, 193, 0.85);
+/* ===== Botão flutuante música ===== */
+#btnMusica {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #ff4f73;
   color: #fff;
   padding: 15px;
-  margin-top: 40px;
+  border-radius: 50%;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+  z-index: 10;
+  transition: transform 0.2s;
+}
+#btnMusica:hover {
+  transform: scale(1.1);
 }
 
 /* ===== Responsividade ===== */
@@ -222,11 +186,7 @@ footer {
 <menu>
   <ul>
     <li><a href="#contagem">Contagem Regressiva</a></li>
-    <li><a href="#historia">Nossa História</a></li>
-    <li><a href="#dicas">Dicas</a></li>
     <li><a href="#presentes">Presentes</a></li>
-    <li><a href="#local">Local</a></li>
-    <li><a href="#padrinhos">Padrinhos</a></li>
   </ul>
 </menu>
 
@@ -241,78 +201,37 @@ footer {
   </div>
 </section>
 
-<section id="historia">
-  <h2>Nossa História de Amor</h2>
-  <div class="historia">
-    <p>Nosso encontro foi um presente do destino. Entre olhares tímidos e conversas longas, descobrimos que juntos somos mais fortes, mais felizes e mais completos. Agora, caminhamos lado a lado para celebrar o dia mais importante das nossas vidas.</p>
-  </div>
-</section>
-
-<section id="dicas">
-  <h2>Dicas para o Grande Dia</h2>
-  <ul class="dicas">
-    <li>Chegue com antecedência para aproveitar cada detalhe.</li>
-    <li>Vista-se com amor e alegria.</li>
-    <li>Prepare-se para sorrir, dançar e celebrar conosco.</li>
-  </ul>
-</section>
-
 <section id="presentes">
   <h2>Lista de Presentes</h2>
   <div class="presentes">
-    <a href="#">Loja 1</a>
-    <a href="#">Loja 2</a>
-    <a href="#">Loja 3</a>
-  </div>
-</section>
+    <div class="presente-item">
+      <img src="presente1.jpg" alt="Presente 1">
+      <h3>Jogo de Panelas Inox</h3>
+      <p><strong>Valor:</strong> R$ 250,00</p>
+      <img class="qr" src="qrcode1.png" alt="QR Code PIX">
+      <p><strong>Pix copia e cola:</strong></p>
+      <textarea readonly>0002012633...PIX...6304ABCD</textarea>
+    </div>
 
-<section id="local">
-  <h2>Local da Cerimônia</h2>
-  <div class="local">
-    <p>Igreja Matriz de Anchieta - ES</p>
-    <p>15 de Novembro de 2025 às 17h</p>
-    <iframe src="https://maps.google.com/maps?q=anchieta%20es&t=&z=13&ie=UTF8&iwloc=&output=embed"
-            width="100%" height="250" style="border:0;" allowfullscreen=""></iframe>
-  </div>
-</section>
-
-<section id="padrinhos">
-  <h2>Padrinhos</h2>
-  <div class="padrinhos">
-    <div>
-      <img src="padrinho1.jpg" alt="Padrinho 1">
-      <p>João</p>
-    </div>
-    <div>
-      <img src="padrinho2.jpg" alt="Padrinho 2">
-      <p>Ana</p>
-    </div>
-    <div>
-      <img src="padrinho3.jpg" alt="Padrinho 3">
-      <p>Pedro</p>
-    </div>
-    <div>
-      <img src="padrinho4.jpg" alt="Padrinho 4">
-      <p>Luiza</p>
+    <div class="presente-item">
+      <img src="presente2.jpg" alt="Presente 2">
+      <h3>Faqueiro Inox</h3>
+      <p><strong>Valor:</strong> R$ 350,00</p>
+      <img class="qr" src="qrcode2.png" alt="QR Code PIX">
+      <p><strong>Pix copia e cola:</strong></p>
+      <textarea readonly>0002012633...PIX...6304EFGH</textarea>
     </div>
   </div>
 </section>
 </main>
 
 <!-- Música -->
-<audio id="musica" autoplay loop>
+<audio id="musica" loop>
   <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Kevin_MacLeod/Piano_Solo/Kevin_MacLeod_-_Agnus_Dei_X.mp3" type="audio/mpeg">
 </audio>
 
-<div style="text-align:center; margin:20px;">
-  <button onclick="toggleMusica()" style="padding:10px; background:#ff4f73; color:#fff; border:none; border-radius:5px; cursor:pointer;">
-    🎵 Pausar/Retomar Música
-  </button>
-</div>
-
-<footer>
-  <p>Com amor, André & Maria 💖</p>
-</footer>
+<!-- Botão flutuante -->
+<button id="btnMusica" onclick="toggleMusica()">🎵</button>
 
 <script>
 // Contagem regressiva
@@ -324,7 +243,6 @@ setInterval(function(){
   const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
   const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
-
   document.getElementById("dias").innerHTML = dias;
   document.getElementById("horas").innerHTML = horas;
   document.getElementById("minutos").innerHTML = minutos;
@@ -334,9 +252,14 @@ setInterval(function(){
 // Música
 function toggleMusica(){
   const musica = document.getElementById("musica");
-  if(musica.paused){ musica.play(); } else { musica.pause(); }
+  if(musica.paused){
+    musica.play();
+  } else {
+    musica.pause();
+  }
 }
 </script>
 
 </body>
 </html>
+
