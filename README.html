@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casamento André & Maria</title>
+
+<!-- Fonte romântica -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+/* ===== Fundo com fotos em transição ===== */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fff7f9;
+  color: #333;
+  line-height: 1.6;
+  position: relative;
+}
+
+.bg-slideshow {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.bg-slideshow img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: fade 30s infinite;
+}
+
+.bg-slideshow img:nth-child(1) { animation-delay: 0s; }
+.bg-slideshow img:nth-child(2) { animation-delay: 10s; }
+.bg-slideshow img:nth-child(3) { animation-delay: 20s; }
+
+@keyframes fade {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  30% { opacity: 1; }
+  40% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* ===== Cabeçalho ===== */
+header {
+  background: rgba(255, 182, 193, 0.8);
+  padding: 30px 10px;
+  text-align: center;
+  color: #fff;
+}
+header h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3rem;
+  letter-spacing: 2px;
+}
+
+/* ===== Menu ===== */
+menu {
+  background-color: rgba(255, 240, 244, 0.85);
+  padding: 10px 0;
+}
+menu ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+menu a {
+  text-decoration: none;
+  color: #ff4f73;
+  font-weight: bold;
+  padding: 8px 15px;
+  transition: background 0.3s;
+}
+menu a:hover {
+  background-color: #ffe1eb;
+  border-radius: 5px;
+}
+
+/* ===== Conteúdo ===== */
+main {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+  background-color: rgba(255, 247, 249, 0.85);
+  border-radius: 10px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 2rem;
+  color: #ff4f73;
+  font-family: 'Dancing Script', cursive;
+}
+
+section {
+  margin-bottom: 50px;
+}
+
+/* ===== Contagem regressiva ===== */
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 1.5rem;
+  color: #ff4f73;
+  font-weight: bold;
+}
+.countdown div {
+  text-align: center;
+  background: rgba(255, 225, 235, 0.9);
+  padding: 15px;
+  border-radius: 10px;
+  min-width: 70px;
+}
+
+/* ===== História ===== */
+.historia {
+  background: rgba(255, 240, 244, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+/* ===== Dicas ===== */
+ul.dicas {
+  list-style: none;
+  padding: 0;
+}
+ul.dicas li {
+  background: rgba(255, 225, 235, 0.9);
+  padding: 10px;
+  border-radius: 8px;
+  margin: 5px 0;
+  text-align: center;
+}
+
+/* ===== Presentes ===== */
+.presentes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+}
+.presentes a {
+  background: rgba(255, 225, 235, 0.9);
+  padding: 15px;
+  text-align: center;
+  text-decoration: none;
+  color: #ff4f73;
+  font-weight: bold;
+  border-radius: 10px;
+  transition: transform 0.3s;
+}
+.presentes a:hover { transform: scale(1.05); }
+
+/* ===== Local ===== */
+.local {
+  background: rgba(255, 240, 244, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* ===== Padrinhos ===== */
+.padrinhos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+.padrinhos img {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border: 4px solid #ffb6c1;
+  display: block;
+  margin: auto;
+}
+.padrinhos p {
+  text-align: center;
+  margin-top: 5px;
+}
+
+/* ===== Rodapé ===== */
+footer {
+  text-align: center;
+  background: rgba(255, 182, 193, 0.85);
+  color: #fff;
+  padding: 15px;
+  margin-top: 40px;
+}
+
+/* ===== Responsividade ===== */
+@media (max-width: 768px) {
+  menu ul { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- Fundo com fotos -->
+<div class="bg-slideshow">
+  <img src="foto1.jpg" alt="Foto 1">
+  <img src="foto2.jpg" alt="Foto 2">
+  <img src="foto3.jpg" alt="Foto 3">
+</div>
+
+<header>
+  <h1>Casamento André & Maria</h1>
+</header>
+
+<menu>
+  <ul>
+    <li><a href="#contagem">Contagem Regressiva</a></li>
+    <li><a href="#historia">Nossa História</a></li>
+    <li><a href="#dicas">Dicas</a></li>
+    <li><a href="#presentes">Presentes</a></li>
+    <li><a href="#local">Local</a></li>
+    <li><a href="#padrinhos">Padrinhos</a></li>
+  </ul>
+</menu>
+
+<main>
+<section id="contagem">
+  <h2>Contagem Regressiva</h2>
+  <div class="countdown">
+    <div><span id="dias">0</span><br>Dias</div>
+    <div><span id="horas">0</span><br>Horas</div>
+    <div><span id="minutos">0</span><br>Min</div>
+    <div><span id="segundos">0</span><br>Seg</div>
+  </div>
+</section>
+
+<section id="historia">
+  <h2>Nossa História de Amor</h2>
+  <div class="historia">
+    <p>Nosso encontro foi um presente do destino. Entre olhares tímidos e conversas longas, descobrimos que juntos somos mais fortes, mais felizes e mais completos. Agora, caminhamos lado a lado para celebrar o dia mais importante das nossas vidas.</p>
+  </div>
+</section>
+
+<section id="dicas">
+  <h2>Dicas para o Grande Dia</h2>
+  <ul class="dicas">
+    <li>Chegue com antecedência para aproveitar cada detalhe.</li>
+    <li>Vista-se com amor e alegria.</li>
+    <li>Prepare-se para sorrir, dançar e celebrar conosco.</li>
+  </ul>
+</section>
+
+<section id="presentes">
+  <h2>Lista de Presentes</h2>
+  <div class="presentes">
+    <a href="#">Loja 1</a>
+    <a href="#">Loja 2</a>
+    <a href="#">Loja 3</a>
+  </div>
+</section>
+
+<section id="local">
+  <h2>Local da Cerimônia</h2>
+  <div class="local">
+    <p>Igreja Matriz de Anchieta - ES</p>
+    <p>15 de Novembro de 2025 às 17h</p>
+    <iframe src="https://maps.google.com/maps?q=anchieta%20es&t=&z=13&ie=UTF8&iwloc=&output=embed"
+            width="100%" height="250" style="border:0;" allowfullscreen=""></iframe>
+  </div>
+</section>
+
+<section id="padrinhos">
+  <h2>Padrinhos</h2>
+  <div class="padrinhos">
+    <div>
+      <img src="padrinho1.jpg" alt="Padrinho 1">
+      <p>João</p>
+    </div>
+    <div>
+      <img src="padrinho2.jpg" alt="Padrinho 2">
+      <p>Ana</p>
+    </div>
+    <div>
+      <img src="padrinho3.jpg" alt="Padrinho 3">
+      <p>Pedro</p>
+    </div>
+    <div>
+      <img src="padrinho4.jpg" alt="Padrinho 4">
+      <p>Luiza</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- Música -->
+<audio id="musica" autoplay loop>
+  <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Kevin_MacLeod/Piano_Solo/Kevin_MacLeod_-_Agnus_Dei_X.mp3" type="audio/mpeg">
+</audio>
+
+<div style="text-align:center; margin:20px;">
+  <button onclick="toggleMusica()" style="padding:10px; background:#ff4f73; color:#fff; border:none; border-radius:5px; cursor:pointer;">
+    🎵 Pausar/Retomar Música
+  </button>
+</div>
+
+<footer>
+  <p>Com amor, André & Maria 💖</p>
+</footer>
+
+<script>
+// Contagem regressiva
+const dataCasamento = new Date("Nov 15, 2025 17:00:00").getTime();
+setInterval(function(){
+  const agora = new Date().getTime();
+  const distancia = dataCasamento - agora;
+  const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+  const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+  const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+  document.getElementById("dias").innerHTML = dias;
+  document.getElementById("horas").innerHTML = horas;
+  document.getElementById("minutos").innerHTML = minutos;
+  document.getElementById("segundos").innerHTML = segundos;
+}, 1000);
+
+// Música
+function toggleMusica(){
+  const musica = document.getElementById("musica");
+  if(musica.paused){ musica.play(); } else { musica.pause(); }
+}
+</script>
+
+</body>
+</html>
