@@ -110,6 +110,17 @@ section { margin-bottom: 50px; }
   min-width: 70px;
 }
 
+/* ===== Galerias ===== */
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+.galeria img {
+  width: 100%;
+  border-radius: 8px;
+}
+
 /* ===== Lista de presentes ===== */
 .presentes {
   display: grid;
@@ -198,9 +209,9 @@ section { margin-bottom: 50px; }
 
 <!-- Fundo slideshow -->
 <div class="bg-slideshow">
-  <img src="https://picsum.photos/id/1015/1920/1080" alt="Foto 1">
-  <img src="https://picsum.photos/id/1018/1920/1080" alt="Foto 2">
-  <img src="https://picsum.photos/id/1025/1920/1080" alt="Foto 3">
+  <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1920&q=80" alt="Casal 1">
+  <img src="https://images.unsplash.com/photo-1528747045269-390fe33c19d4?auto=format&fit=crop&w=1920&q=80" alt="Casal 2">
+  <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=1920&q=80" alt="Casal 3">
 </div>
 
 <header>
@@ -232,50 +243,52 @@ section { margin-bottom: 50px; }
   <h2>Nossa História</h2>
   <p style="text-align:center; max-width:700px; margin:auto;">
     Tudo começou com um simples olhar... e hoje estamos aqui, prontos para dizer "sim" diante de Deus e das pessoas que amamos.
-    Cada momento vivido juntos foi construindo o nosso amor e, agora, queremos compartilhar esse dia especial com você.
   </p>
+  <div class="galeria" style="margin-top:20px;">
+    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80" alt="Nossa História">
+  </div>
 </section>
 
 <section id="presentes">
   <h2>Lista de Presentes</h2>
   <div class="presentes">
     <div class="presente-item">
-      <img src="https://picsum.photos/300/200" alt="Presente 1">
+      <img src="https://images.unsplash.com/photo-1616628182501-cb6dd70b8b58?auto=format&fit=crop&w=800&q=80" alt="Presente 1">
       <h3>Jogo de Panelas Inox</h3>
       <p><strong>Valor:</strong> R$ 250,00</p>
       <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=PIX1" alt="QR Code PIX">
       <p><strong>Pix copia e cola:</strong></p>
       <textarea readonly>0002012633...PIX...6304ABCD</textarea>
     </div>
-    <div class="presente-item">
-      <img src="https://picsum.photos/301/200" alt="Presente 2">
-      <h3>Faqueiro Inox</h3>
-      <p><strong>Valor:</strong> R$ 350,00</p>
-      <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=PIX2" alt="QR Code PIX">
-      <p><strong>Pix copia e cola:</strong></p>
-      <textarea readonly>0002012633...PIX...6304EFGH</textarea>
-    </div>
   </div>
 </section>
 
 <section id="local">
   <h2>Local da Cerimônia</h2>
-  <p style="text-align:center;">
-    Igreja Nossa Senhora da Paz<br>
-    Rua das Flores, 123 - Centro<br>
-    15 de Novembro de 2025 - 17h
-  </p>
+  <p style="text-align:center;">Dois locais especiais para este dia inesquecível:</p>
+  <div class="galeria">
+    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Local 1">
+    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80" alt="Local 2">
+  </div>
 </section>
 
 <section id="padrinhos">
   <h2>Padrinhos</h2>
-  <p style="text-align:center;">Em breve divulgaremos os nossos queridos padrinhos!</p>
+  <div class="galeria">
+    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" alt="Padrinho 1">
+    <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=400&q=80" alt="Padrinho 2">
+    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=400&q=80" alt="Padrinho 3">
+    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" alt="Padrinho 4">
+    <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=400&q=80" alt="Padrinho 5">
+    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=400&q=80" alt="Padrinho 6">
+  </div>
 </section>
 </main>
 
 <!-- Música -->
 <audio id="musica" loop>
-  <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Kevin_MacLeod/Piano_Solo/Kevin_MacLeod_-_Agnus_Dei_X.mp3" type="audio/mpeg">
+  <!-- Substitua pelo seu arquivo MP3 -->
+  <source src="prasonhar.mp3" type="audio/mpeg">
 </audio>
 
 <!-- Botão flutuante -->
@@ -308,7 +321,8 @@ setInterval(function(){
 
 // Música
 function playMusica(){
-  document.getElementById("musica").play();
+  const musica = document.getElementById("musica");
+  musica.play().catch(err => console.log("Erro ao reproduzir música:", err));
   document.getElementById("popupMusica").style.display = "none";
 }
 function fecharPopup(){
@@ -326,4 +340,3 @@ function toggleMusica(){
 
 </body>
 </html>
-
