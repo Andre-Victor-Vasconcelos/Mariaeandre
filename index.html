@@ -29,62 +29,90 @@
     font-family: 'Georgia', serif;
     user-select: none;
   }
-
-  /* Menu Hambúrguer */
+  /* Menu hamburguer container */
   nav {
-    position: relative;
-    padding: 10px 15px;
-    user-select: none;
-  }
-
-  #menuHamburguerWrapper {
-    width: 50px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
     background: #f1b7b1;
-    border: 2px solid #5a0000;
-    border-radius: 10px;
+    padding: 10px;
     user-select: none;
   }
-
-  #menuHamburguer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 6px;
-    padding: 10px 7px;
+  /* Caixa do hambúrguer */
+  #menu-hamburguer {
+    display: inline-block;
+    background: #a33b38;
+    border-radius: 8px;
+    padding: 8px 12px;
     cursor: pointer;
+    color: white;
+    font-weight: 700;
+    font-size: 1.2rem;
+    user-select: none;
+    box-shadow: 0 0 10px #a33b38aa;
+    border: 2px solid #800000;
   }
-
-  #menuHamburguer div {
-    height: 4px;
-    background: #5a0000;
+  #menu-hamburguer:hover {
+    background: #800000;
+  }
+  /* As 3 linhas do ícone hambúrguer */
+  #menu-hamburguer .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px 0;
+    background-color: white;
     border-radius: 2px;
   }
-
-  #menuLinks {
-    display: none;
-    flex-direction: column;
-    background: #f1b7b1;
-    border-top: 2px solid #5a0000;
-    border-radius: 0 0 10px 10px;
+  /* Dropdown menu itens dentro da mesma caixinha */
+  #menu-itens {
+    background: #a33b38;
+    border-radius: 0 0 8px 8px;
+    border: 2px solid #800000;
+    border-top: none;
+    margin-top: -2px; /* para juntar com a caixa do hambúrguer */
+    max-width: 200px;
+    user-select: none;
   }
-
-  #menuLinks a {
+  #menu-itens a {
+    display: block;
     padding: 10px 15px;
+    color: white;
     text-decoration: none;
-    color: #5a0000;
     font-weight: 600;
-    font-size: 1rem;
-    border-top: 1px solid #a33b38;
+    border-top: 1px solid #800000;
     transition: background 0.3s ease;
   }
-  #menuLinks a:first-child {
+  #menu-itens a:first-child {
     border-top: none;
   }
-  #menuLinks a:hover {
-    background: #a33b38;
-    color: #fff;
+  #menu-itens a:hover {
+    background: #800000;
+  }
+  /* Esconde o menu inicialmente */
+  #menu-itens.hidden {
+    display: none;
   }
 
+  section {
+    max-width: 900px;
+    margin: 30px auto;
+    background: #fff7f4;
+    padding: 25px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(216 155 147 / 0.3);
+  }
+  section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #a33b38;
+    font-family: 'Georgia', serif;
+  }
+  p.text-center {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+  }
   /* Contagem regressiva */
   #contagem {
     display: flex;
@@ -98,13 +126,14 @@
     background: #f7d6d0;
     color: #800000;
     border-radius: 8px;
-    padding: 15px 25px;
+    padding: 15px 15px;
     box-shadow: inset 0 0 8px #80000044;
     min-width: 65px;
     text-align: center;
     display: flex;
     flex-direction: column;
-    align-items: center; /* centraliza horizontalmente */
+    justify-content: center;
+    align-items: center;
   }
   #contagem div span {
     font-weight: 700;
@@ -274,15 +303,73 @@
     background: #800000;
   }
 
+  /* Pop-up modal */
+  #popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(163,59,56,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1500;
+  }
+  #popup .popup-content {
+    background: #fff7f4;
+    padding: 25px 30px;
+    border-radius: 15px;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 0 20px #a33b38aa;
+    position: relative;
+  }
+  #popup .popup-content h2 {
+    color: #a33b38;
+    margin-bottom: 15px;
+    font-family: 'Georgia', serif;
+  }
+  #popup .popup-content p {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+  }
+  #popup .popup-content button.close-btn {
+    background: #a33b38;
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    padding: 10px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  #popup .popup-content button.close-btn:hover {
+    background: #800000;
+  }
+
   /* Responsividade */
   @media (max-width: 600px) {
-    #menuHamburguerWrapper {
-      margin: 0 auto 10px;
+    /* Ajusta contagem regressiva para melhor visualização */
+    #contagem {
+      gap: 10px;
+      font-size: 1.3rem;
+      flex-wrap: wrap;
     }
-    #menuLinks a {
-      font-size: 0.9rem;
-      padding: 8px 12px;
+    #contagem div {
+      min-width: 55px;
+      padding: 12px 10px;
     }
+    #contagem div span {
+      font-size: 1.8rem;
+    }
+
+    /* Menu */
+    #menu-itens {
+      max-width: 100vw;
+      width: 180px;
+    }
+    /* Seções */
     #presentes .presentes {
       grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
       gap: 15px;
@@ -312,20 +399,18 @@
 </header>
 
 <nav>
-  <div id="menuHamburguerWrapper" aria-label="Menu de navegação">
-    <div id="menuHamburguer" aria-haspopup="true" aria-expanded="false" role="button" tabindex="0" aria-controls="menuLinks" aria-label="Abrir menu">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-    <div id="menuLinks" role="menu" aria-hidden="true">
-      <a href="#contagem-regressiva" role="menuitem" tabindex="-1">Contagem Regressiva</a>
-      <a href="#historia" role="menuitem" tabindex="-1">Nossa História</a>
-      <a href="#presentes" role="menuitem" tabindex="-1">Presentes</a>
-      <a href="#local" role="menuitem" tabindex="-1">Local da Cerimônia</a>
-      <a href="#padrinhos" role="menuitem" tabindex="-1">Padrinhos</a>
-      <a href="#lua" role="menuitem" tabindex="-1">Lua de Mel</a>
-    </div>
+  <div id="menu-hamburguer" aria-label="Menu de navegação" tabindex="0" role="button" aria-expanded="false" aria-controls="menu-itens">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </div>
+  <div id="menu-itens" class="hidden" role="menu" aria-label="Itens do menu">
+    <a href="#contagem-regressiva" role="menuitem" tabindex="-1">Contagem Regressiva</a>
+    <a href="#historia" role="menuitem" tabindex="-1">Nossa História</a>
+    <a href="#presentes" role="menuitem" tabindex="-1">Presentes</a>
+    <a href="#local" role="menuitem" tabindex="-1">Local da Cerimônia</a>
+    <a href="#padrinhos" role="menuitem" tabindex="-1">Padrinhos</a>
+    <a href="#lua" role="menuitem" tabindex="-1">Lua de Mel</a>
   </div>
 </nav>
 
@@ -386,38 +471,6 @@
       <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551196666666652041234560000000000123456789520400005303986540315.005802BR5908André e Maria6009São Paulo61080540900062070503***6304MNOP</textarea>
     </div>
 
-    <div class="presente-item">
-      <img src="https://cdn.pixabay.com/photo/2016/03/27/19/31/toaster-1284390_1280.jpg" alt="Torradeira" />
-      <h3>Torradeira Elétrica</h3>
-      <p><strong>Valor:</strong> R$ 130,00</p>
-      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
-      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551195555555552041234560000000000123456789520400005303986540313.005802BR5908André e Maria6009São Paulo61080540900062070503***6304QRST</textarea>
-    </div>
-
-    <div class="presente-item">
-      <img src="https://cdn.pixabay.com/photo/2016/06/03/13/39/mixer-1435791_1280.jpg" alt="Batedeira" />
-      <h3>Batedeira</h3>
-      <p><strong>Valor:</strong> R$ 200,00</p>
-      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
-      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551194444444452041234560000000000123456789520400005303986540320.005802BR5908André e Maria6009São Paulo61080540900062070503***6304UVWX</textarea>
-    </div>
-
-    <div class="presente-item">
-      <img src="https://cdn.pixabay.com/photo/2017/03/02/00/59/microwave-2110619_1280.jpg" alt="Micro-ondas" />
-      <h3>Micro-ondas</h3>
-      <p><strong>Valor:</strong> R$ 350,00</p>
-      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
-      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551193333333352041234560000000000123456789520400005303986540335.005802BR5908André e Maria6009São Paulo61080540900062070503***6304YZAB</textarea>
-    </div>
-
-    <div class="presente-item">
-      <img src="https://cdn.pixabay.com/photo/2017/08/02/00/35/kitchen-2560700_1280.jpg" alt="Processador de Alimentos" />
-      <h3>Processador de Alimentos</h3>
-      <p><strong>Valor:</strong> R$ 280,00</p>
-      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
-      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551192222222252041234560000000000123456789520400005303986540328.005802BR5908André e Maria6009São Paulo61080540900062070503***6304CDEF</textarea>
-    </div>
-
   </div>
 </section>
 
@@ -425,8 +478,8 @@
 <section id="local">
   <h2>Local da Cerimônia</h2>
   <div class="igrejas">
-    <img src="https://cdn.pixabay.com/photo/2017/03/23/15/28/church-2168960_1280.jpg" alt="Igreja 1" />
-    <img src="https://cdn.pixabay.com/photo/2016/11/19/14/00/church-1836426_1280.jpg" alt="Igreja 2" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Igreja_Nossa_Senhora_dos_Navegantes_-_Ponta_dos_Canas_-_Florian%C3%B3polis_-_SC_-_Brasil_2.jpg" alt="Igreja Nossa Senhora dos Navegantes" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Igreja_Santa_Catarina_de_Alexandria_-_Florian%C3%B3polis_-_SC_-_Brasil_2.jpg" alt="Igreja Santa Catarina de Alexandria" />
   </div>
 </section>
 
@@ -434,107 +487,118 @@
 <section id="padrinhos">
   <h2>Padrinhos</h2>
   <div class="padrinhos-fotos">
-    <img src="https://cdn.pixabay.com/photo/2016/11/29/03/53/woman-1869877_1280.jpg" alt="Padrinho 1" />
-    <img src="https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358_1280.jpg" alt="Padrinho 2" />
-    <img src="https://cdn.pixabay.com/photo/2017/06/26/15/52/groom-2448203_1280.jpg" alt="Padrinho 3" />
-    <img src="https://cdn.pixabay.com/photo/2016/11/22/19/21/man-1850934_1280.jpg" alt="Padrinho 4" />
+    <img src="https://cdn.pixabay.com/photo/2015/03/26/09/54/groom-690084_1280.jpg" alt="Padrinho 1" />
+    <img src="https://cdn.pixabay.com/photo/2016/03/27/22/22/bride-1284386_1280.jpg" alt="Padrinho 2" />
+    <img src="https://cdn.pixabay.com/photo/2015/03/26/09/57/couple-690085_1280.jpg" alt="Padrinho 3" />
+    <img src="https://cdn.pixabay.com/photo/2017/08/02/01/01/kettle-2561035_1280.jpg" alt="Padrinho 4" />
   </div>
 </section>
 
 <!-- Lua de Mel -->
 <section id="lua">
   <h2>Lua de Mel</h2>
-  <img class="cruzeiro" src="https://cdn.pixabay.com/photo/2017/03/15/13/38/cruise-2148317_1280.jpg" alt="Navio de Cruzeiro" />
-  <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code para contribuição Lua de Mel" />
-  <textarea readonly>
-00020126330014BR.GOV.BCB.PIX0114+551191111111152041234560000000000123456789520400005303986540310.005802BR5908André e Maria6009São Paulo61080540900062070503***6304GHIJ
-  </textarea>
+  <img class="cruzeiro" src="https://cdn.pixabay.com/photo/2017/08/02/01/01/cruise-2561033_1280.jpg" alt="Navio de Cruzeiro" />
+  <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
+  <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551193333333352041234560000000000123456789520400005303986540350.005802BR5908André e Maria6009São Paulo61080540900062070503***6304YZAB</textarea>
 </section>
 
 <!-- Botão música -->
-<button id="btnMusica" aria-label="Tocar / Pausar música">
+<button id="btnMusica" aria-label="Tocar/Pausar música">
   &#9658;
 </button>
-
 <audio id="musica" preload="auto" loop>
   <source src="prasonhar.mp3" type="audio/mpeg" />
+  Seu navegador não suporta áudio HTML5.
 </audio>
+
+<!-- Pop-up Modal -->
+<div id="popup" role="dialog" aria-modal="true" aria-labelledby="popup-title" aria-describedby="popup-desc">
+  <div class="popup-content">
+    <h2 id="popup-title">Bem-vindo!</h2>
+    <p id="popup-desc">Estamos muito felizes em compartilhar nosso grande dia com você! 🎉</p>
+    <button class="close-btn" aria-label="Fechar pop-up">Fechar</button>
+  </div>
+</div>
 
 <script>
   // Contagem regressiva
-  const dataCasamento = new Date("2025-12-31T15:00:00"); // Ajuste a data aqui
-  const diasEl = document.getElementById("dias");
-  const horasEl = document.getElementById("horas");
-  const minutosEl = document.getElementById("minutos");
-  const segundosEl = document.getElementById("segundos");
+  const targetDate = new Date('2025-12-31T23:59:59'); // Ajuste para a data do casamento
 
-  function atualizaContagem() {
-    const agora = new Date();
-    const diff = dataCasamento - agora;
+  function updateCountdown() {
+    const now = new Date();
+    const diff = targetDate - now;
 
     if (diff <= 0) {
-      diasEl.textContent = 0;
-      horasEl.textContent = 0;
-      minutosEl.textContent = 0;
-      segundosEl.textContent = 0;
-      clearInterval(timer);
+      document.getElementById('dias').textContent = 0;
+      document.getElementById('horas').textContent = 0;
+      document.getElementById('minutos').textContent = 0;
+      document.getElementById('segundos').textContent = 0;
       return;
     }
 
-    const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutos = Math.floor((diff / (1000 * 60)) % 60);
-    const segundos = Math.floor((diff / 1000) % 60);
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
 
-    diasEl.textContent = dias;
-    horasEl.textContent = horas.toString().padStart(2, '0');
-    minutosEl.textContent = minutos.toString().padStart(2, '0');
-    segundosEl.textContent = segundos.toString().padStart(2, '0');
+    document.getElementById('dias').textContent = days;
+    document.getElementById('horas').textContent = hours;
+    document.getElementById('minutos').textContent = minutes;
+    document.getElementById('segundos').textContent = seconds;
   }
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
 
-  atualizaContagem();
-  const timer = setInterval(atualizaContagem, 1000);
+  // Menu hamburguer toggle
+  const menuHamburguer = document.getElementById('menu-hamburguer');
+  const menuItens = document.getElementById('menu-itens');
 
-  // Menu hambúrguer
-  const menuHamburguer = document.getElementById("menuHamburguer");
-  const menuLinks = document.getElementById("menuLinks");
+  menuHamburguer.addEventListener('click', () => {
+    const isHidden = menuItens.classList.toggle('hidden');
+    menuHamburguer.setAttribute('aria-expanded', !isHidden);
+  });
 
-  function toggleMenu() {
-    const aberto = menuLinks.style.display === "flex";
-    if (aberto) {
-      menuLinks.style.display = "none";
-      menuHamburguer.setAttribute("aria-expanded", "false");
-      // Ajustar tabindex dos links para não focáveis quando fechado
-      [...menuLinks.querySelectorAll("a")].forEach(a => a.setAttribute("tabindex", "-1"));
-    } else {
-      menuLinks.style.display = "flex";
-      menuHamburguer.setAttribute("aria-expanded", "true");
-      [...menuLinks.querySelectorAll("a")].forEach(a => a.setAttribute("tabindex", "0"));
-    }
-  }
-
-  menuHamburguer.addEventListener("click", toggleMenu);
-  menuHamburguer.addEventListener("keydown", (e) => {
-    if(e.key === "Enter" || e.key === " "){
+  // Permitir abrir menu com tecla Enter ou Espaço
+  menuHamburguer.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      toggleMenu();
+      menuHamburguer.click();
     }
   });
 
-  // Música botão
-  const btnMusica = document.getElementById("btnMusica");
-  const musica = document.getElementById("musica");
-  let tocando = false;
+  // Botão tocar/pausar música
+  const btnMusica = document.getElementById('btnMusica');
+  const musica = document.getElementById('musica');
 
-  btnMusica.addEventListener("click", () => {
-    if(tocando){
-      musica.pause();
-      btnMusica.innerHTML = "&#9658;";
-      tocando = false;
-    } else {
+  btnMusica.addEventListener('click', () => {
+    if (musica.paused) {
       musica.play();
-      btnMusica.innerHTML = "&#10073;&#10073;";
-      tocando = true;
+      btnMusica.innerHTML = '&#10074;&#10074;'; // Ícone pause
+    } else {
+      musica.pause();
+      btnMusica.innerHTML = '&#9658;'; // Ícone play
+    }
+  });
+
+  // Pop-up fechar botão
+  const popup = document.getElementById('popup');
+  const closeBtn = popup.querySelector('.close-btn');
+
+  closeBtn.addEventListener('click', () => {
+    popup.style.display = 'none';
+  });
+
+  // Fecha popup se clicar fora do conteúdo
+  popup.addEventListener('click', (e) => {
+    if (e.target === popup) {
+      popup.style.display = 'none';
+    }
+  });
+
+  // Opcional: Fecha popup ao apertar Esc
+  document.addEventListener('keydown', (e) => {
+    if (e.key === "Escape" && !popup.classList.contains('hidden') && popup.style.display !== 'none') {
+      popup.style.display = 'none';
     }
   });
 </script>
