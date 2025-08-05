@@ -452,14 +452,57 @@
 
 <button id="btnMusica" aria-label="Tocar/Parar Música">🎵</button>
 
+<!-- Pop-up estilizado -->
+<div id="popupMusica" style="
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(168, 48, 56, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  font-family: 'Georgia', serif;
+  color: #fff;
+  text-align: center;
+  padding: 30px 15px;
+  flex-direction: column;
+  user-select: none;
+">
+  <div style="
+    background: #fff0f0;
+    color: #a83038;
+    border-radius: 15px;
+    padding: 30px 40px;
+    max-width: 320px;
+    box-shadow: 0 0 20px #a8303866;
+  ">
+    <h2 style="margin-bottom: 15px; font-size: 1.8rem;">💖 Ouvir Nossa Música? 💖</h2>
+    <p style="margin-bottom: 25px; font-size: 1.1rem; line-height: 1.4;">
+      Queremos compartilhar este momento especial com a trilha sonora do nosso amor. Clique no botão abaixo para ouvir.
+    </p>
+    <button id="btnSimMusica" style="
+      background: #a83038;
+      border: none;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 10px 25px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    " onmouseover="this.style.background='#800024'" onmouseout="this.style.background='#a83038'">
+      Sim, quero ouvir 💖
+    </button>
+  </div>
+</div>
+
 <script>
-  // Contagem regressiva
+  // Contagem regressiva (não mexi aqui)
   const alvoData = new Date("2025-12-31T00:00:00").getTime(); // ajuste para a data do casamento
 
   function atualizarContagem() {
     const agora = new Date().getTime();
     let distancia = alvoData - agora;
-
     if (distancia < 0) distancia = 0;
 
     const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
@@ -478,8 +521,10 @@
   // Música
   const musica = document.getElementById("musica");
   const btnMusica = document.getElementById("btnMusica");
+  const popupMusica = document.getElementById("popupMusica");
+  const btnSimMusica = document.getElementById("btnSimMusica");
 
-  // Botão para ligar/desligar música
+  // Controle botão flutuante música
   btnMusica.addEventListener("click", () => {
     if (musica.paused) {
       musica.play();
@@ -494,17 +539,14 @@
     btnMusica.textContent = "🎵";
   });
 
-  // Pop-up perguntando se quer tocar música
-  window.addEventListener("load", () => {
-    setTimeout(() => {
-      if (confirm("Deseja ouvir nossa música? 💖")) {
-        musica.play().then(() => {
-          btnMusica.textContent = "🔊";
-        }).catch(() => {
-          alert("Clique no botão 🎵 para tocar a música.");
-        });
-      }
-    }, 800); // atraso para garantir que carregou
+  // Quando usuário clicar no botão "Sim, quero ouvir"
+  btnSimMusica.addEventListener("click", () => {
+    musica.play().then(() => {
+      btnMusica.textContent = "🔊";
+      popupMusica.style.display = "none"; // esconde o pop-up
+    }).catch(() => {
+      alert("Não foi possível iniciar a música automaticamente. Clique no botão 🎵 para tocar.");
+    });
   });
 </script>
 
