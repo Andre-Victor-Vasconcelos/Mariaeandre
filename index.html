@@ -6,8 +6,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>André & Maria - Nosso Casamento</title>
 <style>
-  /* Reset */
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  /* Reset básico */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #fdf6f0;
@@ -15,7 +19,6 @@
     line-height: 1.5;
     padding: 0 10px 50px;
   }
-
   header {
     text-align: center;
     padding: 30px 10px 10px;
@@ -27,70 +30,102 @@
     user-select: none;
   }
 
-  /* Menu */
+  /* Menu hambúrguer */
   nav {
     background: #f1b7b1;
     position: sticky;
     top: 0;
     z-index: 100;
+    user-select: none;
   }
-  nav ul {
-    list-style: none;
+  .menu-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 10px 15px;
     display: flex;
-    justify-content: center;
-    padding: 10px 0;
+    justify-content: space-between;
+    align-items: center;
   }
-  nav ul li {
-    margin: 0 15px;
+  .menu-links {
+    display: flex;
+    gap: 20px;
   }
-  nav ul li a {
+  .menu-links a {
     color: #5a0000;
     text-decoration: none;
     font-weight: 600;
     font-size: 1rem;
     transition: color 0.3s ease;
   }
-  nav ul li a:hover { color: #a33b38; }
-
+  .menu-links a:hover {
+    color: #a33b38;
+  }
   /* Botão hambúrguer */
   .menu-toggle {
     display: none;
-    background: #a33b38;
-    border: none;
-    color: white;
-    font-size: 1.5rem;
-    padding: 10px 15px;
+    flex-direction: column;
     cursor: pointer;
-    position: absolute;
-    top: 8px;
-    right: 10px;
-    border-radius: 5px;
+    width: 30px;
+    height: 22px;
+    justify-content: space-between;
+  }
+  .menu-toggle span {
+    background: #5a0000;
+    height: 4px;
+    border-radius: 2px;
+    transition: 0.3s;
   }
 
-  /* Responsivo menu */
-  @media (max-width: 700px) {
-    nav ul {
-      flex-direction: column;
-      display: none;
+  /* Para menu mobile */
+  @media (max-width: 600px) {
+    .menu-links {
+      position: fixed;
+      top: 60px;
+      right: 0;
       background: #f1b7b1;
+      flex-direction: column;
+      width: 200px;
+      padding: 20px;
+      gap: 15px;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      height: calc(100vh - 60px);
+      overflow-y: auto;
+      box-shadow: -2px 0 10px rgba(163, 59, 56, 0.5);
     }
-    nav ul li {
-      text-align: center;
-      margin: 10px 0;
-    }
-    nav ul.show {
-      display: flex;
+    .menu-links.open {
+      transform: translateX(0);
     }
     .menu-toggle {
-      display: block;
+      display: flex;
     }
   }
 
+  section {
+    max-width: 900px;
+    margin: 30px auto;
+    background: #fff7f4;
+    padding: 25px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(216 155 147 / 0.3);
+  }
+  section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #a33b38;
+    font-family: 'Georgia', serif;
+  }
+  p.text-center {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+  }
   /* Contagem regressiva */
   #contagem {
     display: flex;
     justify-content: center;
     gap: 15px;
+    font-size: 1.5rem;
     margin-bottom: 10px;
     user-select: none;
     flex-wrap: wrap;
@@ -99,19 +134,153 @@
     background: #f7d6d0;
     color: #800000;
     border-radius: 8px;
-    padding: 10px 15px;
+    padding: 15px 20px;
     box-shadow: inset 0 0 8px #80000044;
+    min-width: 60px;
     text-align: center;
     flex: 1 1 60px;
   }
   #contagem div span {
     display: block;
     font-weight: 700;
-    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    font-size: 2.2rem;
   }
   #contagem div small {
     font-size: 0.9rem;
     font-weight: 600;
+  }
+
+  /* Nossa História */
+  #historia img {
+    display: block;
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-top: 15px;
+  }
+  #historia p {
+    max-width: 700px;
+    margin: 0 auto 20px;
+    font-size: 1.1rem;
+  }
+
+  /* Presentes */
+  #presentes .presentes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+    gap: 20px;
+  }
+  #presentes .presente-item {
+    background: #f1b7b1aa;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 0 8px #a33b3811;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #presentes .presente-item img {
+    width: 210px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px #a33b3822;
+    margin-bottom: 12px;
+  }
+  #presentes .presente-item h3 {
+    color: #800000;
+    margin-bottom: 6px;
+    font-size: 1.1rem;
+    text-align: center;
+  }
+  #presentes .presente-item p {
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  #presentes .presente-item .qr {
+    width: 110px;
+    height: 110px;
+    object-fit: contain;
+    margin-bottom: 8px;
+  }
+  #presentes .presente-item textarea {
+    width: 100%;
+    resize: none;
+    font-family: monospace;
+    font-size: 0.75rem;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #a33b38;
+    background: #fff0f0;
+    color: #800000;
+    height: 75px;
+    overflow-wrap: break-word;
+  }
+
+  /* Local da Cerimônia */
+  #local .igrejas {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+  }
+  #local .igrejas img {
+    width: 280px;
+    max-width: 90vw;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px #a33b3811;
+  }
+
+  /* Padrinhos */
+  #padrinhos .padrinhos-fotos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+  #padrinhos .padrinhos-fotos img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #a33b3855;
+    cursor: default;
+  }
+
+  /* Lua de Mel */
+  #lua img.cruzeiro {
+    display: block;
+    max-width: 100%;
+    max-height: 250px;
+    margin: 15px auto;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #a33b3811;
+  }
+  #lua .qr {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    display: block;
+    object-fit: contain;
+  }
+  #lua textarea {
+    width: 100%;
+    max-width: 300px;
+    margin: 15px auto 0;
+    display: block;
+    font-family: monospace;
+    font-size: 0.85rem;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #a33b38;
+    background: #fff0f0;
+    color: #800000;
+    height: 75px;
+    resize: none;
+    overflow-wrap: break-word;
   }
 
   /* Botão música flutuante */
@@ -132,146 +301,263 @@
     justify-content: center;
     align-items: center;
     transition: background 0.3s ease;
+    user-select: none;
     z-index: 999;
   }
-  #btnMusica:hover { background: #800000; }
-
-  /* Pop-up música */
-  #popupMusica {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(168, 48, 56, 0.85);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    font-family: 'Georgia', serif;
-    color: #fff;
-    text-align: center;
-    padding: 30px 15px;
-    flex-direction: column;
-    user-select: none;
+  #btnMusica:hover {
+    background: #800000;
   }
-  #popupMusica .conteudo {
-    background: #fff0f0;
-    color: #a83038;
-    border-radius: 15px;
-    padding: 30px 40px;
-    max-width: 320px;
-    box-shadow: 0 0 20px #a8303866;
-  }
-  #popupMusica button {
-    border: none;
-    color: white;
-    font-size: 1.1rem;
-    font-weight: 600;
-    padding: 10px 25px;
-    border-radius: 8px;
-    cursor: pointer;
-    margin: 5px 0;
-    transition: background 0.3s ease;
-    width: 100%;
-  }
-  #btnSimMusica { background: #a83038; }
-  #btnSimMusica:hover { background: #800024; }
-  #btnNaoMusica { background: #555; }
-  #btnNaoMusica:hover { background: #333; }
 </style>
 </head>
 <body>
 
-<header>André & Maria - Nosso Casamento</header>
+<header>
+  André & Maria - Nosso Casamento
+</header>
 
 <nav>
-  <button class="menu-toggle">☰</button>
-  <ul>
-    <li><a href="#contagem-regressiva">Contagem Regressiva</a></li>
-    <li><a href="#historia">Nossa História</a></li>
-    <li><a href="#presentes">Presentes</a></li>
-    <li><a href="#local">Local da Cerimônia</a></li>
-    <li><a href="#padrinhos">Padrinhos</a></li>
-    <li><a href="#lua">Lua de Mel</a></li>
-  </ul>
+  <div class="menu-container">
+    <div class="menu-toggle" aria-label="Abrir menu" role="button" tabindex="0">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="menu-links">
+      <a href="#contagem-regressiva">Contagem Regressiva</a>
+      <a href="#historia">Nossa História</a>
+      <a href="#presentes">Presentes</a>
+      <a href="#local">Local da Cerimônia</a>
+      <a href="#padrinhos">Padrinhos</a>
+      <a href="#lua">Lua de Mel</a>
+    </div>
+  </div>
 </nav>
 
 <main>
+
+<!-- Contagem regressiva -->
 <section id="contagem-regressiva">
   <h2>Contagem Regressiva</h2>
   <div id="contagem">
     <div><span id="dias">0</span><small>Dias</small></div>
-    <div><span id="horas">0</span><small>Horas</small></div>
-    <div><span id="minutos">0</span><small>Minutos</small></div>
-    <div><span id="segundos">0</span><small>Segundos</small></div>
+    <div><span id="horas">00</span><small>Horas</small></div>
+    <div><span id="minutos">00</span><small>Minutos</small></div>
+    <div><span id="segundos">00</span><small>Segundos</small></div>
   </div>
 </section>
+
+<!-- Nossa História -->
+<section id="historia">
+  <h2>Nossa História</h2>
+  <p>Nosso amor começou com um simples olhar que se transformou em uma linda jornada juntos. Estamos felizes em compartilhar este momento com você!</p>
+  <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="Coração" />
+</section>
+
+<!-- Presentes -->
+<section id="presentes">
+  <h2>Presentes</h2>
+  <div class="presentes">
+
+    <div class="presente-item">
+      <img src="https://cdn.pixabay.com/photo/2016/11/29/05/09/cookware-1869617_1280.jpg" alt="Jogo de Panelas" />
+      <h3>Jogo de Panelas Inox</h3>
+      <p><strong>Valor:</strong> R$ 250,00</p>
+      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
+      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551199999999952041234560000000000123456789520400005303986540325.005802BR5908André e Maria6009São Paulo61080540900062070503***6304ABCD</textarea>
+    </div>
+
+    <div class="presente-item">
+      <img src="https://cdn.pixabay.com/photo/2014/12/21/23/28/kitchen-575434_1280.jpg" alt="Liquidificador" />
+      <h3>Liquidificador Moderno</h3>
+      <p><strong>Valor:</strong> R$ 180,00</p>
+      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
+      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551198888888852041234560000000000123456789520400005303986540318.005802BR5908André e Maria6009São Paulo61080540900062070503***6304EFGH</textarea>
+    </div>
+
+    <div class="presente-item">
+      <img src="https://cdn.pixabay.com/photo/2017/08/02/01/01/kettle-2561035_1280.jpg" alt="Chaleira Elétrica" />
+      <h3>Chaleira Elétrica</h3>
+      <p><strong>Valor:</strong> R$ 120,00</p>
+      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
+      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551197777777752041234560000000000123456789520400005303986540312.005802BR5908André e Maria6009São Paulo61080540900062070503***6304IJKL</textarea>
+    </div>
+
+    <div class="presente-item">
+      <img src="https://cdn.pixabay.com/photo/2015/03/26/09/41/cutlery-690048_1280.jpg" alt="Conjunto de Talheres" />
+      <h3>Conjunto de Talheres</h3>
+      <p><strong>Valor:</strong> R$ 150,00</p>
+      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
+      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551196666666652041234560000000000123456789520400005303986540315.005802BR5908André e Maria6009São Paulo61080540900062070503***6304MNOP</textarea>
+    </div>
+
+    <div class="presente-item">
+      <img src="https://cdn.pixabay.com/photo/2016/03/27/19/31/toaster-1284390_1280.jpg" alt="Torradeira" />
+      <h3>Torradeira Elétrica</h3>
+      <p><strong>Valor:</strong> R$ 130,00</p>
+      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
+      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551195555555552041234560000000000123456789520400005303986540313.005802BR5908André e Maria6009São Paulo61080540900062070503***6304QRST</textarea>
+    </div>
+
+    <div class="presente-item">
+      <img src="https://cdn.pixabay.com/photo/2016/06/03/13/39/mixer-1435791_1280.jpg" alt="Batedeira" />
+      <h3>Batedeira</h3>
+      <p><strong>Valor:</strong> R$ 200,00</p>
+      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
+      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551194444444452041234560000000000123456789520400005303986540320.005802BR5908André e Maria6009São Paulo61080540900062070503***6304UVWX</textarea>
+    </div>
+
+    <div class="presente-item">
+      <img src="https://cdn.pixabay.com/photo/2017/03/02/00/59/microwave-2110619_1280.jpg" alt="Micro-ondas" />
+      <h3>Micro-ondas</h3>
+      <p><strong>Valor:</strong> R$ 350,00</p>
+      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
+      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551193333333352041234560000000000123456789520400005303986540335.005802BR5908André e Maria6009São Paulo61080540900062070503***6304YZAB</textarea>
+    </div>
+
+    <div class="presente-item">
+      <img src="https://cdn.pixabay.com/photo/2016/11/29/08/12/coffee-1869563_1280.jpg" alt="Cafeteira" />
+      <h3>Cafeteira Elétrica</h3>
+      <p><strong>Valor:</strong> R$ 190,00</p>
+      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
+      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551192222222252041234560000000000123456789520400005303986540319.005802BR5908André e Maria6009São Paulo61080540900062070503***6304CDEF</textarea>
+    </div>
+
+  </div>
+</section>
+
+<!-- Local da Cerimônia -->
+<section id="local">
+  <h2>Local da Cerimônia</h2>
+  <div class="igrejas">
+    <img src="https://cdn.pixabay.com/photo/2017/03/09/19/41/church-2137177_1280.jpg" alt="Igreja São José" />
+    <img src="https://cdn.pixabay.com/photo/2016/08/25/22/45/church-1625730_1280.jpg" alt="Igreja Santa Maria" />
+  </div>
+</section>
+
+<!-- Padrinhos -->
+<section id="padrinhos">
+  <h2>Padrinhos</h2>
+  <div class="padrinhos-fotos">
+    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Padrinho 1" />
+    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Padrinha 1" />
+    <img src="https://randomuser.me/api/portraits/men/76.jpg" alt="Padrinho 2" />
+    <img src="https://randomuser.me/api/portraits/women/85.jpg" alt="Padrinha 2" />
+    <img src="https://randomuser.me/api/portraits/men/28.jpg" alt="Padrinho 3" />
+    <img src="https://randomuser.me/api/portraits/women/72.jpg" alt="Padrinha 3" />
+  </div>
+</section>
+
+<!-- Lua de Mel -->
+<section id="lua">
+  <h2>Lua de Mel</h2>
+  <img class="cruzeiro" src="https://cdn.pixabay.com/photo/2018/01/20/13/47/cruise-3092621_1280.jpg" alt="Navio de Cruzeiro" />
+  <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code Lua de Mel" />
+  <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551191111111152041234560000000000123456789520400005303986540310.005802BR5908André e Maria6009São Paulo61080540900062070503***6304WXYZ</textarea>
+</section>
+
 </main>
 
-<audio id="musica" preload="auto">
-   <source src="prasonhar.mp3" type="audio/mpeg">
+<!-- Áudio escondido -->
+<audio id="musica" preload="auto" loop>
+  <source src="prasonhar.mp3" type="audio/mpeg" />
+  Seu navegador não suporta áudio.
 </audio>
 
-<button id="btnMusica" aria-label="Tocar/Parar Música">🎵</button>
+<!-- Botão flutuante para ligar/desligar música -->
+<button id="btnMusica" title="Tocar/Pausar Música" aria-label="Tocar ou pausar música">
+  &#127925;
+</button>
 
-<!-- Pop-up -->
-<div id="popupMusica">
-  <div class="conteudo">
-    <h2>💖 Ouvir Nossa Música? 💖</h2>
-    <p>Queremos compartilhar este momento especial com a trilha sonora do nosso amor.</p>
-    <button id="btnSimMusica">Sim, quero ouvir 💖</button>
-    <button id="btnNaoMusica">Por hora quero silêncio 🎧</button>
+<!-- Pop-up inicial -->
+<div id="popupMusica" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.7);display:flex;justify-content:center;align-items:center;z-index:9999;">
+  <div style="background:#fff7f4;padding:30px 25px;border-radius:14px;text-align:center;max-width:320px;box-shadow: 0 0 15px #a33b3811;">
+    <p style="font-size:1.3rem;color:#800000;margin-bottom: 25px; font-weight:bold;">Quer ouvir uma música enquanto navega?</p>
+    <button id="btnOuvir" style="background:#a33b38;color:#fff;border:none;padding:12px 25px;font-size:1.1rem;border-radius:8px;cursor:pointer;margin-right:15px;">Quero ouvir 🎵</button>
+    <button id="btnSilencio" style="background:#777;color:#fff;border:none;padding:12px 25px;font-size:1.1rem;border-radius:8px;cursor:pointer;">Por hora, silêncio</button>
   </div>
 </div>
 
 <script>
   // Menu hambúrguer
-  document.querySelector(".menu-toggle").addEventListener("click", () => {
-    document.querySelector("nav ul").classList.toggle("show");
+  const menuToggle = document.querySelector('.menu-toggle');
+  const menuLinks = document.querySelector('.menu-links');
+
+  menuToggle.addEventListener('click', () => {
+    menuLinks.classList.toggle('open');
   });
-
-  // Contagem regressiva
-  const alvoData = new Date("2025-12-31T00:00:00").getTime();
-  function atualizarContagem() {
-    const agora = new Date().getTime();
-    let distancia = alvoData - agora;
-    if (distancia < 0) distancia = 0;
-    const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
-    const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
-    const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
-    document.getElementById("dias").textContent = dias;
-    document.getElementById("horas").textContent = horas.toString().padStart(2,'0');
-    document.getElementById("minutos").textContent = minutos.toString().padStart(2,'0');
-    document.getElementById("segundos").textContent = segundos.toString().padStart(2,'0');
-  }
-  setInterval(atualizarContagem, 1000);
-  atualizarContagem();
-
-  // Música
-  const musica = document.getElementById("musica");
-  const btnMusica = document.getElementById("btnMusica");
-  const popupMusica = document.getElementById("popupMusica");
-
-  btnMusica.addEventListener("click", () => {
-    if (musica.paused) {
-      musica.play();
-      btnMusica.textContent = "🔊";
-    } else {
-      musica.pause();
-      btnMusica.textContent = "🎵";
+  // Permite abrir com teclado (Enter/Space)
+  menuToggle.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      menuLinks.classList.toggle('open');
     }
   });
 
-  document.getElementById("btnSimMusica").addEventListener("click", () => {
-    musica.play().then(() => {
-      btnMusica.textContent = "🔊";
-      popupMusica.style.display = "none";
-    });
+  // Contagem regressiva para data fixa: 24/12/2025 15:00:00
+  function atualizaContagem() {
+    const fimCasamento = new Date('2025-12-24T15:00:00');
+    const agora = new Date();
+    const diff = fimCasamento - agora;
+
+    if (diff <= 0) {
+      document.getElementById('dias').textContent = '0';
+      document.getElementById('horas').textContent = '00';
+      document.getElementById('minutos').textContent = '00';
+      document.getElementById('segundos').textContent = '00';
+      clearInterval(interval);
+      return;
+    }
+
+    const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutos = Math.floor((diff / (1000 * 60)) % 60);
+    const segundos = Math.floor((diff / 1000) % 60);
+
+    document.getElementById('dias').textContent = dias;
+    document.getElementById('horas').textContent = horas.toString().padStart(2,'0');
+    document.getElementById('minutos').textContent = minutos.toString().padStart(2,'0');
+    document.getElementById('segundos').textContent = segundos.toString().padStart(2,'0');
+  }
+  const interval = setInterval(atualizaContagem, 1000);
+  atualizaContagem();
+
+  // Áudio e pop-up controle
+  const popup = document.getElementById('popupMusica');
+  const btnOuvir = document.getElementById('btnOuvir');
+  const btnSilencio = document.getElementById('btnSilencio');
+  const musica = document.getElementById('musica');
+  const btnMusica = document.getElementById('btnMusica');
+
+  // Mostra pop-up na abertura
+  window.addEventListener('load', () => {
+    popup.style.display = 'flex';
   });
 
-  document.getElementById("btnNaoMusica").addEventListener("click", () => {
-    musica.pause();
-    btnMusica.textContent = "🎵";
-    popupMusica.style.display = "none";
+  btnOuvir.addEventListener('click', () => {
+    musica.play().catch(()=>{}); // tenta tocar
+    popup.style.display = 'none';
+  });
+
+  btnSilencio.addEventListener('click', () => {
+    popup.style.display = 'none';
+  });
+
+  // Botão flutuante liga/desliga música
+  btnMusica.addEventListener('click', () => {
+    if (musica.paused) {
+      musica.play().catch(()=>{});
+    } else {
+      musica.pause();
+    }
+  });
+
+  // Impede propagação para o menu fechar ao clicar link no mobile
+  document.querySelectorAll('.menu-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (menuLinks.classList.contains('open')) {
+        menuLinks.classList.remove('open');
+      }
+    });
   });
 </script>
 
