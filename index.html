@@ -304,7 +304,7 @@
     font-size: 1.8rem;
     cursor: pointer;
     box-shadow: 0 0 10px #a33b38aa;
-    display: flex;
+    display: none; /* esconde inicialmente, só aparece depois do popup fechar */
     justify-content: center;
     align-items: center;
     transition: background 0.3s ease;
@@ -316,6 +316,33 @@
   }
 
   /* Estilos para os botões do pop-up */
+  #popup {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    z-index: 9999;
+  }
+  .popup-content {
+    background:#f7d6d0;
+    padding: 25px;
+    max-width: 320px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #a33b38cc;
+    text-align:center;
+  }
+  .popup-content h2 {
+    color:#a33b38;
+    font-family: 'Georgia', serif;
+    margin-bottom: 15px;
+  }
+  .popup-content p {
+    font-size: 1.1rem;
+    color:#5a0000;
+  }
   .popup-buttons {
     display: flex;
     justify-content: center;
@@ -454,17 +481,9 @@
     <div class="presente-item">
       <img src="https://cdn.pixabay.com/photo/2015/03/26/09/41/cutlery-690048_1280.jpg" alt="Conjunto de Talheres" />
       <h3>Conjunto de Talheres</h3>
-      <p><strong>Valor:</strong> R$ 150,00</p>
+      <p><strong>Valor:</strong> R$ 90,00</p>
       <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
-      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551196666666652041234560000000000123456789520400005303986540315.005802BR5908André e Maria6009São Paulo61080540900062070503***6304MNOP</textarea>
-    </div>
-
-    <div class="presente-item">
-      <img src="https://cdn.pixabay.com/photo/2016/03/27/19/31/toaster-1284390_1280.jpg" alt="Torradeira" />
-      <h3>Torradeira Elétrica</h3>
-      <p><strong>Valor:</strong> R$ 130,00</p>
-      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
-      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551195555555552041234560000000000123456789520400005303986540313.005802BR5908André e Maria6009São Paulo61080540900062070503***6304QRST</textarea>
+      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551196666666652041234560000000000123456789520400005303986540309.005802BR5908André e Maria6009São Paulo61080540900062070503***6304MNOP</textarea>
     </div>
 
   </div>
@@ -503,10 +522,10 @@
 </main>
 
 <!-- Pop-up Modal -->
-<div id="popup" role="dialog" aria-modal="true" aria-labelledby="popup-title" aria-describedby="popup-desc">
-  <div class="popup-content" style="background:#f7d6d0; padding: 25px; max-width: 320px; margin: 100px auto; border-radius: 15px; box-shadow: 0 0 20px #a33b38cc; text-align:center; user-select:none;">
-    <h2 id="popup-title" style="color:#a33b38; font-family: 'Georgia', serif; margin-bottom: 15px;">Bem-vindo!</h2>
-    <p id="popup-desc" style="font-size: 1.1rem; color:#5a0000;">Estamos muito felizes em compartilhar nosso grande dia com você! 🎉</p>
+<div id="popup" role="dialog" aria-modal="true" aria-labelledby="popup-title" aria-describedby="popup-desc" style="display:flex;">
+  <div class="popup-content" role="document">
+    <h2 id="popup-title">Bem-vindo!</h2>
+    <p id="popup-desc">Estamos muito felizes em compartilhar nosso grande dia com você! 🎉</p>
     <div class="popup-buttons">
       <button id="btnOuvir" class="popup-btn" aria-label="Ouvir a playlist">Ouvir a playlist</button>
       <button id="btnSilencio" class="popup-btn" aria-label="Por hora quero silêncio pra ler">Por hora quero silêncio pra ler</button>
@@ -514,7 +533,7 @@
   </div>
 </div>
 
-<!-- Botão música -->
+<!-- Botão música flutuante -->
 <button id="btnMusica" aria-label="Tocar/Pausar música" title="Tocar/Pausar música">
   &#9658;
 </button>
@@ -570,29 +589,29 @@
   btnOuvir.addEventListener('click', () => {
     popup.style.display = 'none';
     musica.play();
-    btnMusica.innerHTML = '&#10074;&#10074;'; // pause
+    btnMusica.style.display = 'flex';
+    btnMusica.innerHTML = '&#10074;&#10074;'; // pause icon
   });
 
   btnSilencio.addEventListener('click', () => {
     popup.style.display = 'none';
     musica.pause();
-    btnMusica.innerHTML = '&#9658;'; // play
+    btnMusica.style.display = 'flex';
+    btnMusica.innerHTML = '&#9658;'; // play icon
   });
 
   btnMusica.addEventListener('click', () => {
     if (musica.paused) {
       musica.play();
-      btnMusica.innerHTML = '&#10074;&#10074;'; // pause
+      btnMusica.innerHTML = '&#10074;&#10074;'; // pause icon
     } else {
       musica.pause();
-      btnMusica.innerHTML = '&#9658;'; // play
+      btnMusica.innerHTML = '&#9658;'; // play icon
     }
   });
 
-  // Mostrar o popup ao carregar a página
-  window.onload = () => {
-    popup.style.display = 'block';
-  };
+  // O popup já está visível por padrão no carregamento, então não precisa mostrar aqui
+
 </script>
 
 </body>
