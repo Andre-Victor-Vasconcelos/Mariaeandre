@@ -1,498 +1,239 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>André & Maria - Nosso Casamento</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casamento André & Maria</title>
 <style>
-  /* Reset básico */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #fdf6f0;
-    color: #333;
-    line-height: 1.5;
-    padding: 0 10px 50px;
-  }
-  header {
-    text-align: center;
-    padding: 30px 10px 10px;
-    background: #f7d6d0;
-    color: #800000;
-    font-weight: bold;
-    font-size: 2rem;
-    font-family: 'Georgia', serif;
-    user-select: none;
-  }
-  nav {
-    display: flex;
-    justify-content: center;
-    background: #f1b7b1;
-    padding: 10px 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  nav a {
-    color: #5a0000;
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: color 0.3s ease;
-  }
-  nav a:hover {
-    color: #a33b38;
-  }
-  section {
-    max-width: 900px;
-    margin: 30px auto;
-    background: #fff7f4;
-    padding: 25px 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgb(216 155 147 / 0.3);
-  }
-  section h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #a33b38;
-    font-family: 'Georgia', serif;
-  }
-  p.text-center {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 1.1rem;
-  }
-  /* Contagem regressiva */
-  #contagem {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    user-select: none;
-  }
-  #contagem div {
-    background: #f7d6d0;
-    color: #800000;
-    border-radius: 8px;
-    padding: 15px 25px;
-    box-shadow: inset 0 0 8px #80000044;
-    min-width: 65px;
-    text-align: center;
-  }
-  #contagem div span {
-    display: block;
-    font-weight: 700;
-    font-size: 2.2rem;
-  }
-  #contagem div small {
-    font-size: 0.9rem;
-    font-weight: 600;
-  }
-
-  /* Nossa História */
-  #historia img {
-    display: block;
-    margin: 0 auto;
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
-    margin-top: 15px;
-  }
-  #historia p {
-    max-width: 700px;
-    margin: 0 auto 20px;
-    font-size: 1.1rem;
-  }
-
-  /* Presentes */
-  #presentes .presentes {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
-    gap: 20px;
-  }
-  #presentes .presente-item {
-    background: #f1b7b1aa;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 0 8px #a33b3811;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  #presentes .presente-item img {
-    width: 210px;
-    height: 140px;
-    object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px #a33b3822;
-    margin-bottom: 12px;
-  }
-  #presentes .presente-item h3 {
-    color: #800000;
-    margin-bottom: 6px;
-    font-size: 1.1rem;
-    text-align: center;
-  }
-  #presentes .presente-item p {
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-  #presentes .presente-item .qr {
-    width: 110px;
-    height: 110px;
-    object-fit: contain;
-    margin-bottom: 8px;
-  }
-  #presentes .presente-item textarea {
-    width: 100%;
-    resize: none;
-    font-family: monospace;
-    font-size: 0.75rem;
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #a33b38;
-    background: #fff0f0;
-    color: #800000;
-    height: 75px;
-    overflow-wrap: break-word;
-  }
-
-  /* Local da Cerimônia */
-  #local .igrejas {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    flex-wrap: wrap;
-  }
-  #local .igrejas img {
-    width: 280px;
-    max-width: 90vw;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0 3px 10px #a33b3811;
-  }
-
-  /* Padrinhos */
-  #padrinhos .padrinhos-fotos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-  }
-  #padrinhos .padrinhos-fotos img {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #a33b3855;
-    cursor: default;
-  }
-
-  /* Lua de Mel */
-  #lua img.cruzeiro {
-    display: block;
-    max-width: 100%;
-    max-height: 250px;
-    margin: 15px auto;
-    border-radius: 12px;
-    box-shadow: 0 3px 12px #a33b3811;
-  }
-  #lua .qr {
-    width: 120px;
-    height: 120px;
-    margin: 0 auto;
-    display: block;
-    object-fit: contain;
-  }
-  #lua textarea {
-    width: 100%;
-    max-width: 300px;
-    margin: 15px auto 0;
-    display: block;
-    font-family: monospace;
-    font-size: 0.85rem;
-    padding: 8px;
-    border-radius: 6px;
-    border: 1px solid #a33b38;
-    background: #fff0f0;
-    color: #800000;
-    height: 75px;
-    resize: none;
-    overflow-wrap: break-word;
-  }
-
-  /* Botão música flutuante */
-  #btnMusica {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #a33b38;
-    border: none;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    color: white;
-    font-size: 1.8rem;
-    cursor: pointer;
-    box-shadow: 0 0 10px #a33b38aa;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background 0.3s ease;
-    user-select: none;
-    z-index: 999;
-  }
-  #btnMusica:hover {
-    background: #800000;
-  }
-  /* Responsividade */
-  @media (max-width: 600px) {
-    nav {
-      flex-wrap: wrap;
-    }
-    nav a {
-      margin: 8px 10px;
-      font-size: 0.9rem;
-    }
-    #presentes .presentes {
-      grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
-      gap: 15px;
-    }
-    #presentes .presente-item img {
-      width: 100%;
-      height: 120px;
-    }
-    #local .igrejas img {
-      width: 100%;
-      height: auto;
-    }
-    #padrinhos .padrinhos-fotos img {
-      width: 90px;
-      height: 90px;
-    }
-    #lua img.cruzeiro {
-      max-height: 180px;
-    }
-  }
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #fff0f5;
+  color: #333;
+  text-align: center;
+}
+header {
+  background: #ff6f91;
+  color: white;
+  padding: 20px;
+}
+header h1 {
+  margin: 0;
+  font-size: 2.5em;
+}
+nav {
+  background: #ffb3c6;
+  padding: 10px;
+}
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+}
+section {
+  padding: 40px 20px;
+}
+section h2 {
+  color: #ff4d6d;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+.presentes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+.presente {
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.presente p {
+  margin: 5px 0;
+}
+.qr {
+  max-width: 150px;
+}
+textarea {
+  width: 80%;
+  height: 80px;
+  margin-top: 10px;
+}
+audio {
+  display: none;
+}
+.music-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #ff4d6d;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+.padrinhos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+}
 </style>
 </head>
 <body>
 
 <header>
-  André & Maria - Nosso Casamento
+  <h1>Casamento André & Maria</h1>
+  <p>Uma celebração do nosso amor</p>
 </header>
 
 <nav>
-  <a href="#contagem-regressiva">Contagem Regressiva</a>
+  <a href="#contador">Contagem Regressiva</a>
   <a href="#historia">Nossa História</a>
   <a href="#presentes">Presentes</a>
-  <a href="#local">Local da Cerimônia</a>
+  <a href="#cerimonia">Local de Cerimônia</a>
   <a href="#padrinhos">Padrinhos</a>
   <a href="#lua">Lua de Mel</a>
 </nav>
 
-<main>
-
-<!-- Contagem regressiva -->
-<section id="contagem-regressiva">
+<section id="contador">
   <h2>Contagem Regressiva</h2>
-  <div id="contagem">
-    <div><span id="dias">0</span><small>Dias</small></div>
-    <div><span id="horas">0</span><small>Horas</small></div>
-    <div><span id="minutos">0</span><small>Minutos</small></div>
-    <div><span id="segundos">0</span><small>Segundos</small></div>
-  </div>
+  <div id="countdown" style="font-size: 2em; font-weight: bold;"></div>
 </section>
 
-<!-- Nossa História -->
 <section id="historia">
-  <h2>Nossa História</h2>
-  <p>Nosso amor começou com um simples olhar que se transformou em uma linda jornada juntos. Estamos felizes em compartilhar este momento com você!</p>
-  <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="Coração" />
+  <h2>Nossa História de Amor</h2>
+  <img src="d7cff55b-7a33-4872-b84f-8f4052719a83.png" alt="Coração">
+  <p>Desde o nosso primeiro encontro, sabíamos que havia algo especial...</p>
 </section>
 
-<!-- Presentes -->
 <section id="presentes">
-  <h2>Presentes</h2>
-  <div class="presentes">
-
-    <div class="presente-item">
-      <img src="https://cdn.pixabay.com/photo/2016/11/29/05/09/cookware-1869617_1280.jpg" alt="Jogo de Panelas" />
-      <h3>Jogo de Panelas Inox</h3>
-      <p><strong>Valor:</strong> R$ 250,00</p>
-      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
-      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551199999999952041234560000000000123456789520400005303986540325.005802BR5908André e Maria6009São Paulo61080540900062070503***6304ABCD</textarea>
+  <h2>Lista de Presentes</h2>
+  <div class="presentes-grid">
+    <!-- Repete 10 presentes -->
+    <div class="presente">
+      <img src="d7cff55b-7a33-4872-b84f-8f4052719a83.png" alt="Presente">
+      <p>Presente 1 - R$ 150,00</p>
+      <img class="qr" src="ad6fc1a0-d87c-4573-8f82-a642636f0a28.png" alt="QR Code">
+      <textarea readonly>PIX Copia e Cola aqui</textarea>
     </div>
-
-    <div class="presente-item">
-      <img src="https://cdn.pixabay.com/photo/2014/12/21/23/28/kitchen-575434_1280.jpg" alt="Liquidificador" />
-      <h3>Liquidificador Moderno</h3>
-      <p><strong>Valor:</strong> R$ 180,00</p>
-      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
-      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551198888888852041234560000000000123456789520400005303986540318.005802BR5908André e Maria6009São Paulo61080540900062070503***6304EFGH</textarea>
+    <div class="presente">
+      <img src="d7cff55b-7a33-4872-b84f-8f4052719a83.png" alt="Presente">
+      <p>Presente 2 - R$ 200,00</p>
+      <img class="qr" src="ad6fc1a0-d87c-4573-8f82-a642636f0a28.png" alt="QR Code">
+      <textarea readonly>PIX Copia e Cola aqui</textarea>
     </div>
-
-    <div class="presente-item">
-      <img src="https://cdn.pixabay.com/photo/2017/08/02/01/01/kettle-2561035_1280.jpg" alt="Chaleira Elétrica" />
-      <h3>Chaleira Elétrica</h3>
-      <p><strong>Valor:</strong> R$ 120,00</p>
-      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
-      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551197777777752041234560000000000123456789520400005303986540312.005802BR5908André e Maria6009São Paulo61080540900062070503***6304IJKL</textarea>
+    <div class="presente">
+      <img src="d7cff55b-7a33-4872-b84f-8f4052719a83.png" alt="Presente">
+      <p>Presente 3 - R$ 250,00</p>
+      <img class="qr" src="ad6fc1a0-d87c-4573-8f82-a642636f0a28.png" alt="QR Code">
+      <textarea readonly>PIX Copia e Cola aqui</textarea>
     </div>
-
-    <div class="presente-item">
-      <img src="https://cdn.pixabay.com/photo/2015/03/26/09/41/cutlery-690048_1280.jpg" alt="Conjunto de Talheres" />
-      <h3>Conjunto de Talheres</h3>
-      <p><strong>Valor:</strong> R$ 150,00</p>
-      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
-      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551196666666652041234560000000000123456789520400005303986540315.005802BR5908André e Maria6009São Paulo61080540900062070503***6304MNOP</textarea>
+    <div class="presente">
+      <img src="d7cff55b-7a33-4872-b84f-8f4052719a83.png" alt="Presente">
+      <p>Presente 4 - R$ 300,00</p>
+      <img class="qr" src="ad6fc1a0-d87c-4573-8f82-a642636f0a28.png" alt="QR Code">
+      <textarea readonly>PIX Copia e Cola aqui</textarea>
     </div>
-
-    <div class="presente-item">
-      <img src="https://cdn.pixabay.com/photo/2016/03/27/19/31/toaster-1284390_1280.jpg" alt="Torradeira" />
-      <h3>Torradeira Elétrica</h3>
-      <p><strong>Valor:</strong> R$ 130,00</p>
-      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
-      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551195555555552041234560000000000123456789520400005303986540313.005802BR5908André e Maria6009São Paulo61080540900062070503***6304QRST</textarea>
+    <div class="presente">
+      <img src="d7cff55b-7a33-4872-b84f-8f4052719a83.png" alt="Presente">
+      <p>Presente 5 - R$ 350,00</p>
+      <img class="qr" src="ad6fc1a0-d87c-4573-8f82-a642636f0a28.png" alt="QR Code">
+      <textarea readonly>PIX Copia e Cola aqui</textarea>
     </div>
-
-    <div class="presente-item">
-      <img src="https://cdn.pixabay.com/photo/2016/06/03/13/39/mixer-1435791_1280.jpg" alt="Batedeira" />
-      <h3>Batedeira</h3>
-      <p><strong>Valor:</strong> R$ 200,00</p>
-      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
-      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551194444444452041234560000000000123456789520400005303986540320.005802BR5908André e Maria6009São Paulo61080540900062070503***6304UVWX</textarea>
+    <div class="presente">
+      <img src="d7cff55b-7a33-4872-b84f-8f4052719a83.png" alt="Presente">
+      <p>Presente 6 - R$ 400,00</p>
+      <img class="qr" src="ad6fc1a0-d87c-4573-8f82-a642636f0a28.png" alt="QR Code">
+      <textarea readonly>PIX Copia e Cola aqui</textarea>
     </div>
-
-    <div class="presente-item">
-      <img src="https://cdn.pixabay.com/photo/2017/03/02/00/59/microwave-2110619_1280.jpg" alt="Micro-ondas" />
-      <h3>Micro-ondas</h3>
-      <p><strong>Valor:</strong> R$ 350,00</p>
-      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
-      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551193333333352041234560000000000123456789520400005303986540335.005802BR5908André e Maria6009São Paulo61080540900062070503***6304YZAB</textarea>
+    <div class="presente">
+      <img src="d7cff55b-7a33-4872-b84f-8f4052719a83.png" alt="Presente">
+      <p>Presente 7 - R$ 450,00</p>
+      <img class="qr" src="ad6fc1a0-d87c-4573-8f82-a642636f0a28.png" alt="QR Code">
+      <textarea readonly>PIX Copia e Cola aqui</textarea>
     </div>
-
-    <div class="presente-item">
-      <img src="https://cdn.pixabay.com/photo/2016/11/29/08/12/coffee-1869563_1280.jpg" alt="Cafeteira" />
-      <h3>Cafeteira Elétrica</h3>
-      <p><strong>Valor:</strong> R$ 220,00</p>
-      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
-      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551192222222252041234560000000000123456789520400005303986540322.005802BR5908André e Maria6009São Paulo61080540900062070503***6304CDEF</textarea>
+    <div class="presente">
+      <img src="d7cff55b-7a33-4872-b84f-8f4052719a83.png" alt="Presente">
+      <p>Presente 8 - R$ 500,00</p>
+      <img class="qr" src="ad6fc1a0-d87c-4573-8f82-a642636f0a28.png" alt="QR Code">
+      <textarea readonly>PIX Copia e Cola aqui</textarea>
     </div>
-
-    <div class="presente-item">
-      <img src="https://cdn.pixabay.com/photo/2017/08/05/07/47/wine-glass-2581643_1280.jpg" alt="Conjunto de Taças" />
-      <h3>Conjunto de Taças</h3>
-      <p><strong>Valor:</strong> R$ 180,00</p>
-      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
-      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551191111111152041234560000000000123456789520400005303986540318.005802BR5908André e Maria6009São Paulo61080540900062070503***6304GHIJ</textarea>
+    <div class="presente">
+      <img src="d7cff55b-7a33-4872-b84f-8f4052719a83.png" alt="Presente">
+      <p>Presente 9 - R$ 550,00</p>
+      <img class="qr" src="ad6fc1a0-d87c-4573-8f82-a642636f0a28.png" alt="QR Code">
+      <textarea readonly>PIX Copia e Cola aqui</textarea>
     </div>
-
-    <div class="presente-item">
-      <img src="https://cdn.pixabay.com/photo/2017/02/15/19/34/bathroom-2060733_1280.jpg" alt="Toalhas" />
-      <h3>Conjunto de Toalhas</h3>
-      <p><strong>Valor:</strong> R$ 90,00</p>
-      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
-      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551190000000052041234560000000000123456789520400005303986540390.005802BR5908André e Maria6009São Paulo61080540900062070503***6304KLMN</textarea>
+    <div class="presente">
+      <img src="d7cff55b-7a33-4872-b84f-8f4052719a83.png" alt="Presente">
+      <p>Presente 10 - R$ 600,00</p>
+      <img class="qr" src="ad6fc1a0-d87c-4573-8f82-a642636f0a28.png" alt="QR Code">
+      <textarea readonly>PIX Copia e Cola aqui</textarea>
     </div>
-
   </div>
 </section>
 
-<!-- Local da Cerimônia -->
-<section id="local">
-  <h2>Local da Cerimônia</h2>
-  <p class="text-center">Dois locais especiais para esse dia inesquecível:</p>
-  <div class="igrejas">
-    <img src="https://cdn.pixabay.com/photo/2017/03/31/16/02/church-2199357_1280.jpg" alt="Igreja 1" />
-    <img src="https://cdn.pixabay.com/photo/2015/11/16/22/24/church-1046651_1280.jpg" alt="Igreja 2" />
-  </div>
+<section id="cerimonia">
+  <h2>Locais da Cerimônia</h2>
+  <img src="f9097def-88d8-459d-9a38-0eec280162a8.png" alt="Igreja">
+  <img src="f9097def-88d8-459d-9a38-0eec280162a8.png" alt="Igreja">
 </section>
 
-<!-- Padrinhos -->
 <section id="padrinhos">
   <h2>Padrinhos</h2>
-  <p class="text-center">Nossos queridos padrinhos e madrinhas:</p>
-  <div class="padrinhos-fotos">
-    <!-- Exemplo: 6 fotos circulares -->
-    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Padrinho 1" />
-    <img src="https://randomuser.me/api/portraits/men/66.jpg" alt="Padrinho 2" />
-    <img src="https://randomuser.me/api/portraits/women/67.jpg" alt="Padrinho 3" />
-    <img src="https://randomuser.me/api/portraits/men/68.jpg" alt="Padrinho 4" />
-    <img src="https://randomuser.me/api/portraits/women/69.jpg" alt="Padrinho 5" />
-    <img src="https://randomuser.me/api/portraits/men/70.jpg" alt="Padrinho 6" />
+  <div class="padrinhos-grid">
+    <img src="d7cff55b-7a33-4872-b84f-8f4052719a83.png" alt="Padrinho">
+    <img src="d7cff55b-7a33-4872-b84f-8f4052719a83.png" alt="Padrinho">
+    <img src="d7cff55b-7a33-4872-b84f-8f4052719a83.png" alt="Padrinho">
+    <img src="d7cff55b-7a33-4872-b84f-8f4052719a83.png" alt="Padrinho">
+    <img src="d7cff55b-7a33-4872-b84f-8f4052719a83.png" alt="Padrinho">
+    <img src="d7cff55b-7a33-4872-b84f-8f4052719a83.png" alt="Padrinho">
   </div>
 </section>
 
-<!-- Lua de Mel -->
 <section id="lua">
   <h2>Nossa Lua de Mel - Cruzeiro dos Sonhos</h2>
-  <p class="text-center">Estamos planejando a lua de mel dos sonhos e sua contribuição será muito bem-vinda!</p>
-  <img class="cruzeiro" src="https://cdn.pixabay.com/photo/2017/08/05/12/26/cruise-2584213_1280.jpg" alt="Navio de Cruzeiro" />
-  <div style="max-width:300px; margin: 0 auto; text-align:center;">
-    <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code Lua de Mel" />
-    <textarea readonly style="margin-top: 15px;">00020126330014BR.GOV.BCB.PIX0114+551199999999952041234560000000000123456789520400005303986540100.005802BR5908Lua de Mel6009São Paulo61080540900062070503***6304ZXCV</textarea>
-  </div>
+  <img src="1aeb0d09-7dc4-4e02-ac05-a5e2f755039e.png" alt="Navio de Cruzeiro">
+  <p>Contribua com nossa viagem dos sonhos!</p>
+  <img class="qr" src="ad6fc1a0-d87c-4573-8f82-a642636f0a28.png" alt="QR Code">
+  <textarea readonly>PIX Copia e Cola aqui</textarea>
 </section>
 
-</main>
-
-<!-- Música e botão -->
-<audio id="musica" preload="auto">
-<source src="prasonhar.mp3" type="audio/mpeg" />
-
+<audio id="musica" loop>
+  <source src="sua-musica.mp3" type="audio/mpeg">
 </audio>
-
-<button id="btnMusica" aria-label="Tocar/Parar Música">🎵</button>
+<button class="music-btn" onclick="tocarMusica()">🎵</button>
 
 <script>
-  // Contagem regressiva
-  const alvoData = new Date("2025-12-31T00:00:00").getTime(); // ajuste para a data do casamento
+function tocarMusica(){
+  var audio = document.getElementById('musica');
+  audio.play();
+}
 
-  function atualizarContagem() {
-    const agora = new Date().getTime();
-    let distancia = alvoData - agora;
-
-    if (distancia < 0) distancia = 0;
-
-    const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
-    const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
-    const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
-
-    document.getElementById("dias").textContent = dias;
-    document.getElementById("horas").textContent = horas.toString().padStart(2,'0');
-    document.getElementById("minutos").textContent = minutos.toString().padStart(2,'0');
-    document.getElementById("segundos").textContent = segundos.toString().padStart(2,'0');
+var countDownDate = new Date("Aug 4, 2026 17:00:00").getTime();
+var x = setInterval(function() {
+  var now = new Date().getTime();
+  var distance = countDownDate - now;
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("countdown").innerHTML = "Chegou o grande dia!";
   }
-  setInterval(atualizarContagem, 1000);
-  atualizarContagem();
-
-  // Música
-  const musica = document.getElementById("musica");
-  const btnMusica = document.getElementById("btnMusica");
-
-  btnMusica.addEventListener("click", () => {
-    if(musica.paused){
-      musica.play();
-      btnMusica.textContent = "🔊";
-    } else {
-      musica.pause();
-      btnMusica.textContent = "🎵";
-    }
-  });
-
-  musica.addEventListener("ended", () => {
-    btnMusica.textContent = "🎵";
-  });
+}, 1000);
 </script>
 
 </body>
