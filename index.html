@@ -453,15 +453,6 @@
 <button id="btnMusica" aria-label="Tocar/Parar Música">🎵</button>
 
 <script>
-  // Pop-up para tocar música ao entrar no site
-  window.addEventListener("load", function(){
-    const desejaTocar = confirm("Deseja ouvir nossa música de casamento?");
-    if(desejaTocar){
-      musica.play();
-      btnMusica.textContent = "🔊";
-    }
-  });
-
   // Contagem regressiva
   const alvoData = new Date("2025-12-31T00:00:00").getTime(); // ajuste para a data do casamento
 
@@ -488,8 +479,9 @@
   const musica = document.getElementById("musica");
   const btnMusica = document.getElementById("btnMusica");
 
+  // Botão para ligar/desligar música
   btnMusica.addEventListener("click", () => {
-    if(musica.paused){
+    if (musica.paused) {
       musica.play();
       btnMusica.textContent = "🔊";
     } else {
@@ -500,6 +492,19 @@
 
   musica.addEventListener("ended", () => {
     btnMusica.textContent = "🎵";
+  });
+
+  // Pop-up perguntando se quer tocar música
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      if (confirm("Deseja ouvir nossa música? 💖")) {
+        musica.play().then(() => {
+          btnMusica.textContent = "🔊";
+        }).catch(() => {
+          alert("Clique no botão 🎵 para tocar a música.");
+        });
+      }
+    }, 800); // atraso para garantir que carregou
   });
 </script>
 
