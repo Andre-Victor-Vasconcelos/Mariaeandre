@@ -6,11 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>André & Maria - Nosso Casamento</title>
 <style>
-  /* Reset básico */
   * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin: 0; padding: 0; box-sizing: border-box;
   }
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -29,8 +26,6 @@
     font-family: 'Georgia', serif;
     user-select: none;
   }
-
-  /* Menu hambúrguer */
   nav {
     background: #f1b7b1;
     position: sticky;
@@ -60,7 +55,6 @@
   .menu-links a:hover {
     color: #a33b38;
   }
-  /* Botão hambúrguer */
   .menu-toggle {
     display: none;
     flex-direction: column;
@@ -76,7 +70,7 @@
     transition: 0.3s;
   }
 
-  /* Para menu mobile */
+  /* Ajuste para menu mobile */
   @media (max-width: 600px) {
     .menu-links {
       position: fixed;
@@ -84,20 +78,21 @@
       right: 0;
       background: #f1b7b1;
       flex-direction: column;
-      width: 200px;
+      width: 220px;
       padding: 20px;
       gap: 15px;
       transform: translateX(100%);
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease-in-out;
       height: calc(100vh - 60px);
       overflow-y: auto;
-      box-shadow: -2px 0 10px rgba(163, 59, 56, 0.5);
+      box-shadow: -2px 0 12px rgba(163, 59, 56, 0.7);
     }
     .menu-links.open {
       transform: translateX(0);
     }
     .menu-toggle {
       display: flex;
+      z-index: 101; /* acima do menu */
     }
   }
 
@@ -120,7 +115,8 @@
     margin-bottom: 20px;
     font-size: 1.1rem;
   }
-  /* Contagem regressiva */
+
+  /* Contagem regressiva ajustada */
   #contagem {
     display: flex;
     justify-content: center;
@@ -136,17 +132,21 @@
     border-radius: 8px;
     padding: 15px 20px;
     box-shadow: inset 0 0 8px #80000044;
-    min-width: 60px;
+    min-width: 70px;
+    max-width: 80px;
     text-align: center;
-    flex: 1 1 60px;
+    flex: 1 1 70px;
+    word-wrap: break-word;
+    word-break: break-word;
   }
   #contagem div span {
     display: block;
     font-weight: 700;
-    font-size: 2.2rem;
+    font-size: 2.4rem;
+    line-height: 1.1;
   }
   #contagem div small {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: 600;
   }
 
@@ -322,7 +322,7 @@
       <span></span>
       <span></span>
     </div>
-    <div class="menu-links">
+    <div class="menu-links" id="menuLinks">
       <a href="#contagem-regressiva">Contagem Regressiva</a>
       <a href="#historia">Nossa História</a>
       <a href="#presentes">Presentes</a>
@@ -335,7 +335,6 @@
 
 <main>
 
-<!-- Contagem regressiva -->
 <section id="contagem-regressiva">
   <h2>Contagem Regressiva</h2>
   <div id="contagem">
@@ -346,14 +345,12 @@
   </div>
 </section>
 
-<!-- Nossa História -->
 <section id="historia">
   <h2>Nossa História</h2>
   <p>Nosso amor começou com um simples olhar que se transformou em uma linda jornada juntos. Estamos felizes em compartilhar este momento com você!</p>
   <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="Coração" />
 </section>
 
-<!-- Presentes -->
 <section id="presentes">
   <h2>Presentes</h2>
   <div class="presentes">
@@ -415,9 +412,8 @@
     </div>
 
     <div class="presente-item">
-      <img src="https://cdn.pixabay.com/photo/2016/11/29/08/12/coffee-1869563_1280.jpg" alt="Cafeteira" />
-      <h3>Cafeteira Elétrica</h3>
-      <p><strong>Valor:</strong> R$ 190,00</p>
+      <img src="https://cdn.pixabay.com/photo/2017/03/09/19/41/church-2137177_1280.jpg" alt="Igreja" />
+      <h3>Valor: R$ 190,00</h3>
       <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
       <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551192222222252041234560000000000123456789520400005303986540319.005802BR5908André e Maria6009São Paulo61080540900062070503***6304CDEF</textarea>
     </div>
@@ -425,7 +421,6 @@
   </div>
 </section>
 
-<!-- Local da Cerimônia -->
 <section id="local">
   <h2>Local da Cerimônia</h2>
   <div class="igrejas">
@@ -434,7 +429,6 @@
   </div>
 </section>
 
-<!-- Padrinhos -->
 <section id="padrinhos">
   <h2>Padrinhos</h2>
   <div class="padrinhos-fotos">
@@ -447,15 +441,12 @@
   </div>
 </section>
 
-<!-- Lua de Mel -->
 <section id="lua">
   <h2>Lua de Mel</h2>
   <img class="cruzeiro" src="https://cdn.pixabay.com/photo/2018/01/20/13/47/cruise-3092621_1280.jpg" alt="Navio de Cruzeiro" />
   <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code Lua de Mel" />
   <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551191111111152041234560000000000123456789520400005303986540310.005802BR5908André e Maria6009São Paulo61080540900062070503***6304WXYZ</textarea>
 </section>
-
-</main>
 
 <!-- Áudio escondido -->
 <audio id="musica" preload="auto" loop>
@@ -493,6 +484,15 @@
     }
   });
 
+  // Fecha menu ao clicar num link (mobile)
+  document.querySelectorAll('.menu-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (menuLinks.classList.contains('open')) {
+        menuLinks.classList.remove('open');
+      }
+    });
+  });
+
   // Contagem regressiva para data fixa: 24/12/2025 15:00:00
   function atualizaContagem() {
     const fimCasamento = new Date('2025-12-24T15:00:00');
@@ -528,13 +528,12 @@
   const musica = document.getElementById('musica');
   const btnMusica = document.getElementById('btnMusica');
 
-  // Mostra pop-up na abertura
   window.addEventListener('load', () => {
     popup.style.display = 'flex';
   });
 
   btnOuvir.addEventListener('click', () => {
-    musica.play().catch(()=>{}); // tenta tocar
+    musica.play().catch(()=>{});
     popup.style.display = 'none';
   });
 
@@ -542,22 +541,12 @@
     popup.style.display = 'none';
   });
 
-  // Botão flutuante liga/desliga música
   btnMusica.addEventListener('click', () => {
     if (musica.paused) {
       musica.play().catch(()=>{});
     } else {
       musica.pause();
     }
-  });
-
-  // Impede propagação para o menu fechar ao clicar link no mobile
-  document.querySelectorAll('.menu-links a').forEach(link => {
-    link.addEventListener('click', () => {
-      if (menuLinks.classList.contains('open')) {
-        menuLinks.classList.remove('open');
-      }
-    });
   });
 </script>
 
