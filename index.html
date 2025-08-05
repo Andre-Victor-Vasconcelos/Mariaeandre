@@ -111,77 +111,114 @@
     font-size: 1.1rem;
   }
 
-  /* Nossa História */
+  /* Contagem regressiva */
+  #contagem {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    user-select: none;
+  }
+  #contagem div {
+    background: #f7d6d0;
+    color: #800000;
+    border-radius: 8px;
+    padding: 15px 0;
+    box-shadow: inset 0 0 8px #80000044;
+    min-width: 65px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  #contagem div span {
+    font-weight: 700;
+    font-size: 2.2rem;
+    line-height: 1;
+  }
+  #contagem div small {
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  /* Nossa História com carrossel estilizado e romântico */
+  #historia {
+    position: relative;
+  }
   #historia p {
     max-width: 700px;
     margin: 0 auto 20px;
     font-size: 1.1rem;
   }
-
-  /* Carrossel romântico */
   #carousel {
-    max-width: 700px;
-    margin: 0 auto;
     position: relative;
+    max-width: 700px;
+    margin: 0 auto 30px;
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 0 15px rgba(163, 59, 56, 0.6);
-    background: #fce6e4;
+    box-shadow: 0 0 20px #a33b3877;
+    background: #fff0f0;
   }
   #carousel img {
     width: 100%;
-    display: none;
+    height: 400px;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
     border-radius: 15px;
-    transition: opacity 0.6s ease;
+    user-select: none;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
   #carousel img.active {
-    display: block;
     opacity: 1;
+    position: relative;
   }
-  #carousel .nav-btn {
+  /* Botões do carrossel */
+  #prevBtn, #nextBtn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(163, 59, 56, 0.7);
-    color: white;
+    background: #a33b38cc;
     border: none;
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
+    color: white;
+    font-size: 2rem;
+    padding: 8px 15px;
     cursor: pointer;
-    font-size: 1.5rem;
-    line-height: 36px;
-    text-align: center;
+    border-radius: 50%;
     user-select: none;
     transition: background 0.3s ease;
+    box-shadow: 0 0 8px #a33b38bb;
   }
-  #carousel .nav-btn:hover {
-    background: #a33b38;
+  #prevBtn:hover, #nextBtn:hover {
+    background: #800000cc;
   }
-  #carousel #prevBtn {
-    left: 10px;
+  #prevBtn {
+    left: 15px;
   }
-  #carousel #nextBtn {
-    right: 10px;
+  #nextBtn {
+    right: 15px;
   }
-  #carousel .dots {
+  /* Dots */
+  #dotsContainer {
     text-align: center;
-    padding: 10px 0;
-    background: #f7d6d0;
-    border-radius: 0 0 15px 15px;
+    margin-top: 15px;
   }
-  #carousel .dot {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    margin: 0 6px;
-    background: #a33b38aa;
+  #dotsContainer button {
+    border: none;
+    background: #a33b3844;
+    width: 14px;
+    height: 14px;
+    margin: 0 5px;
     border-radius: 50%;
     cursor: pointer;
     transition: background 0.3s ease;
   }
-  #carousel .dot.active {
-    background: #800000;
+  #dotsContainer button.active, #dotsContainer button:hover {
+    background: #a33b38cc;
   }
 
   /* Presentes */
@@ -481,41 +518,39 @@
 <section id="historia">
   <h2>Nossa História</h2>
   <p>Nosso amor começou com um simples olhar que se transformou em uma linda jornada juntos. Estamos felizes em compartilhar este momento com você!</p>
-  
+
   <!-- Carrossel estilizado romântico -->
   <div id="carousel" aria-label="Carrossel de fotos da nossa história">
-    <button id="prevBtn" class="nav-btn" aria-label="Foto anterior">&#10094;</button>
-    <button id="nextBtn" class="nav-btn" aria-label="Próxima foto">&#10095;</button>
-    <img src="foto1.jpg" alt="Foto do casal sorrindo no parque" class="active" />
-    <img src="foto2.jpg" alt="Foto do casal na praia ao pôr do sol" />
-    <img src="foto3.jpg" alt="Foto do casal de mãos dadas na cidade" />
-    <img src="foto4.jpg" alt="Foto do casal olhando estrelas" />
-    <div class="dots" role="tablist" aria-label="Navegação do carrossel">
-      <span class="dot active" role="tab" tabindex="0" aria-selected="true" aria-controls="carousel" aria-label="Foto 1"></span>
-      <span class="dot" role="tab" tabindex="-1" aria-selected="false" aria-controls="carousel" aria-label="Foto 2"></span>
-      <span class="dot" role="tab" tabindex="-1" aria-selected="false" aria-controls="carousel" aria-label="Foto 3"></span>
-      <span class="dot" role="tab" tabindex="-1" aria-selected="false" aria-controls="carousel" aria-label="Foto 4"></span>
+    <button id="prevBtn" aria-label="Foto anterior">&#10094;</button>
+    <button id="nextBtn" aria-label="Próxima foto">&#10095;</button>
+
+    <img src="foto1.jpg" alt="Foto do casal 1" class="active" />
+    <img src="foto2.jpg" alt="Foto do casal 2" />
+    <img src="foto3.jpg" alt="Foto do casal 3" />
+    <img src="foto4.jpg" alt="Foto do casal 4" />
+    
+    <div id="dotsContainer" role="tablist" aria-label="Seleção de fotos">
+      <button class="active" role="tab" aria-selected="true" aria-controls="slide1" id="dot0" tabindex="0"></button>
+      <button role="tab" aria-selected="false" aria-controls="slide2" id="dot1" tabindex="-1"></button>
+      <button role="tab" aria-selected="false" aria-controls="slide3" id="dot2" tabindex="-1"></button>
+      <button role="tab" aria-selected="false" aria-controls="slide4" id="dot3" tabindex="-1"></button>
     </div>
   </div>
-
 </section>
 
 <!-- Presentes -->
 <section id="presentes">
-  <h2>Presentes</h2>
+  <h2>Lista de Presentes</h2>
   <div class="presentes">
-
     <div class="presente-item">
-      <img src="https://cdn.pixabay.com/photo/2016/11/29/05/09/cookware-1869617_1280.jpg" alt="Jogo de Panelas" />
-      <h3>Jogo de Panelas Inox</h3>
-      <p><strong>Valor:</strong> R$ 250,00</p>
-      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
-      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551199999999952041234560000000000123456789520400005303986540325.005802BR5908André e Maria6009São Paulo61080540900062070503***6304ABCD</textarea>
-      <button class="copiarBtn" aria-label="Copiar código PIX do jogo de panelas">Copiar PIX</button>
+      <img src="presente1.jpg" alt="Conjunto de panelas" />
+      <h3>Conjunto de Panelas</h3>
+      <p>R$ 250,00</p>
+      <img class="qr" src="qr1.png" alt="QR code para pagamento do conjunto de panelas" />
+      <textarea readonly>00020126360014BR.GOV.BCB.PIX0114+5561999999995204000053039865406250.005802BR5909Fulano Silva6009CidadeUF62070503***6304ABCD</textarea>
+      <button class="copiarBtn" aria-label="Copiar código Pix do conjunto de panelas">Copiar Pix</button>
     </div>
-
-    <!-- Outros presentes podem continuar aqui... -->
-
+    <!-- Adicione outros presentes aqui -->
   </div>
 </section>
 
@@ -523,7 +558,7 @@
 <section id="local">
   <h2>Local da Cerimônia</h2>
   <div class="igrejas">
-    <img src="igreja1.jpg" alt="Igreja Nossa Senhora Aparecida" />
+    <img src="igreja1.jpg" alt="Igreja Nossa Senhora do Carmo" />
     <img src="igreja2.jpg" alt="Igreja São José" />
   </div>
 </section>
@@ -531,11 +566,10 @@
 <!-- Padrinhos -->
 <section id="padrinhos">
   <h2>Padrinhos</h2>
-  <div class="padrinhos-fotos">
-    <img src="padrinho1.jpg" alt="Padrinho João" />
-    <img src="padrinho2.jpg" alt="Padrinha Ana" />
-    <img src="padrinho3.jpg" alt="Padrinho Carlos" />
-    <img src="padrinho4.jpg" alt="Padrinha Fernanda" />
+  <div class="padrinhos-fotos" role="list">
+    <img src="padrinho1.jpg" alt="Foto do padrinho João" role="listitem" />
+    <img src="padrinho2.jpg" alt="Foto da madrinha Ana" role="listitem" />
+    <!-- Adicione os outros padrinhos -->
   </div>
 </section>
 
@@ -543,31 +577,26 @@
 <section id="lua">
   <h2>Lua de Mel</h2>
   <img src="cruzeiro.jpg" alt="Navio de cruzeiro para lua de mel" class="cruzeiro" />
-  <img src="qr-lua.jpg" alt="QR Code para contribuição lua de mel" class="qr" />
-  <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551198888888852041234560000000000123456789520400005303986540325.005802BR5908André e Maria6009São Paulo61080540900062070503***6304EFGH</textarea>
-  <button class="copiarBtn" aria-label="Copiar código PIX para lua de mel">Copiar PIX</button>
+  <img src="qr-lua-de-mel.png" alt="QR code para contribuição da lua de mel" class="qr" />
+  <textarea readonly>00020126360014BR.GOV.BCB.PIX0114+5561999999995204000053039865406250.005802BR5909Fulano Silva6009CidadeUF62070503***6304ABCD</textarea>
+  <button class="copiarBtn" aria-label="Copiar código Pix da lua de mel">Copiar Pix</button>
 </section>
 
 </main>
 
-<!-- Botão Música -->
-<button id="btnMusica" aria-pressed="false" aria-label="Tocar ou pausar música">
-  &#9835;
-</button>
-
-<!-- Áudio -->
+<!-- Botão de música -->
+<button id="btnMusica" aria-label="Tocar / Pausar música">&#9835;</button>
 <audio id="musica" preload="auto" loop>
   <source src="prasonhar.mp3" type="audio/mpeg" />
-  Seu navegador não suporta áudio HTML5.
+  Seu navegador não suporta áudio.
 </audio>
 
-<!-- Popup Música -->
-<div id="popupMusica" role="dialog" aria-modal="true" aria-labelledby="popupTitulo" style="display:none;">
+<!-- Pop-up música -->
+<div id="popupMusica" role="dialog" aria-modal="true" hidden>
   <div>
-    <h2 id="popupTitulo">Bem-vindo ao nosso site!</h2>
-    <p>Gostaria de ouvir a música do nosso casamento?</p>
-    <button id="btnSim">Sim, tocar música</button>
-    <button id="btnNao">Não, obrigado</button>
+    <h2>Quer ouvir uma música?</h2>
+    <p>Clique no botão abaixo para começar a tocar a música do nosso casamento.</p>
+    <button id="btnTocarMusica" aria-label="Tocar música">Tocar Música</button>
   </div>
 </div>
 
@@ -576,52 +605,61 @@
   const menuToggle = document.getElementById('menuToggle');
   const menuItems = document.getElementById('menuItems');
   menuToggle.addEventListener('click', () => {
-    const shown = menuItems.classList.toggle('show');
-    menuItems.setAttribute('aria-hidden', !shown);
+    menuItems.classList.toggle('show');
+    menuToggle.setAttribute('aria-expanded', menuItems.classList.contains('show'));
+    menuItems.setAttribute('aria-hidden', !menuItems.classList.contains('show'));
   });
 
   // Contagem regressiva
+  const diasEl = document.getElementById('dias');
+  const horasEl = document.getElementById('horas');
+  const minutosEl = document.getElementById('minutos');
+  const segundosEl = document.getElementById('segundos');
+
+  // Data do casamento (AAAA, Mês-1, dia, hora, minuto, segundo)
+  const casamento = new Date(2025, 9, 25, 17, 0, 0); // 25/outubro/2025 17:00
+
   function atualizarContagem() {
-    const casamento = new Date('2025-12-31T17:00:00'); // Ajuste data/hora do casamento
     const agora = new Date();
     const diff = casamento - agora;
-
     if (diff <= 0) {
-      document.getElementById('dias').textContent = 0;
-      document.getElementById('horas').textContent = 0;
-      document.getElementById('minutos').textContent = 0;
-      document.getElementById('segundos').textContent = 0;
+      diasEl.textContent = '0';
+      horasEl.textContent = '0';
+      minutosEl.textContent = '0';
+      segundosEl.textContent = '0';
+      clearInterval(intervaloContagem);
       return;
     }
     const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
     const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
     const minutos = Math.floor((diff / (1000 * 60)) % 60);
     const segundos = Math.floor((diff / 1000) % 60);
-
-    document.getElementById('dias').textContent = dias;
-    document.getElementById('horas').textContent = horas;
-    document.getElementById('minutos').textContent = minutos;
-    document.getElementById('segundos').textContent = segundos;
+    diasEl.textContent = dias;
+    horasEl.textContent = horas.toString().padStart(2, '0');
+    minutosEl.textContent = minutos.toString().padStart(2, '0');
+    segundosEl.textContent = segundos.toString().padStart(2, '0');
   }
-  setInterval(atualizarContagem, 1000);
+  const intervaloContagem = setInterval(atualizarContagem, 1000);
   atualizarContagem();
 
-  // Carrossel
+  // Carrossel estilizado romântico
   const carousel = document.getElementById('carousel');
-  const imgs = carousel.querySelectorAll('img');
+  const slides = carousel.querySelectorAll('img');
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
-  const dots = carousel.querySelectorAll('.dot');
+  const dotsContainer = document.getElementById('dotsContainer');
+  const dots = Array.from(dotsContainer.querySelectorAll('button'));
 
   let current = 0;
 
   function showSlide(index) {
-    if (index < 0) index = imgs.length - 1;
-    if (index >= imgs.length) index = 0;
-    imgs.forEach((img, i) => {
-      img.classList.toggle('active', i === index);
+    if (index < 0) index = slides.length - 1;
+    if (index >= slides.length) index = 0;
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+      slide.setAttribute('aria-hidden', i !== index);
       dots[i].classList.toggle('active', i === index);
-      dots[i].setAttribute('aria-selected', i === index ? 'true' : 'false');
+      dots[i].setAttribute('aria-selected', i === index);
       dots[i].tabIndex = i === index ? 0 : -1;
     });
     current = index;
@@ -629,67 +667,68 @@
 
   prevBtn.addEventListener('click', () => {
     showSlide(current - 1);
+    resetAutoSlide();
   });
   nextBtn.addEventListener('click', () => {
     showSlide(current + 1);
+    resetAutoSlide();
   });
-
   dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => showSlide(i));
-    dot.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        showSlide(i);
-      }
+    dot.addEventListener('click', () => {
+      showSlide(i);
+      resetAutoSlide();
     });
   });
 
   showSlide(0);
 
-  // Botão copiar PIX
+  // Autoplay a cada 4 segundos
+  let autoSlideInterval = setInterval(() => {
+    showSlide(current + 1);
+  }, 4000);
+
+  function resetAutoSlide() {
+    clearInterval(autoSlideInterval);
+    autoSlideInterval = setInterval(() => {
+      showSlide(current + 1);
+    }, 4000);
+  }
+
+  // Copiar Pix
   document.querySelectorAll('.copiarBtn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const textarea = btn.previousElementSibling;
+    btn.addEventListener('click', e => {
+      const textarea = e.target.previousElementSibling;
       textarea.select();
       textarea.setSelectionRange(0, 99999);
-      navigator.clipboard.writeText(textarea.value).then(() => {
-        btn.textContent = 'Copiado!';
-        setTimeout(() => btn.textContent = 'Copiar PIX', 2000);
-      });
+      navigator.clipboard.writeText(textarea.value)
+        .then(() => alert('Código Pix copiado!'))
+        .catch(() => alert('Erro ao copiar'));
     });
   });
 
-  // Botão música e popup
+  // Música
   const btnMusica = document.getElementById('btnMusica');
-  const musica = document.getElementById('musica');
   const popupMusica = document.getElementById('popupMusica');
-  const btnSim = document.getElementById('btnSim');
-  const btnNao = document.getElementById('btnNao');
+  const btnTocarMusica = document.getElementById('btnTocarMusica');
+  const musica = document.getElementById('musica');
 
-  // Mostrar popup ao carregar página
+  // Exibe o popup no carregamento
   window.addEventListener('load', () => {
-    popupMusica.style.display = 'flex';
+    popupMusica.hidden = false;
   });
 
-  btnSim.addEventListener('click', () => {
+  btnTocarMusica.addEventListener('click', () => {
     musica.play();
-    btnMusica.setAttribute('aria-pressed', 'true');
-    popupMusica.style.display = 'none';
-  });
-  btnNao.addEventListener('click', () => {
-    popupMusica.style.display = 'none';
+    popupMusica.hidden = true;
   });
 
   btnMusica.addEventListener('click', () => {
     if (musica.paused) {
       musica.play();
-      btnMusica.setAttribute('aria-pressed', 'true');
     } else {
       musica.pause();
-      btnMusica.setAttribute('aria-pressed', 'false');
     }
   });
 </script>
-
 </body>
 </html>
