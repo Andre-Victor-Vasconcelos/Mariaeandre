@@ -2,625 +2,280 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>André & Maria - Nosso Casamento</title>
 <style>
-  /* Reset básico */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  /* Reset */
+  * { margin:0; padding:0; box-sizing:border-box; }
+
   body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     background: #fdf6f0;
     color: #333;
-    line-height: 1.5;
-    padding: 0 10px 50px;
+    padding-bottom: 50px;
   }
+
+  /* Cabeçalho */
   header {
-    text-align: center;
-    padding: 30px 10px 10px;
     background: #f7d6d0;
     color: #800000;
-    font-weight: bold;
+    text-align: center;
+    padding: 20px;
     font-size: 2rem;
     font-family: 'Georgia', serif;
-    user-select: none;
   }
+
+  /* Menu hambúrguer */
   nav {
-    position: sticky;
-    top: 0;
     background: #f1b7b1;
-    z-index: 999;
-    padding: 0 10px;
+    padding: 10px;
+    position: relative;
   }
-  /* Menu hambúrguer container */
-  #menuHamburguer {
-    background: #f1b7b1;
-    border: 2px solid #a33b38;
-    border-radius: 8px;
-    width: fit-content;
-    user-select: none;
-    margin: 10px auto;
-  }
-  /* Ícone do hamburguer */
-  #hamburguerIcon {
-    cursor: pointer;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #5a0000;
-    font-weight: 600;
-    font-size: 1.2rem;
-  }
-  #hamburguerIcon:hover {
+  .menu-btn {
     background: #a33b38;
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
     color: white;
+    display: inline-block;
   }
-  /* Linhas do hambúrguer */
-  .linhaHamburguer {
+  .menu-btn div {
     width: 25px;
     height: 3px;
-    background-color: #5a0000;
-    border-radius: 2px;
-    transition: background-color 0.3s ease;
+    background: white;
+    margin: 4px 0;
   }
-  #hamburguerIcon:hover .linhaHamburguer {
-    background-color: white;
-  }
-  /* Dropdown menu - sempre abaixo da caixinha */
-  #menuItems {
+  .menu-items {
     display: none;
-    flex-direction: column;
-    background: #f1b7b1;
-    border: 2px solid #a33b38;
-    border-top: none;
+    background: #f7d6d0;
     border-radius: 0 0 8px 8px;
-    width: 100%;
-    box-sizing: border-box;
-    margin-top: 0;
-    position: relative; /* Não absoluto, para não sobrepor nada */
+    padding: 10px;
+    margin-top: 5px;
   }
-  #menuItems.show {
-    display: flex;
-  }
-  #menuItems a {
-    padding: 12px 20px;
-    text-decoration: none;
+  .menu-items a {
+    display: block;
+    padding: 8px;
     color: #5a0000;
+    text-decoration: none;
     font-weight: 600;
-    border-top: 1px solid #a33b38;
-    transition: background-color 0.3s ease, color 0.3s ease;
   }
-  #menuItems a:first-child {
-    border-top: none;
-  }
-  #menuItems a:hover {
-    background: #a33b38;
-    color: white;
-  }
+  .menu-items a:hover { background: #f1b7b1; }
 
   /* Contagem regressiva */
   #contagem {
     display: flex;
     justify-content: center;
-    gap: 15px;
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    user-select: none;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 20px 0;
   }
   #contagem div {
     background: #f7d6d0;
-    color: #800000;
     border-radius: 8px;
-    padding: 15px 25px;
-    box-shadow: inset 0 0 8px #80000044;
-    min-width: 65px;
+    padding: 10px;
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    min-width: 70px;
   }
-  #contagem div span {
-    font-weight: 700;
-    font-size: 2.2rem;
-    line-height: 1;
-  }
-  #contagem div small {
-    font-size: 0.9rem;
-    font-weight: 600;
-  }
-
-  /* Nossa História */
-  #historia img {
+  #contagem span {
+    font-size: 2rem;
+    font-weight: bold;
     display: block;
-    margin: 0 auto;
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
-    margin-top: 15px;
-  }
-  #historia p {
-    max-width: 700px;
-    margin: 0 auto 20px;
-    font-size: 1.1rem;
   }
 
   /* Presentes */
-  #presentes .presentes {
+  .presentes {
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
   }
-  #presentes .presente-item {
-    background: #f1b7b1aa;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 0 8px #a33b3811;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-  }
-  #presentes .presente-item img {
-    width: 210px;
-    height: 140px;
-    object-fit: cover;
+  .presente-item {
+    background: #fff7f4;
     border-radius: 8px;
-    box-shadow: 0 2px 5px #a33b3822;
-    margin-bottom: 12px;
-  }
-  #presentes .presente-item h3 {
-    color: #800000;
-    margin-bottom: 6px;
-    font-size: 1.1rem;
+    padding: 15px;
     text-align: center;
+    box-shadow: 0 0 5px #a33b3811;
   }
-  #presentes .presente-item p {
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-  #presentes .presente-item .qr {
-    width: 110px;
-    height: 110px;
-    object-fit: contain;
+  .presente-item img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 6px;
     margin-bottom: 8px;
   }
-  #presentes .presente-item textarea {
-    width: 100%;
-    resize: none;
-    font-family: monospace;
-    font-size: 0.75rem;
-    padding: 8px 120px 8px 8px;
-    border-radius: 5px;
-    border: 1px solid #a33b38;
-    background: #fff0f0;
-    color: #800000;
-    height: 75px;
-    overflow-wrap: break-word;
-  }
-
-  /* Botão copiar PIX com texto */
-  .btnCopiarPix {
-    position: absolute;
-    top: 12px;
-    right: 12px;
+  .copy-btn {
     background: #a33b38;
+    color: white;
     border: none;
+    padding: 6px 10px;
     border-radius: 5px;
-    color: white;
     cursor: pointer;
-    font-size: 0.85rem;
-    font-weight: 700;
-    padding: 5px 8px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: background 0.3s ease;
-    user-select: none;
-    white-space: nowrap;
+    margin-top: 5px;
+    font-size: 0.9rem;
   }
-  .btnCopiarPix:hover {
-    background: #800000;
-  }
-  .btnCopiarPix:active {
-    background: #550000;
-  }
+  .copy-btn:hover { background: #800000; }
 
-  /* Pop-up estilizado */
-  #popupMusica {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(168, 48, 56, 0.85);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    font-family: 'Georgia', serif;
-    color: #fff;
-    text-align: center;
-    padding: 30px 15px;
-    flex-direction: column;
-    user-select: none;
-  }
-  #popupMusica .popup-box {
-    background: #fff0f0;
-    color: #a83038;
-    border-radius: 15px;
-    padding: 30px 40px;
-    max-width: 320px;
-    box-shadow: 0 0 20px #a8303866;
-  }
-  #popupMusica h2 {
-    margin-bottom: 15px;
-    font-size: 1.8rem;
-  }
-  #popupMusica p {
-    margin-bottom: 25px;
-    font-size: 1.1rem;
-    line-height: 1.4;
-  }
-  #popupMusica button {
-    background: #a83038;
-    border: none;
-    color: white;
-    font-size: 1.1rem;
-    font-weight: 600;
-    padding: 10px 25px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    margin: 8px 0 0;
+  textarea {
     width: 100%;
-  }
-  #popupMusica button:hover {
-    background: #800024;
+    height: 70px;
+    font-size: 0.8rem;
+    padding: 5px;
+    border: 1px solid #a33b38;
+    border-radius: 5px;
+    resize: none;
+    background: #fff0f0;
+    margin-top: 5px;
   }
 
-  /* Botão música flutuante */
+  /* Música */
   #btnMusica {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 15px;
+    right: 15px;
     background: #a33b38;
-    border: none;
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     color: white;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     cursor: pointer;
-    box-shadow: 0 0 10px #a33b38aa;
+    border: none;
     display: flex;
-    justify-content: center;
     align-items: center;
-    transition: background 0.3s ease;
-    user-select: none;
+    justify-content: center;
+  }
+  #btnMusica:hover { background: #800000; }
+
+  /* Popup música */
+  #popupMusica {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     z-index: 999;
   }
-  #btnMusica:hover {
-    background: #800000;
+  #popupMusica .popup-content {
+    background: #fff7f4;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 300px;
   }
-
-  /* Responsividade */
-  @media (max-width: 600px) {
-    #contagem {
-      font-size: 1.2rem;
-      gap: 10px;
-    }
-    #contagem div {
-      padding: 10px 15px;
-      min-width: 50px;
-    }
-    #contagem div span {
-      font-size: 1.8rem;
-    }
-    nav {
-      padding: 0 5px;
-    }
-    #menuHamburguer {
-      margin: 10px 5px;
-      width: 95%;
-    }
-    #menuItems a {
-      font-size: 1rem;
-      padding: 10px 15px;
-    }
-    #presentes .presente-item img {
-      width: 100%;
-      height: 120px;
-    }
-    #local .igrejas img {
-      width: 100%;
-      height: auto;
-    }
-    #padrinhos .padrinhos-fotos img {
-      width: 90px;
-      height: 90px;
-    }
-    #lua img.cruzeiro {
-      max-height: 180px;
-    }
+  #popupMusica button {
+    margin: 8px 0;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
   }
-
-  /* Mini alerta copiar */
-  #alertaCopiado {
-    position: fixed;
-    bottom: 90px;
-    right: 20px;
-    background: #a33b38cc;
-    color: white;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-weight: 600;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
-    z-index: 10000;
-  }
-  #alertaCopiado.show {
-    opacity: 1;
-    pointer-events: auto;
-  }
+  #popupMusica .yes { background: #a33b38; color: white; }
+  #popupMusica .no { background: #ccc; color: #333; }
 </style>
 </head>
 <body>
 
-<header>
-  André & Maria - Nosso Casamento
-</header>
+<header>André & Maria - Nosso Casamento</header>
 
-<nav id="menuHamburguer" role="navigation" aria-label="Menu principal">
-  <div id="hamburguerIcon" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-controls="menuItems" role="button" aria-label="Abrir menu">
-    <div class="linhaHamburguer"></div>
-    <div class="linhaHamburguer"></div>
-    <div class="linhaHamburguer"></div>
+<nav>
+  <div class="menu-btn" id="menuBtn">
+    <div></div><div></div><div></div>
   </div>
-  <div id="menuItems" role="menu">
-    <a href="#contagem-regressiva" role="menuitem" tabindex="0">Contagem Regressiva</a>
-    <a href="#historia" role="menuitem" tabindex="0">Nossa História</a>
-    <a href="#presentes" role="menuitem" tabindex="0">Presentes</a>
-    <a href="#local" role="menuitem" tabindex="0">Local da Cerimônia</a>
-    <a href="#padrinhos" role="menuitem" tabindex="0">Padrinhos</a>
-    <a href="#lua" role="menuitem" tabindex="0">Lua de Mel</a>
+  <div class="menu-items" id="menuItems">
+    <a href="#contagem-regressiva">Contagem Regressiva</a>
+    <a href="#presentes">Presentes</a>
+    <a href="#lua">Lua de Mel</a>
   </div>
 </nav>
 
-<main>
-
-<!-- Contagem regressiva -->
 <section id="contagem-regressiva">
   <h2>Contagem Regressiva</h2>
-  <div id="contagem" aria-live="polite" aria-atomic="true">
-    <div><span id="dias">0</span><small>Dias</small></div>
-    <div><span id="horas">0</span><small>Horas</small></div>
-    <div><span id="minutos">0</span><small>Minutos</small></div>
-    <div><span id="segundos">0</span><small>Segundos</small></div>
+  <div id="contagem">
+    <div><span id="dias">0</span>Dias</div>
+    <div><span id="horas">00</span>Horas</div>
+    <div><span id="minutos">00</span>Min</div>
+    <div><span id="segundos">00</span>Seg</div>
   </div>
 </section>
 
-<!-- Nossa História -->
-<section id="historia">
-  <h2>Nossa História</h2>
-  <p>Nosso amor começou com um simples olhar que se transformou em uma linda jornada juntos. Estamos felizes em compartilhar este momento com você!</p>
-  <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="Coração" />
-</section>
-
-<!-- Presentes -->
 <section id="presentes">
   <h2>Presentes</h2>
   <div class="presentes">
-
     <div class="presente-item">
-      <img src="https://cdn.pixabay.com/photo/2016/11/29/05/09/cookware-1869617_1280.jpg" alt="Jogo de Panelas" />
-      <h3>Jogo de Panelas Inox</h3>
-      <p><strong>Valor:</strong> R$ 250,00</p>
-      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
-      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551199999999952041234560000000000123456789520400005303986540325.005802BR5908André e Maria6009São Paulo61080540900062070503***6304ABCD</textarea>
-      <button class="btnCopiarPix" aria-label="Copiar código PIX">📋 copiar pix copiar cola</button>
-    </div>
-
-    <div class="presente-item">
-      <img src="https://cdn.pixabay.com/photo/2014/12/21/23/28/kitchen-575434_1280.jpg" alt="Liquidificador" />
-      <h3>Liquidificador Moderno</h3>
-      <p><strong>Valor:</strong> R$ 180,00</p>
-      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
-      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551198888888852041234560000000000123456789520400005303986540318.005802BR5908André e Maria6009São Paulo61080540900062070503***6304EFGH</textarea>
-      <button class="btnCopiarPix" aria-label="Copiar código PIX">📋 copiar pix copiar cola</button>
-    </div>
-
-    <div class="presente-item">
-      <img src="https://cdn.pixabay.com/photo/2017/08/02/01/01/kettle-2561035_1280.jpg" alt="Chaleira Elétrica" />
-      <h3>Chaleira Elétrica</h3>
-      <p><strong>Valor:</strong> R$ 120,00</p>
-      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
-      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551197777777752041234560000000000123456789520400005303986540312.005802BR5908André e Maria6009São Paulo61080540900062070503***6304IJKL</textarea>
-      <button class="btnCopiarPix" aria-label="Copiar código PIX">📋 copiar pix copiar cola</button>
-    </div>
-
-    <div class="presente-item">
-      <img src="https://cdn.pixabay.com/photo/2015/03/26/09/41/cutlery-690048_1280.jpg" alt="Conjunto de Talheres" />
-      <h3>Conjunto de Talheres</h3>
-      <p><strong>Valor:</strong> R$ 150,00</p>
-      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
-      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551196666666652041234560000000000123456789520400005303986540315.005802BR5908André e Maria6009São Paulo61080540900062070503***6304MNOP</textarea>
-      <button class="btnCopiarPix" aria-label="Copiar código PIX">📋 copiar pix copiar cola</button>
-    </div>
-
-  </div>
-</section>
-
-<!-- Local da Cerimônia -->
-<section id="local">
-  <h2>Local da Cerimônia</h2>
-  <div class="igrejas" style="display:flex; gap:20px; flex-wrap: wrap; justify-content: center;">
-    <div style="max-width: 300px; text-align:center;">
-      <img src="https://cdn-icons-png.flaticon.com/512/786/786432.png" alt="Igreja 1" style="width:100%; height:auto; border-radius: 10px;"/>
-      <p>Igreja Nossa Senhora do Rosário</p>
-    </div>
-    <div style="max-width: 300px; text-align:center;">
-      <img src="https://cdn-icons-png.flaticon.com/512/786/786432.png" alt="Igreja 2" style="width:100%; height:auto; border-radius: 10px;"/>
-      <p>Igreja São José</p>
+      <img src="https://cdn.pixabay.com/photo/2016/11/29/05/09/cookware-1869617_1280.jpg">
+      <p>Jogo de Panelas Inox</p>
+      <textarea readonly>00020126330014BR.GOV.BCB.PIX...</textarea>
+      <button class="copy-btn">📋 Copiar PIX Copia e Cola</button>
     </div>
   </div>
 </section>
 
-<!-- Padrinhos -->
-<section id="padrinhos">
-  <h2>Padrinhos</h2>
-  <div class="padrinhos-fotos" style="display:flex; gap:15px; flex-wrap: wrap; justify-content: center;">
-    <img src="https://cdn-icons-png.flaticon.com/512/194/194938.png" alt="Padrinho 1" style="width: 100px; height: 100px; border-radius: 50%;" />
-    <img src="https://cdn-icons-png.flaticon.com/512/194/194935.png" alt="Padrinho 2" style="width: 100px; height: 100px; border-radius: 50%;" />
-    <img src="https://cdn-icons-png.flaticon.com/512/194/194929.png" alt="Padrinho 3" style="width: 100px; height: 100px; border-radius: 50%;" />
-  </div>
-</section>
-
-<!-- Lua de Mel -->
 <section id="lua">
   <h2>Lua de Mel</h2>
-  <img class="cruzeiro" src="https://cdn.pixabay.com/photo/2017/08/06/17/10/cruise-2599034_1280.png" alt="Navio de Cruzeiro" style="max-width: 300px; display:block; margin: 0 auto 15px;" />
-  <p style="max-width: 600px; margin: 0 auto; text-align: center;">
-    Ajude-nos a tornar nossa lua de mel inesquecível! Contribua com qualquer valor através do QR Code abaixo.
-  </p>
-  <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code Lua de Mel" style="display:block; margin: 0 auto 15px; max-width: 120px;" />
-  <textarea readonly style="width: 100%; max-width: 300px; margin: 0 auto; display: block; height: 80px; resize: none; font-family: monospace; font-size: 0.85rem; padding: 8px 120px 8px 8px; border-radius: 5px; border: 1px solid #a33b38; background: #fff0f0; color: #800000; overflow-wrap: break-word;">00020126330014BR.GOV.BCB.PIX0114+551194444444442041234560000000000123456789520400005303986540320.005802BR5908André e Maria6009São Paulo61080540900062070503***6304UVWX</textarea>
-  <button class="btnCopiarPix" aria-label="Copiar código PIX">📋 copiar pix copiar cola</button>
+  <textarea readonly>00020126330014BR.GOV.BCB.PIX...</textarea>
+  <button class="copy-btn">📋 Copiar PIX Copia e Cola</button>
 </section>
 
-<!-- Pop-up música -->
-<div id="popupMusica" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupDesc">
-  <div class="popup-box">
-    <h2 id="popupTitle">Quer ouvir nossa playlist?</h2>
-    <p id="popupDesc">Clique para começar a música ou escolha silêncio para aproveitar a leitura.</p>
-    <button id="btnTocarMusica">Sim, tocar música 🎵</button>
-    <button id="btnSilencio">Por hora quero silêncio 🤫</button>
+<audio id="musica" preload="auto">
+  <source src="prasonhar.mp3" type="audio/mpeg">
+</audio>
+
+<button id="btnMusica">🎵</button>
+
+<div id="popupMusica">
+  <div class="popup-content">
+    <h3>💖 Ouvir Nossa Música? 💖</h3>
+    <button class="yes" id="btnSimMusica">Sim, quero ouvir 💖</button>
+    <button class="no" id="btnNaoMusica">Por hora quero silêncio pra ler</button>
   </div>
 </div>
 
-<!-- Botão música flutuante -->
-<button id="btnMusica" aria-label="Tocar / Pausar música" title="Tocar / Pausar música">🎵</button>
-
-<!-- Audio oculto -->
-<audio id="musica" preload="auto" loop>
-  <source src="prasonhar.mp3" type="audio/mpeg" />
-  Seu navegador não suporta áudio.
-</audio>
-
-<!-- Mini alerta copiar -->
-<div id="alertaCopiado" role="alert" aria-live="assertive" aria-atomic="true">Copiado!</div>
-
 <script>
-  // Contagem regressiva
-  const fimCasamento = new Date('2025-12-31T18:00:00'); // Ajuste para data do casamento
-  const diasElem = document.getElementById('dias');
-  const horasElem = document.getElementById('horas');
-  const minutosElem = document.getElementById('minutos');
-  const segundosElem = document.getElementById('segundos');
+  // Contagem
+  const alvo = new Date("2025-12-31T00:00:00").getTime();
+  setInterval(()=>{
+    const agora = new Date().getTime();
+    let dist = alvo - agora;
+    if (dist < 0) dist = 0;
+    document.getElementById("dias").textContent = Math.floor(dist/(1000*60*60*24));
+    document.getElementById("horas").textContent = String(Math.floor((dist%(1000*60*60*24))/(1000*60*60))).padStart(2,'0');
+    document.getElementById("minutos").textContent = String(Math.floor((dist%(1000*60*60))/(1000*60))).padStart(2,'0');
+    document.getElementById("segundos").textContent = String(Math.floor((dist%(1000*60))/1000)).padStart(2,'0');
+  },1000);
 
-  function atualizaContagem() {
-    const agora = new Date();
-    const diff = fimCasamento - agora;
-    if (diff <= 0) {
-      diasElem.textContent = '0';
-      horasElem.textContent = '0';
-      minutosElem.textContent = '0';
-      segundosElem.textContent = '0';
-      clearInterval(intervaloContagem);
-      return;
-    }
-    const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutos = Math.floor((diff / (1000 * 60)) % 60);
-    const segundos = Math.floor((diff / 1000) % 60);
-    diasElem.textContent = dias;
-    horasElem.textContent = horas;
-    minutosElem.textContent = minutos;
-    segundosElem.textContent = segundos;
-  }
-  const intervaloContagem = setInterval(atualizaContagem, 1000);
-  atualizaContagem();
+  // Música
+  const musica = document.getElementById("musica");
+  document.getElementById("btnMusica").addEventListener("click", ()=>{
+    if (musica.paused) { musica.play(); this.textContent="🔊"; }
+    else { musica.pause(); this.textContent="🎵"; }
+  });
+  document.getElementById("btnSimMusica").onclick = ()=>{
+    musica.play();
+    document.getElementById("popupMusica").style.display="none";
+  };
+  document.getElementById("btnNaoMusica").onclick = ()=>{
+    musica.pause();
+    document.getElementById("popupMusica").style.display="none";
+  };
 
-  // Menu hamburguer toggle
-  const hamburguerIcon = document.getElementById('hamburguerIcon');
-  const menuItems = document.getElementById('menuItems');
-  hamburguerIcon.addEventListener('click', () => {
-    const isExpanded = hamburguerIcon.getAttribute('aria-expanded') === 'true';
-    if (isExpanded) {
-      menuItems.classList.remove('show');
-      hamburguerIcon.setAttribute('aria-expanded', 'false');
-    } else {
-      menuItems.classList.add('show');
-      hamburguerIcon.setAttribute('aria-expanded', 'true');
-    }
+  // Menu hambúrguer
+  const menuBtn = document.getElementById("menuBtn");
+  const menuItems = document.getElementById("menuItems");
+  menuBtn.addEventListener("click", ()=> menuItems.style.display = menuItems.style.display==="block"?"none":"block");
+  menuItems.querySelectorAll("a").forEach(a=>{
+    a.addEventListener("click", ()=> menuItems.style.display="none");
   });
 
-  // Fecha menu ao clicar em item
-  menuItems.querySelectorAll('a').forEach(item => {
-    item.addEventListener('click', () => {
-      menuItems.classList.remove('show');
-      hamburguerIcon.setAttribute('aria-expanded', 'false');
-    });
-  });
-
-  // Copiar PIX com botão
-  const btnCopiarPixs = document.querySelectorAll('.btnCopiarPix');
-  const alerta = document.getElementById('alertaCopiado');
-  btnCopiarPixs.forEach((btn) => {
-    btn.addEventListener('click', () => {
+  // Copiar PIX
+  document.querySelectorAll(".copy-btn").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
       const textarea = btn.previousElementSibling;
-      if (textarea) {
-        textarea.select();
-        textarea.setSelectionRange(0, 99999); // Para mobile
-        navigator.clipboard.writeText(textarea.value).then(() => {
-          // Mostrar alerta "Copiado!"
-          alerta.classList.add('show');
-          setTimeout(() => alerta.classList.remove('show'), 1500);
-        }).catch(() => {
-          alert('Não foi possível copiar o código PIX.');
-        });
-      }
+      textarea.select();
+      document.execCommand("copy");
+      alert("PIX Copia e Cola copiado!");
     });
   });
-
-  // Pop-up musica controles
-  const popup = document.getElementById('popupMusica');
-  const btnTocarMusica = document.getElementById('btnTocarMusica');
-  const btnSilencio = document.getElementById('btnSilencio');
-  const audio = document.getElementById('musica');
-  const btnMusica = document.getElementById('btnMusica');
-
-  // Botão tocar musica no popup
-  btnTocarMusica.addEventListener('click', () => {
-    audio.play();
-    popup.style.display = 'none';
-    btnMusica.style.display = 'flex';
-  });
-
-  // Botão silêncio no popup
-  btnSilencio.addEventListener('click', () => {
-    audio.pause();
-    audio.currentTime = 0;
-    popup.style.display = 'none';
-    btnMusica.style.display = 'flex';
-  });
-
-  // Botão flutuante tocar/pausar música
-  btnMusica.addEventListener('click', () => {
-    if (audio.paused) {
-      audio.play();
-      btnMusica.textContent = '🔈';
-    } else {
-      audio.pause();
-      btnMusica.textContent = '🎵';
-    }
-  });
-  // Inicia botão música oculto até usar popup
-  btnMusica.style.display = 'none';
 </script>
 
 </body>
