@@ -143,82 +143,19 @@
     font-weight: 600;
   }
 
-  /* Nossa História com carrossel estilizado e romântico */
-  #historia {
-    position: relative;
+  /* Nossa História */
+  #historia img {
+    display: block;
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-top: 15px;
   }
   #historia p {
     max-width: 700px;
     margin: 0 auto 20px;
     font-size: 1.1rem;
-  }
-  #carousel {
-    position: relative;
-    max-width: 700px;
-    margin: 0 auto 30px;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 0 20px #a33b3877;
-    background: #fff0f0;
-  }
-  #carousel img {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    border-radius: 15px;
-    user-select: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  #carousel img.active {
-    opacity: 1;
-    position: relative;
-  }
-  /* Botões do carrossel */
-  #prevBtn, #nextBtn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: #a33b38cc;
-    border: none;
-    color: white;
-    font-size: 2rem;
-    padding: 8px 15px;
-    cursor: pointer;
-    border-radius: 50%;
-    user-select: none;
-    transition: background 0.3s ease;
-    box-shadow: 0 0 8px #a33b38bb;
-  }
-  #prevBtn:hover, #nextBtn:hover {
-    background: #800000cc;
-  }
-  #prevBtn {
-    left: 15px;
-  }
-  #nextBtn {
-    right: 15px;
-  }
-  /* Dots */
-  #dotsContainer {
-    text-align: center;
-    margin-top: 15px;
-  }
-  #dotsContainer button {
-    border: none;
-    background: #a33b3844;
-    width: 14px;
-    height: 14px;
-    margin: 0 5px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  #dotsContainer button.active, #dotsContainer button:hover {
-    background: #a33b38cc;
   }
 
   /* Presentes */
@@ -518,39 +455,41 @@
 <section id="historia">
   <h2>Nossa História</h2>
   <p>Nosso amor começou com um simples olhar que se transformou em uma linda jornada juntos. Estamos felizes em compartilhar este momento com você!</p>
-
-  <!-- Carrossel estilizado romântico -->
-  <div id="carousel" aria-label="Carrossel de fotos da nossa história">
-    <button id="prevBtn" aria-label="Foto anterior">&#10094;</button>
-    <button id="nextBtn" aria-label="Próxima foto">&#10095;</button>
-
-    <img src="foto1.jpg" alt="Foto do casal 1" class="active" />
-    <img src="foto2.jpg" alt="Foto do casal 2" />
-    <img src="foto3.jpg" alt="Foto do casal 3" />
-    <img src="foto4.jpg" alt="Foto do casal 4" />
-    
-    <div id="dotsContainer" role="tablist" aria-label="Seleção de fotos">
-      <button class="active" role="tab" aria-selected="true" aria-controls="slide1" id="dot0" tabindex="0"></button>
-      <button role="tab" aria-selected="false" aria-controls="slide2" id="dot1" tabindex="-1"></button>
-      <button role="tab" aria-selected="false" aria-controls="slide3" id="dot2" tabindex="-1"></button>
-      <button role="tab" aria-selected="false" aria-controls="slide4" id="dot3" tabindex="-1"></button>
-    </div>
-  </div>
+  <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="Coração" />
 </section>
 
 <!-- Presentes -->
 <section id="presentes">
-  <h2>Lista de Presentes</h2>
+  <h2>Presentes</h2>
   <div class="presentes">
+
     <div class="presente-item">
-      <img src="presente1.jpg" alt="Conjunto de panelas" />
-      <h3>Conjunto de Panelas</h3>
-      <p>R$ 250,00</p>
-      <img class="qr" src="qr1.png" alt="QR code para pagamento do conjunto de panelas" />
-      <textarea readonly>00020126360014BR.GOV.BCB.PIX0114+5561999999995204000053039865406250.005802BR5909Fulano Silva6009CidadeUF62070503***6304ABCD</textarea>
-      <button class="copiarBtn" aria-label="Copiar código Pix do conjunto de panelas">Copiar Pix</button>
+      <img src="https://cdn.pixabay.com/photo/2016/11/29/05/09/cookware-1869617_1280.jpg" alt="Jogo de Panelas" />
+      <h3>Jogo de Panelas Inox</h3>
+      <p><strong>Valor:</strong> R$ 250,00</p>
+      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
+      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551199999999952041234560000000000123456789520400005303986540325.005802BR5908André e Maria6009São Paulo61080540900062070503***6304ABCD</textarea>
+      <button class="copiarBtn" aria-label="Copiar PIX Jogo de Panelas">📋 Copiar PIX Copia e Cola</button>
     </div>
-    <!-- Adicione outros presentes aqui -->
+
+    <div class="presente-item">
+      <img src="https://cdn.pixabay.com/photo/2014/12/21/23/28/kitchen-575434_1280.jpg" alt="Liquidificador" />
+      <h3>Liquidificador Moderno</h3>
+      <p><strong>Valor:</strong> R$ 180,00</p>
+      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
+      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551198888888852041234560000000000123456789520400005303986540318.005802BR5908André e Maria6009São Paulo61080540900062070503***6304EFGH</textarea>
+      <button class="copiarBtn" aria-label="Copiar PIX Liquidificador">📋 Copiar PIX Copia e Cola</button>
+    </div>
+
+    <div class="presente-item">
+      <img src="https://cdn.pixabay.com/photo/2017/08/02/01/01/kettle-2561035_1280.jpg" alt="Chaleira Elétrica" />
+      <h3>Chaleira Elétrica</h3>
+      <p><strong>Valor:</strong> R$ 120,00</p>
+      <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
+      <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551197777777752041234560000000000123456789520400005303986540312.005802BR5908André e Maria6009São Paulo61080540900062070503***6304IJKL</textarea>
+      <button class="copiarBtn" aria-label="Copiar PIX Chaleira">📋 Copiar PIX Copia e Cola</button>
+    </div>
+
   </div>
 </section>
 
@@ -558,177 +497,155 @@
 <section id="local">
   <h2>Local da Cerimônia</h2>
   <div class="igrejas">
-    <img src="igreja1.jpg" alt="Igreja Nossa Senhora do Carmo" />
-    <img src="igreja2.jpg" alt="Igreja São José" />
+    <img src="igreja1.jpg" alt="Igreja São Pedro" />
+    <img src="igreja2.jpg" alt="Igreja São Paulo" />
   </div>
 </section>
 
 <!-- Padrinhos -->
 <section id="padrinhos">
   <h2>Padrinhos</h2>
-  <div class="padrinhos-fotos" role="list">
-    <img src="padrinho1.jpg" alt="Foto do padrinho João" role="listitem" />
-    <img src="padrinho2.jpg" alt="Foto da madrinha Ana" role="listitem" />
-    <!-- Adicione os outros padrinhos -->
+  <div class="padrinhos-fotos">
+    <img src="padrinho1.jpg" alt="Padrinho 1" />
+    <img src="padrinho2.jpg" alt="Padrinho 2" />
+    <img src="padrinho3.jpg" alt="Padrinho 3" />
+    <img src="padrinho4.jpg" alt="Padrinho 4" />
   </div>
 </section>
 
 <!-- Lua de Mel -->
 <section id="lua">
   <h2>Lua de Mel</h2>
-  <img src="cruzeiro.jpg" alt="Navio de cruzeiro para lua de mel" class="cruzeiro" />
-  <img src="qr-lua-de-mel.png" alt="QR code para contribuição da lua de mel" class="qr" />
-  <textarea readonly>00020126360014BR.GOV.BCB.PIX0114+5561999999995204000053039865406250.005802BR5909Fulano Silva6009CidadeUF62070503***6304ABCD</textarea>
-  <button class="copiarBtn" aria-label="Copiar código Pix da lua de mel">Copiar Pix</button>
+  <img class="cruzeiro" src="navio_cruzeiro.jpg" alt="Navio de Cruzeiro" />
+  <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code Lua de Mel" />
+  <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551196666666652041234560000000000123456789520400005303986540312.005802BR5908André e Maria6009São Paulo61080540900062070503***6304MNOP</textarea>
+  <button class="copiarBtn" aria-label="Copiar PIX Lua de Mel">📋 Copiar PIX Copia e Cola</button>
 </section>
 
 </main>
 
-<!-- Botão de música -->
-<button id="btnMusica" aria-label="Tocar / Pausar música">&#9835;</button>
-<audio id="musica" preload="auto" loop>
-  <source src="prasonhar.mp3" type="audio/mpeg" />
-  Seu navegador não suporta áudio.
-</audio>
+<!-- Botão música flutuante -->
+<button id="btnMusica" aria-label="Tocar ou pausar música" title="Tocar ou pausar música" style="display:none;">
+  🎵
+</button>
 
 <!-- Pop-up música -->
-<div id="popupMusica" role="dialog" aria-modal="true" hidden>
+<div id="popupMusica" role="dialog" aria-modal="true" aria-labelledby="popupTitulo" aria-describedby="popupTexto">
   <div>
-    <h2>Quer ouvir uma música?</h2>
-    <p>Clique no botão abaixo para começar a tocar a música do nosso casamento.</p>
-    <button id="btnTocarMusica" aria-label="Tocar música">Tocar Música</button>
+    <h2 id="popupTitulo">Quer ouvir a música?</h2>
+    <p id="popupTexto">Gostaria de ouvir a música tema do nosso casamento enquanto navega no site?</p>
+    <button id="btnSim">Sim</button>
+    <button id="btnNao">Não</button>
   </div>
 </div>
 
+<audio id="musica" preload="auto" loop>
+  <source src="prasonhar.mp3" type="audio/mpeg" />
+  Seu navegador não suporta áudio HTML5.
+</audio>
+
 <script>
-  // Menu hamburguer toggle
+  // Menu hamburguer
   const menuToggle = document.getElementById('menuToggle');
   const menuItems = document.getElementById('menuItems');
+
   menuToggle.addEventListener('click', () => {
-    menuItems.classList.toggle('show');
-    menuToggle.setAttribute('aria-expanded', menuItems.classList.contains('show'));
-    menuItems.setAttribute('aria-hidden', !menuItems.classList.contains('show'));
+    const isShown = menuItems.classList.contains('show');
+    menuItems.classList.toggle('show', !isShown);
+    menuItems.setAttribute('aria-hidden', isShown ? 'true' : 'false');
+  });
+  // Permitir tecla Enter e Espaço no menuToggle para acessibilidade
+  menuToggle.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      menuToggle.click();
+    }
   });
 
-  // Contagem regressiva
-  const diasEl = document.getElementById('dias');
-  const horasEl = document.getElementById('horas');
-  const minutosEl = document.getElementById('minutos');
-  const segundosEl = document.getElementById('segundos');
-
-  // Data do casamento (AAAA, Mês-1, dia, hora, minuto, segundo)
-  const casamento = new Date(2025, 9, 25, 17, 0, 0); // 25/outubro/2025 17:00
+  // Contagem regressiva para 10/12/2025 17:00:00
+  const fimCasamento = new Date('2025-12-10T17:00:00-03:00');
+  const diasSpan = document.getElementById('dias');
+  const horasSpan = document.getElementById('horas');
+  const minutosSpan = document.getElementById('minutos');
+  const segundosSpan = document.getElementById('segundos');
 
   function atualizarContagem() {
     const agora = new Date();
-    const diff = casamento - agora;
+    const diff = fimCasamento - agora;
     if (diff <= 0) {
-      diasEl.textContent = '0';
-      horasEl.textContent = '0';
-      minutosEl.textContent = '0';
-      segundosEl.textContent = '0';
-      clearInterval(intervaloContagem);
+      diasSpan.textContent = '0';
+      horasSpan.textContent = '0';
+      minutosSpan.textContent = '0';
+      segundosSpan.textContent = '0';
+      clearInterval(timerContagem);
       return;
     }
     const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
     const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
     const minutos = Math.floor((diff / (1000 * 60)) % 60);
     const segundos = Math.floor((diff / 1000) % 60);
-    diasEl.textContent = dias;
-    horasEl.textContent = horas.toString().padStart(2, '0');
-    minutosEl.textContent = minutos.toString().padStart(2, '0');
-    segundosEl.textContent = segundos.toString().padStart(2, '0');
+
+    diasSpan.textContent = dias;
+    horasSpan.textContent = horas.toString().padStart(2, '0');
+    minutosSpan.textContent = minutos.toString().padStart(2, '0');
+    segundosSpan.textContent = segundos.toString().padStart(2, '0');
   }
-  const intervaloContagem = setInterval(atualizarContagem, 1000);
+
+  const timerContagem = setInterval(atualizarContagem, 1000);
   atualizarContagem();
 
-  // Carrossel estilizado romântico
-  const carousel = document.getElementById('carousel');
-  const slides = carousel.querySelectorAll('img');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  const dotsContainer = document.getElementById('dotsContainer');
-  const dots = Array.from(dotsContainer.querySelectorAll('button'));
-
-  let current = 0;
-
-  function showSlide(index) {
-    if (index < 0) index = slides.length - 1;
-    if (index >= slides.length) index = 0;
-    slides.forEach((slide, i) => {
-      slide.classList.toggle('active', i === index);
-      slide.setAttribute('aria-hidden', i !== index);
-      dots[i].classList.toggle('active', i === index);
-      dots[i].setAttribute('aria-selected', i === index);
-      dots[i].tabIndex = i === index ? 0 : -1;
-    });
-    current = index;
-  }
-
-  prevBtn.addEventListener('click', () => {
-    showSlide(current - 1);
-    resetAutoSlide();
-  });
-  nextBtn.addEventListener('click', () => {
-    showSlide(current + 1);
-    resetAutoSlide();
-  });
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-      showSlide(i);
-      resetAutoSlide();
-    });
-  });
-
-  showSlide(0);
-
-  // Autoplay a cada 4 segundos
-  let autoSlideInterval = setInterval(() => {
-    showSlide(current + 1);
-  }, 4000);
-
-  function resetAutoSlide() {
-    clearInterval(autoSlideInterval);
-    autoSlideInterval = setInterval(() => {
-      showSlide(current + 1);
-    }, 4000);
-  }
-
-  // Copiar Pix
-  document.querySelectorAll('.copiarBtn').forEach(btn => {
-    btn.addEventListener('click', e => {
-      const textarea = e.target.previousElementSibling;
+  // Copiar PIX para área de transferência
+  document.querySelectorAll('.copiarBtn').forEach(button => {
+    button.addEventListener('click', () => {
+      const textarea = button.previousElementSibling;
       textarea.select();
-      textarea.setSelectionRange(0, 99999);
-      navigator.clipboard.writeText(textarea.value)
-        .then(() => alert('Código Pix copiado!'))
-        .catch(() => alert('Erro ao copiar'));
+      textarea.setSelectionRange(0, 99999); // Para mobile
+      navigator.clipboard.writeText(textarea.value).then(() => {
+        alert('PIX copiado para a área de transferência!');
+      });
     });
   });
 
-  // Música
+  // Pop-up música
+  const popup = document.getElementById('popupMusica');
+  const btnSim = document.getElementById('btnSim');
+  const btnNao = document.getElementById('btnNao');
   const btnMusica = document.getElementById('btnMusica');
-  const popupMusica = document.getElementById('popupMusica');
-  const btnTocarMusica = document.getElementById('btnTocarMusica');
   const musica = document.getElementById('musica');
 
-  // Exibe o popup no carregamento
-  window.addEventListener('load', () => {
-    popupMusica.hidden = false;
-  });
+  function fecharPopup() {
+    popup.style.display = 'none';
+    popup.setAttribute('aria-hidden', 'true');
+    btnMusica.focus();
+  }
 
-  btnTocarMusica.addEventListener('click', () => {
+  btnSim.addEventListener('click', () => {
     musica.play();
-    popupMusica.hidden = true;
+    btnMusica.style.display = 'flex';
+    fecharPopup();
+  });
+  btnNao.addEventListener('click', () => {
+    musica.pause();
+    btnMusica.style.display = 'none';
+    fecharPopup();
   });
 
+  // Botão música flutuante
   btnMusica.addEventListener('click', () => {
     if (musica.paused) {
       musica.play();
+      btnMusica.textContent = '⏸️';
+      btnMusica.setAttribute('aria-label', 'Pausar música');
+      btnMusica.title = 'Pausar música';
     } else {
       musica.pause();
+      btnMusica.textContent = '🎵';
+      btnMusica.setAttribute('aria-label', 'Tocar música');
+      btnMusica.title = 'Tocar música';
     }
   });
+
 </script>
+
 </body>
 </html>
