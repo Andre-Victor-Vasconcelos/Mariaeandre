@@ -6,12 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>André & Maria - Nosso Casamento</title>
 <style>
-  /* Reset básico */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  /* Reset */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #fdf6f0;
@@ -19,6 +15,7 @@
     line-height: 1.5;
     padding: 0 10px 50px;
   }
+
   header {
     text-align: center;
     padding: 30px 10px 10px;
@@ -29,44 +26,64 @@
     font-family: 'Georgia', serif;
     user-select: none;
   }
+
+  /* Menu */
   nav {
-    display: flex;
-    justify-content: center;
     background: #f1b7b1;
-    padding: 10px 0;
     position: sticky;
     top: 0;
     z-index: 100;
   }
-  nav a {
+  nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+  }
+  nav ul li {
+    margin: 0 15px;
+  }
+  nav ul li a {
     color: #5a0000;
     text-decoration: none;
-    margin: 0 15px;
     font-weight: 600;
     font-size: 1rem;
     transition: color 0.3s ease;
   }
-  nav a:hover {
-    color: #a33b38;
+  nav ul li a:hover { color: #a33b38; }
+
+  /* Botão hambúrguer */
+  .menu-toggle {
+    display: none;
+    background: #a33b38;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    padding: 10px 15px;
+    cursor: pointer;
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    border-radius: 5px;
   }
-  section {
-    max-width: 900px;
-    margin: 30px auto;
-    background: #fff7f4;
-    padding: 25px 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgb(216 155 147 / 0.3);
-  }
-  section h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #a33b38;
-    font-family: 'Georgia', serif;
-  }
-  p.text-center {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 1.1rem;
+
+  /* Responsivo menu */
+  @media (max-width: 700px) {
+    nav ul {
+      flex-direction: column;
+      display: none;
+      background: #f1b7b1;
+    }
+    nav ul li {
+      text-align: center;
+      margin: 10px 0;
+    }
+    nav ul.show {
+      display: flex;
+    }
+    .menu-toggle {
+      display: block;
+    }
   }
 
   /* Contagem regressiva */
@@ -74,7 +91,6 @@
     display: flex;
     justify-content: center;
     gap: 15px;
-    font-size: 1.5rem;
     margin-bottom: 10px;
     user-select: none;
     flex-wrap: wrap;
@@ -83,170 +99,19 @@
     background: #f7d6d0;
     color: #800000;
     border-radius: 8px;
-    padding: 15px 25px;
+    padding: 10px 15px;
     box-shadow: inset 0 0 8px #80000044;
-    min-width: 65px;
     text-align: center;
+    flex: 1 1 60px;
   }
   #contagem div span {
     display: block;
     font-weight: 700;
-    font-size: 2.2rem;
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
   }
   #contagem div small {
     font-size: 0.9rem;
     font-weight: 600;
-  }
-
-  /* Ajuste contagem para celular */
-  @media (max-width: 500px) {
-    #contagem {
-      gap: 8px;
-      font-size: 1.1rem;
-    }
-    #contagem div {
-      padding: 10px 12px;
-      min-width: 50px;
-    }
-    #contagem div span {
-      font-size: 1.5rem;
-    }
-    #contagem div small {
-      font-size: 0.75rem;
-    }
-  }
-
-  /* Nossa História */
-  #historia img {
-    display: block;
-    margin: 0 auto;
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
-    margin-top: 15px;
-  }
-  #historia p {
-    max-width: 700px;
-    margin: 0 auto 20px;
-    font-size: 1.1rem;
-  }
-
-  /* Presentes */
-  #presentes .presentes {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
-    gap: 20px;
-  }
-  #presentes .presente-item {
-    background: #f1b7b1aa;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 0 8px #a33b3811;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  #presentes .presente-item img {
-    width: 210px;
-    height: 140px;
-    object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px #a33b3822;
-    margin-bottom: 12px;
-  }
-  #presentes .presente-item h3 {
-    color: #800000;
-    margin-bottom: 6px;
-    font-size: 1.1rem;
-    text-align: center;
-  }
-  #presentes .presente-item p {
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-  #presentes .presente-item .qr {
-    width: 110px;
-    height: 110px;
-    object-fit: contain;
-    margin-bottom: 8px;
-  }
-  #presentes .presente-item textarea {
-    width: 100%;
-    resize: none;
-    font-family: monospace;
-    font-size: 0.75rem;
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #a33b38;
-    background: #fff0f0;
-    color: #800000;
-    height: 75px;
-    overflow-wrap: break-word;
-  }
-
-  /* Local da Cerimônia */
-  #local .igrejas {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    flex-wrap: wrap;
-  }
-  #local .igrejas img {
-    width: 280px;
-    max-width: 90vw;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0 3px 10px #a33b3811;
-  }
-
-  /* Padrinhos */
-  #padrinhos .padrinhos-fotos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-  }
-  #padrinhos .padrinhos-fotos img {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #a33b3855;
-    cursor: default;
-  }
-
-  /* Lua de Mel */
-  #lua img.cruzeiro {
-    display: block;
-    max-width: 100%;
-    max-height: 250px;
-    margin: 15px auto;
-    border-radius: 12px;
-    box-shadow: 0 3px 12px #a33b3811;
-  }
-  #lua .qr {
-    width: 120px;
-    height: 120px;
-    margin: 0 auto;
-    display: block;
-    object-fit: contain;
-  }
-  #lua textarea {
-    width: 100%;
-    max-width: 300px;
-    margin: 15px auto 0;
-    display: block;
-    font-family: monospace;
-    font-size: 0.85rem;
-    padding: 8px;
-    border-radius: 6px;
-    border: 1px solid #a33b38;
-    background: #fff0f0;
-    color: #800000;
-    height: 75px;
-    resize: none;
-    overflow-wrap: break-word;
   }
 
   /* Botão música flutuante */
@@ -267,32 +132,69 @@
     justify-content: center;
     align-items: center;
     transition: background 0.3s ease;
-    user-select: none;
     z-index: 999;
   }
-  #btnMusica:hover {
-    background: #800000;
+  #btnMusica:hover { background: #800000; }
+
+  /* Pop-up música */
+  #popupMusica {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(168, 48, 56, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    font-family: 'Georgia', serif;
+    color: #fff;
+    text-align: center;
+    padding: 30px 15px;
+    flex-direction: column;
+    user-select: none;
   }
+  #popupMusica .conteudo {
+    background: #fff0f0;
+    color: #a83038;
+    border-radius: 15px;
+    padding: 30px 40px;
+    max-width: 320px;
+    box-shadow: 0 0 20px #a8303866;
+  }
+  #popupMusica button {
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 10px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 5px 0;
+    transition: background 0.3s ease;
+    width: 100%;
+  }
+  #btnSimMusica { background: #a83038; }
+  #btnSimMusica:hover { background: #800024; }
+  #btnNaoMusica { background: #555; }
+  #btnNaoMusica:hover { background: #333; }
 </style>
 </head>
 <body>
 
-<header>
-  André & Maria - Nosso Casamento
-</header>
+<header>André & Maria - Nosso Casamento</header>
 
 <nav>
-  <a href="#contagem-regressiva">Contagem Regressiva</a>
-  <a href="#historia">Nossa História</a>
-  <a href="#presentes">Presentes</a>
-  <a href="#local">Local da Cerimônia</a>
-  <a href="#padrinhos">Padrinhos</a>
-  <a href="#lua">Lua de Mel</a>
+  <button class="menu-toggle">☰</button>
+  <ul>
+    <li><a href="#contagem-regressiva">Contagem Regressiva</a></li>
+    <li><a href="#historia">Nossa História</a></li>
+    <li><a href="#presentes">Presentes</a></li>
+    <li><a href="#local">Local da Cerimônia</a></li>
+    <li><a href="#padrinhos">Padrinhos</a></li>
+    <li><a href="#lua">Lua de Mel</a></li>
+  </ul>
 </nav>
 
 <main>
-
-<!-- Contagem regressiva -->
 <section id="contagem-regressiva">
   <h2>Contagem Regressiva</h2>
   <div id="contagem">
@@ -302,135 +204,40 @@
     <div><span id="segundos">0</span><small>Segundos</small></div>
   </div>
 </section>
-<!-- Nossa História -->
-<section id="historia">
-  <h2>Nossa História</h2>
-  <p>Nosso amor começou com um simples olhar que se transformou em uma linda jornada juntos. Estamos felizes em compartilhar este momento com você!</p>
-  <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="Coração" />
-</section>
-
-<!-- Presentes -->
-<section id="presentes">
-  <h2>Presentes</h2>
-  <div class="presentes">
-    <!-- Seus itens de presente aqui (mantive iguais aos anteriores) -->
-  </div>
-</section>
-
-<!-- Local da Cerimônia -->
-<section id="local">
-  <h2>Local da Cerimônia</h2>
-  <p class="text-center">Dois locais especiais para esse dia inesquecível:</p>
-  <div class="igrejas">
-    <img src="https://cdn.pixabay.com/photo/2017/03/31/16/02/church-2199357_1280.jpg" alt="Igreja 1" />
-    <img src="https://cdn.pixabay.com/photo/2015/11/16/22/24/church-1046651_1280.jpg" alt="Igreja 2" />
-  </div>
-</section>
-
-<!-- Padrinhos -->
-<section id="padrinhos">
-  <h2>Padrinhos</h2>
-  <p class="text-center">Nossos queridos padrinhos e madrinhas:</p>
-  <div class="padrinhos-fotos">
-    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Padrinho 1" />
-    <img src="https://randomuser.me/api/portraits/men/66.jpg" alt="Padrinho 2" />
-    <img src="https://randomuser.me/api/portraits/women/67.jpg" alt="Padrinho 3" />
-    <img src="https://randomuser.me/api/portraits/men/68.jpg" alt="Padrinho 4" />
-    <img src="https://randomuser.me/api/portraits/women/69.jpg" alt="Padrinho 5" />
-    <img src="https://randomuser.me/api/portraits/men/70.jpg" alt="Padrinho 6" />
-  </div>
-</section>
-
-<!-- Lua de Mel -->
-<section id="lua">
-  <h2>Nossa Lua de Mel - Cruzeiro dos Sonhos</h2>
-  <p class="text-center">Estamos planejando a lua de mel dos sonhos e sua contribuição será muito bem-vinda!</p>
-  <img class="cruzeiro" src="https://cdn.pixabay.com/photo/2017/08/05/12/26/cruise-2584213_1280.jpg" alt="Navio de Cruzeiro" />
-  <div style="max-width:300px; margin: 0 auto; text-align:center;">
-    <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code Lua de Mel" />
-    <textarea readonly style="margin-top: 15px;">00020126330014BR.GOV.BCB.PIX0114+551199999999952041234560000000000123456789520400005303986540100.005802BR5908Lua de Mel6009São Paulo61080540900062070503***6304ZXCV</textarea>
-  </div>
-</section>
-
 </main>
 
-<!-- Música e botão -->
 <audio id="musica" preload="auto">
    <source src="prasonhar.mp3" type="audio/mpeg">
 </audio>
 
 <button id="btnMusica" aria-label="Tocar/Parar Música">🎵</button>
 
-<!-- Pop-up estilizado -->
-<div id="popupMusica" style="
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(168, 48, 56, 0.85);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  font-family: 'Georgia', serif;
-  color: #fff;
-  text-align: center;
-  padding: 30px 15px;
-  flex-direction: column;
-  user-select: none;
-">
-  <div style="
-    background: #fff0f0;
-    color: #a83038;
-    border-radius: 15px;
-    padding: 30px 40px;
-    max-width: 320px;
-    box-shadow: 0 0 20px #a8303866;
-  ">
-    <h2 style="margin-bottom: 15px; font-size: 1.8rem;">💖 Ouvir Nossa Música? 💖</h2>
-    <p style="margin-bottom: 25px; font-size: 1.1rem; line-height: 1.4;">
-      Queremos compartilhar este momento especial com a trilha sonora do nosso amor.
-    </p>
-    <button id="btnSimMusica" style="
-      background: #a83038;
-      border: none;
-      color: white;
-      font-size: 1.1rem;
-      font-weight: 600;
-      padding: 10px 25px;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-bottom: 10px;
-      transition: background 0.3s ease;
-    " onmouseover="this.style.background='#800024'" onmouseout="this.style.background='#a83038'">
-      Sim, quero ouvir 💖
-    </button>
-    <button id="btnSilencio" style="
-      background: #ccc;
-      border: none;
-      color: #333;
-      font-size: 1rem;
-      padding: 8px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    " onmouseover="this.style.background='#bbb'" onmouseout="this.style.background='#ccc'">
-      Por hora quero silêncio pra ler
-    </button>
+<!-- Pop-up -->
+<div id="popupMusica">
+  <div class="conteudo">
+    <h2>💖 Ouvir Nossa Música? 💖</h2>
+    <p>Queremos compartilhar este momento especial com a trilha sonora do nosso amor.</p>
+    <button id="btnSimMusica">Sim, quero ouvir 💖</button>
+    <button id="btnNaoMusica">Por hora quero silêncio 🎧</button>
   </div>
 </div>
 
 <script>
+  // Menu hambúrguer
+  document.querySelector(".menu-toggle").addEventListener("click", () => {
+    document.querySelector("nav ul").classList.toggle("show");
+  });
+
   // Contagem regressiva
   const alvoData = new Date("2025-12-31T00:00:00").getTime();
   function atualizarContagem() {
     const agora = new Date().getTime();
     let distancia = alvoData - agora;
     if (distancia < 0) distancia = 0;
-
     const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
     const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
     const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
-
     document.getElementById("dias").textContent = dias;
     document.getElementById("horas").textContent = horas.toString().padStart(2,'0');
     document.getElementById("minutos").textContent = minutos.toString().padStart(2,'0');
@@ -443,8 +250,6 @@
   const musica = document.getElementById("musica");
   const btnMusica = document.getElementById("btnMusica");
   const popupMusica = document.getElementById("popupMusica");
-  const btnSimMusica = document.getElementById("btnSimMusica");
-  const btnSilencio = document.getElementById("btnSilencio");
 
   btnMusica.addEventListener("click", () => {
     if (musica.paused) {
@@ -456,20 +261,14 @@
     }
   });
 
-  musica.addEventListener("ended", () => {
-    btnMusica.textContent = "🎵";
-  });
-
-  btnSimMusica.addEventListener("click", () => {
+  document.getElementById("btnSimMusica").addEventListener("click", () => {
     musica.play().then(() => {
       btnMusica.textContent = "🔊";
       popupMusica.style.display = "none";
-    }).catch(() => {
-      alert("Clique no botão 🎵 para tocar a música.");
     });
   });
 
-  btnSilencio.addEventListener("click", () => {
+  document.getElementById("btnNaoMusica").addEventListener("click", () => {
     musica.pause();
     btnMusica.textContent = "🎵";
     popupMusica.style.display = "none";
