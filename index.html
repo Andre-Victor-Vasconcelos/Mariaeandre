@@ -447,13 +447,21 @@
 
 <!-- Música e botão -->
 <audio id="musica" preload="auto">
-  <!-- Coloque seu arquivo MP3 aqui, exemplo:
-  <source src="musica-casamento.mp3" type="audio/mpeg"> -->
+   <source src="prasoonhar.mp3" type="audio/mpeg"> -->
 </audio>
 
 <button id="btnMusica" aria-label="Tocar/Parar Música">🎵</button>
 
 <script>
+  // Pop-up para tocar música ao entrar no site
+  window.addEventListener("load", function(){
+    const desejaTocar = confirm("Deseja ouvir nossa música de casamento?");
+    if(desejaTocar){
+      musica.play();
+      btnMusica.textContent = "🔊";
+    }
+  });
+
   // Contagem regressiva
   const alvoData = new Date("2025-12-31T00:00:00").getTime(); // ajuste para a data do casamento
 
@@ -494,6 +502,7 @@
     btnMusica.textContent = "🎵";
   });
 </script>
+
 
 </body>
 </html>
