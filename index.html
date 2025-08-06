@@ -414,6 +414,26 @@
   #popupMusica button:hover {
     background: #800024;
   }
+
+  /* Carrossel de fotos */
+  #carrossel {
+    max-width: 900px;
+    margin: 30px auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgb(163 59 56 / 0.4);
+    background: #fff7f4;
+  }
+  #carrossel img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: none;
+  }
+  #carrossel img.active {
+    display: block;
+  }
 </style>
 </head>
 <body>
@@ -439,6 +459,14 @@
 </nav>
 
 <main>
+
+<!-- Aqui insiro o carrossel novo -->
+<section id="carrossel" aria-label="Carrossel de fotos do casal">
+  <img src="foto1.jpg" alt="Foto do casal 1" class="active" />
+  <img src="foto2.jpg" alt="Foto do casal 2" />
+  <img src="foto3.jpg" alt="Foto do casal 3" />
+  <img src="foto4.jpg" alt="Foto do casal 4" />
+</section>
 
 <!-- Contagem regressiva -->
 <section id="contagem-regressiva">
@@ -497,8 +525,8 @@
 <section id="local">
   <h2>Local da Cerimônia</h2>
   <div class="igrejas">
-    <img src="https://cdn.pixabay.com/photo/2017/08/07/00/34/church-2593561_1280.jpg" alt="Igreja 1" />
-    <img src="https://cdn.pixabay.com/photo/2018/07/18/12/07/church-3542069_1280.jpg" alt="Igreja 2" />
+    <img src="igreja1.jpg" alt="Igreja São Pedro" />
+    <img src="igreja2.jpg" alt="Igreja São João" />
   </div>
 </section>
 
@@ -506,147 +534,109 @@
 <section id="padrinhos">
   <h2>Padrinhos</h2>
   <div class="padrinhos-fotos">
-    <img src="https://randomuser.me/api/portraits/men/31.jpg" alt="Padrinho 1" />
-    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Padrinho 2" />
-    <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="Padrinho 3" />
-    <img src="https://randomuser.me/api/portraits/women/47.jpg" alt="Padrinho 4" />
+    <img src="padrinho1.jpg" alt="Padrinho 1" />
+    <img src="padrinho2.jpg" alt="Padrinho 2" />
+    <img src="padrinho3.jpg" alt="Padrinho 3" />
+    <img src="padrinho4.jpg" alt="Padrinho 4" />
   </div>
 </section>
 
 <!-- Lua de Mel -->
 <section id="lua">
   <h2>Lua de Mel</h2>
-  <img class="cruzeiro" src="https://cdn.pixabay.com/photo/2016/03/27/20/11/cruise-1281443_1280.jpg" alt="Navio de Cruzeiro" />
-  <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code Lua de Mel" />
-  <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551196666666652041234560000000000123456789520400005303986540312.005802BR5908André e Maria6009São Paulo61080540900062070503***6304MNOP</textarea>
+  <img src="cruzeiro.jpg" alt="Navio de Cruzeiro" class="cruzeiro" />
+  <img class="qr" src="qr_lua_mel.png" alt="QR Code contribuição Lua de Mel" />
+  <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551196666666652041234560000000000123456789520400005303986540310.005802BR5908André e Maria6009São Paulo61080540900062070503***6304MNOP</textarea>
   <button class="copiarBtn" aria-label="Copiar PIX Lua de Mel">📋 Copiar PIX Copia e Cola</button>
 </section>
 
 </main>
 
-<!-- Pop-up Música -->
-<div id="popupMusica" role="dialog" aria-modal="true" aria-labelledby="popupTitulo" aria-describedby="popupDesc">
-  <div>
-    <h2 id="popupTitulo">Quer ouvir nossa playlist?</h2>
-    <p id="popupDesc">Temos uma seleção especial para embalar o clima do nosso casamento.</p>
-    <button id="btnSim">Sim, quero ouvir!</button>
-    <button id="btnNao">Por hora quero silêncio.</button>
-  </div>
-</div>
-
-<!-- Botão flutuante música -->
-<button id="btnMusica" aria-label="Tocar / Pausar música" title="Tocar / Pausar música" style="display:none;">&#9658;</button>
+<button id="btnMusica" aria-label="Tocar / Pausar Música">▶️</button>
 
 <audio id="musica" preload="auto" loop>
   <source src="prasonhar.mp3" type="audio/mpeg" />
-  Seu navegador não suporta áudio HTML5.
+  Seu navegador não suporta áudio.
 </audio>
 
 <script>
-  // Contagem regressiva
-  const diasSpan = document.getElementById('dias');
-  const horasSpan = document.getElementById('horas');
-  const minutosSpan = document.getElementById('minutos');
-  const segundosSpan = document.getElementById('segundos');
+  // Menu hamburguer toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const menuItems = document.getElementById('menuItems');
+  menuToggle.addEventListener('click', () => {
+    menuItems.classList.toggle('show');
+    const expanded = menuItems.classList.contains('show');
+    menuItems.setAttribute('aria-hidden', !expanded);
+  });
+  menuToggle.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      menuToggle.click();
+    }
+  });
 
-  // Data do casamento (exemplo: 1º de dezembro de 2025 17:00)
-  const dataCasamento = new Date('2025-12-01T17:00:00');
-
+  // Contagem regressiva para data do casamento (exemplo: 2025-12-31 16:00)
   function atualizarContagem() {
-    const agora = new Date();
+    const dataCasamento = new Date('2025-12-31T16:00:00-03:00').getTime();
+    const agora = Date.now();
     const diff = dataCasamento - agora;
 
-    if (diff <= 0) {
-      diasSpan.textContent = '0';
-      horasSpan.textContent = '0';
-      minutosSpan.textContent = '0';
-      segundosSpan.textContent = '0';
-      clearInterval(intervalo);
+    if(diff < 0) {
+      document.getElementById('contagem').innerHTML = '<p>O grande dia chegou!</p>';
+      clearInterval(intervaloContagem);
       return;
     }
 
     const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutos = Math.floor((diff / (1000 * 60)) % 60);
-    const segundos = Math.floor((diff / 1000) % 60);
+    const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000*60*60));
+    const minutos = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const segundos = Math.floor((diff % (1000*60)) / 1000);
 
-    diasSpan.textContent = dias;
-    horasSpan.textContent = horas.toString().padStart(2,'0');
-    minutosSpan.textContent = minutos.toString().padStart(2,'0');
-    segundosSpan.textContent = segundos.toString().padStart(2,'0');
+    document.getElementById('dias').textContent = dias;
+    document.getElementById('horas').textContent = horas;
+    document.getElementById('minutos').textContent = minutos;
+    document.getElementById('segundos').textContent = segundos;
   }
+  const intervaloContagem = setInterval(atualizarContagem, 1000);
   atualizarContagem();
-  const intervalo = setInterval(atualizarContagem, 1000);
 
-  // Menu hambúrguer toggle e fechar ao clicar
-  const menuToggle = document.getElementById('menuToggle');
-  const menuItems = document.getElementById('menuItems');
+  // Carrossel automático das fotos do casal
+  const carrosselImgs = document.querySelectorAll('#carrossel img');
+  let indiceAtual = 0;
+  function trocarImagem() {
+    carrosselImgs[indiceAtual].classList.remove('active');
+    indiceAtual = (indiceAtual + 1) % carrosselImgs.length;
+    carrosselImgs[indiceAtual].classList.add('active');
+  }
+  setInterval(trocarImagem, 3500); // troca a cada 3.5s
 
-  menuToggle.addEventListener('click', () => {
-    menuItems.classList.toggle('show');
-  });
-
-  // Fechar menu ao clicar em item e smooth scroll
-  menuItems.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', e => {
-      menuItems.classList.remove('show');
-      // Smooth scroll
-      e.preventDefault();
-      document.querySelector(link.getAttribute('href')).scrollIntoView({behavior: 'smooth'});
-    });
-  });
-
-  // Pop-up música
-  const popup = document.getElementById('popupMusica');
-  const btnSim = document.getElementById('btnSim');
-  const btnNao = document.getElementById('btnNao');
-  const btnMusica = document.getElementById('btnMusica');
-  const musica = document.getElementById('musica');
-
-  btnSim.addEventListener('click', () => {
-    musica.play();
-    btnMusica.style.display = 'flex';
-    popup.style.display = 'none';
-  });
-  btnNao.addEventListener('click', () => {
-    musica.pause();
-    btnMusica.style.display = 'none';
-    popup.style.display = 'none';
-  });
-
-  // Botão flutuante tocar/pausar música
-  btnMusica.addEventListener('click', () => {
-    if (musica.paused) {
-      musica.play();
-      btnMusica.innerHTML = '&#10073;&#10073;'; // Ícone pausa
-    } else {
-      musica.pause();
-      btnMusica.innerHTML = '&#9658;'; // Ícone play
-    }
-  });
-
-  musica.onplay = () => {
-    btnMusica.innerHTML = '&#10073;&#10073;';
-  };
-  musica.onpause = () => {
-    btnMusica.innerHTML = '&#9658;';
-  };
-
-  // Botões copiar PIX
+  // Botão copiar PIX
   document.querySelectorAll('.copiarBtn').forEach(btn => {
     btn.addEventListener('click', () => {
       const textarea = btn.previousElementSibling;
-      if (textarea && textarea.tagName === 'TEXTAREA') {
-        navigator.clipboard.writeText(textarea.value).then(() => {
-          btn.textContent = '✅ Copiado!';
-          setTimeout(() => {
-            btn.textContent = '📋 Copiar PIX Copia e Cola';
-          }, 2000);
-        }).catch(() => {
-          alert('Erro ao copiar o PIX.');
-        });
+      textarea.select();
+      textarea.setSelectionRange(0, 99999);
+      try {
+        document.execCommand('copy');
+        alert('PIX copiado para a área de transferência!');
+      } catch {
+        alert('Não foi possível copiar o PIX.');
       }
+      window.getSelection().removeAllRanges();
     });
+  });
+
+  // Botão de música
+  const btnMusica = document.getElementById('btnMusica');
+  const musica = document.getElementById('musica');
+  btnMusica.addEventListener('click', () => {
+    if(musica.paused) {
+      musica.play();
+      btnMusica.textContent = '⏸️';
+    } else {
+      musica.pause();
+      btnMusica.textContent = '▶️';
+    }
   });
 </script>
 
