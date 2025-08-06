@@ -601,14 +601,17 @@
   atualizarContagem();
 
   // Carrossel automático das fotos do casal
+ window.addEventListener('DOMContentLoaded', () => {
   const carrosselImgs = document.querySelectorAll('#carrossel img');
   let indiceAtual = 0;
+
   function trocarImagem() {
     carrosselImgs[indiceAtual].classList.remove('active');
     indiceAtual = (indiceAtual + 1) % carrosselImgs.length;
     carrosselImgs[indiceAtual].classList.add('active');
   }
-  setInterval(trocarImagem, 3500); // troca a cada 3.5s
+  setInterval(trocarImagem, 2000);
+}); // troca a cada 3.5s
 
   // Botão copiar PIX
   document.querySelectorAll('.copiarBtn').forEach(btn => {
