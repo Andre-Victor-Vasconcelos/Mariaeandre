@@ -608,19 +608,16 @@
   atualizarContagem();
 
   // Carrossel automático das fotos do casal
- window.addEventListener('DOMContentLoaded', () => {
   const carrosselImgs = document.querySelectorAll('#carrossel img');
   let indiceAtual = 0;
-
   function trocarImagem() {
     carrosselImgs[indiceAtual].classList.remove('active');
     indiceAtual = (indiceAtual + 1) % carrosselImgs.length;
     carrosselImgs[indiceAtual].classList.add('active');
   }
-  setInterval(trocarImagem, 2000);
-}); // troca a cada 3.5s
+  setInterval(trocarImagem, 3500); // troca a cada 3.5s
 
-  // Botão copiar PIX
+  // Botão copiar PIX com animação no próprio botão
   document.querySelectorAll('.copiarBtn').forEach(btn => {
     btn.addEventListener('click', () => {
       const textarea = btn.previousElementSibling;
@@ -628,8 +625,16 @@
       textarea.setSelectionRange(0, 99999);
       try {
         document.execCommand('copy');
-        alert('PIX copiado para a área de transferência!');
+        // Animação no botão
+        const originalText = btn.textContent;
+        btn.textContent = '✔ Copiado!';
+        btn.disabled = true;
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.disabled = false;
+        }, 1500);
       } catch {
+        // fallback alert se copiar falhar
         alert('Não foi possível copiar o PIX.');
       }
       window.getSelection().removeAllRanges();
@@ -639,6 +644,7 @@
   // Botão de música
   const btnMusica = document.getElementById('btnMusica');
   const musica = document.getElementById('musica');
+
   btnMusica.addEventListener('click', () => {
     if(musica.paused) {
       musica.play();
@@ -647,6 +653,37 @@
       musica.pause();
       btnMusica.textContent = '▶️';
     }
+  });
+
+  // Pop-up para perguntar se quer ouvir música ou não
+  window.addEventListener('load', () => {
+    // Cria o pop-up dinamicamente
+    const popup = document.createElement('div');
+    popup.id = 'popupMusica';
+    popup.innerHTML = `
+      <div>
+        <h2>Quer ouvir a música?</h2>
+        <p>Deseja que a música toque enquanto navega no site?</p>
+        <button id="btnSim">Sim, quero ouvir</button>
+        <button id="btnNao">Não, prefiro sem som</button>
+      </div>
+    `;
+    document.body.appendChild(popup);
+
+    const btnSim = document.getElementById('btnSim');
+    const btnNao = document.getElementById('btnNao');
+
+    btnSim.addEventListener('click', () => {
+      musica.play();
+      btnMusica.textContent = '⏸️';
+      popup.remove();
+    });
+
+    btnNao.addEventListener('click', () => {
+      musica.pause();
+      btnMusica.textContent = '▶️';
+      popup.remove();
+    });
   });
 </script>
 
