@@ -489,38 +489,128 @@
   <p>Nosso amor começou com um simples olhar que se transformou em uma linda jornada juntos. Estamos felizes em compartilhar este momento com você!</p>
   <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="Coração" />
 
-
-  
+ 
 </section>
 
 
   <!-- Linha do Tempo do Relacionamento -->
 <section id="linha-tempo">
-  <h2>Linha do Tempo do Nosso Relacionamento</h2>
-  <div style="max-width:800px;margin:0 auto;">
-    <ul style="list-style:none;padding:0;">
-      <li style="margin-bottom:20px;">
-        <strong>2018</strong> - Nos conhecemos e demos início a uma linda amizade.
-      </li>
-      <li style="margin-bottom:20px;">
-        <strong>2019</strong> - Começamos a namorar e descobrimos que era amor verdadeiro.
-      </li>
-      <li style="margin-bottom:20px;">
-        <strong>2022</strong> - Ficamos noivos, iniciando os preparativos para o grande dia.
-      </li>
-      <li style="margin-bottom:20px;">
-        <strong>2025</strong> - O nosso casamento, celebrando nossa história com pessoas queridas.
-      </li>
-    </ul>
+  <h2>Linha do Tempo do Nosso Amor</h2>
+  <div class="timeline">
+    <div class="container left">
+      <div class="content">
+        <h3>15/03/2020</h3>
+        <p>Nos conhecemos em um dia que mudaria nossas vidas para sempre ❤️</p>
+      </div>
+    </div>
+    <div class="container right">
+      <div class="content">
+        <h3>10/06/2020</h3>
+        <p>Primeiro encontro oficial, cheio de risos e olhares especiais ✨</p>
+      </div>
+    </div>
+    <div class="container left">
+      <div class="content">
+        <h3>25/12/2020</h3>
+        <p>Nos tornamos oficialmente um casal 🎄💑</p>
+      </div>
+    </div>
+    <div class="container right">
+      <div class="content">
+        <h3>14/02/2021</h3>
+        <p>Primeira viagem juntos, criando memórias inesquecíveis 🌅</p>
+      </div>
+    </div>
+    <div class="container left">
+      <div class="content">
+        <h3>31/12/2024</h3>
+        <p>O grande sim no altar 💍❤️</p>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- Sugestão de Trajes -->
-<section id="trajes">
-  <h2>Sugestão de Trajes para Padrinhos e Madrinhas</h2>
-  <p class="text-center">Queridos padrinhos e madrinhas, preparamos algumas inspirações para o traje no nosso grande dia.</p>
+<style>
+/* ===== Linha do Tempo ===== */
+#linha-tempo {
+  margin-top: 40px;
+}
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  background-color: #f1b7b1;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -2px;
+}
+.container {
+  padding: 10px 40px;
+  position: relative;
+  background-color: inherit;
+  width: 50%;
+}
+.container::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: -10px;
+  background-color: #a33b38;
+  border: 4px solid #fff7f4;
+  top: 15px;
+  border-radius: 50%;
+  z-index: 1;
+}
+.left {
+  left: 0;
+}
+.right {
+  left: 50%;
+}
+.right::after {
+  left: -10px;
+}
+.content {
+  padding: 15px 20px;
+  background-color: #fff7f4;
+  position: relative;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(163, 59, 56, 0.2);
+}
+.content h3 {
+  margin-bottom: 5px;
+  color: #a33b38;
+}
+.content p {
+  margin: 0;
+}
 
-  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:30px;max-width:900px;margin:0 auto;">
+/* Responsivo */
+@media screen and (max-width: 600px) {
+  .timeline::after {
+    left: 31px;
+  }
+  .container {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+  }
+  .container::after {
+    left: 15px;
+  }
+  .right {
+    left: 0%;
+  }
+}
+</style>
+
 
 <!-- Presentes -->
 <section id="presentes">
@@ -568,7 +658,7 @@
 
 <!-- Padrinhos -->
 <section id="padrinhos">
-  <h2>Padrinhos e Madrinhas</h2>
+  <h2>Padrinhos</h2>
   <div class="padrinhos-fotos">
     <img src="padrinho1.jpg" alt="Padrinho 1" />
     <img src="padrinho2.jpg" alt="Padrinho 2" />
@@ -576,8 +666,14 @@
     <img src="padrinho4.jpg" alt="Padrinho 4" />
   </div>
 </section>
-<section>
-       <!-- Trajes Madrinhas -->
+
+  <!-- Sugestão de Trajes -->
+<section id="trajes">
+  <h2>Sugestão de Trajes para Padrinhos e Madrinhas</h2>
+  <p class="text-center">Queridos padrinhos e madrinhas...</p>
+
+  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:30px;max-width:900px;margin:0 auto;">
+    <!-- Trajes Madrinhas -->
     <div style="flex:1 1 300px;max-width:350px;text-align:center;">
       <h3 style="color:#a33b38;margin-bottom:10px;">Madrinhas</h3>
       <img src="traje_madrinhas.jpg" alt="Sugestão de vestido para madrinhas" style="width:100%;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.1);margin-bottom:8px;">
@@ -590,11 +686,8 @@
       <img src="traje_padrinhos.jpg" alt="Sugestão de terno para padrinhos" style="width:100%;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.1);margin-bottom:8px;">
       <p>Ternos em tons claros, com gravata em cor combinando com o tema do casamento.</p>
     </div>
-</section>
-
-
   </div>
-</section>
+</section> <!-- fecha corretamente a seção trajes -->
 
 <!-- Lua de Mel -->
 <section id="lua">
@@ -708,14 +801,14 @@
     // Cria o pop-up dinamicamente
     const popup = document.createElement('div');
     popup.id = 'popupMusica';
-    popup.innerHTML = `
+    popup.innerHTML = 
       <div>
         <h2>Quer ouvir a música?</h2>
         <p>Deseja que a música toque enquanto navega no site?</p>
         <button id="btnSim">Sim, quero ouvir</button>
         <button id="btnNao">Não, prefiro sem som</button>
       </div>
-    `;
+    ;
     document.body.appendChild(popup);
 
     const btnSim = document.getElementById('btnSim');
