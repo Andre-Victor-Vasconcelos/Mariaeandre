@@ -11,6 +11,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth; /* Adicionado para rolagem suave */
   }
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -72,9 +73,13 @@
     flex-direction: column;
     text-align: center;
     font-weight: 600;
+    overflow: hidden; /* Adicionado para transição suave */
+    max-height: 0; /* Adicionado para transição suave */
+    transition: max-height 0.5s ease-in-out; /* Adicionado para transição suave */
   }
   #menuItems.show {
     display: flex;
+    max-height: 500px; /* Altura suficiente para os itens */
   }
   #menuItems a {
     padding: 12px 0;
@@ -315,7 +320,7 @@
   #btnMusica {
     position: fixed;
     bottom: 20px;
-    right: 20px;
+    left: 20px; /* Alterado de 'right' para 'left' para corresponder ao pedido */
     background: #a33b38;
     border: none;
     border-radius: 50%;
@@ -434,6 +439,85 @@
   #carrossel img.active {
     display: block;
   }
+  
+  /* ===== Linha do Tempo ===== */
+  #linha-tempo {
+    margin-top: 40px;
+  }
+  .timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .timeline::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background-color: #f1b7b1;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
+  }
+  .container {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+  }
+  .container::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: -10px;
+    background-color: #a33b38;
+    border: 4px solid #fff7f4;
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+  }
+  .left {
+    left: 0;
+  }
+  .right {
+    left: 50%;
+  }
+  .right::after {
+    left: -10px;
+  }
+  .content {
+    padding: 15px 20px;
+    background-color: #fff7f4;
+    position: relative;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(163, 59, 56, 0.2);
+  }
+  .content h3 {
+    margin-bottom: 5px;
+    color: #a33b38;
+  }
+  .content p {
+    margin: 0;
+  }
+
+  /* Responsivo Linha do Tempo */
+  @media screen and (max-width: 600px) {
+    .timeline::after {
+      left: 31px;
+    }
+    .container {
+      width: 100%;
+      padding-left: 70px;
+      padding-right: 25px;
+    }
+    .container::after {
+      left: 21px; /* Ajustado para alinhar melhor */
+    }
+    .right {
+      left: 0%;
+    }
+  }
 </style>
 </head>
 <body>
@@ -449,18 +533,16 @@
     <div></div>
   </div>
   <div id="menuItems" role="menu" aria-hidden="true">
-    <a href="#contagem-regressiva" role="menuitem" tabindex="0">Contagem Regressiva</a>
-    <a href="#historia" role="menuitem" tabindex="0">Nossa História</a>
-    <a href="#presentes" role="menuitem" tabindex="0">Presentes</a>
-    <a href="#local" role="menuitem" tabindex="0">Local da Cerimônia</a>
-    <a href="#padrinhos" role="menuitem" tabindex="0">Padrinhos</a>
-    <a href="#lua" role="menuitem" tabindex="0">Lua de Mel</a>
+    <a href="#contagem-regressiva" role="menuitem" tabindex="-1">Contagem Regressiva</a>
+    <a href="#historia" role="menuitem" tabindex="-1">Nossa História</a>
+    <a href="#presentes" role="menuitem" tabindex="-1">Presentes</a>
+    <a href="#local" role="menuitem" tabindex="-1">Local da Cerimônia</a>
+    <a href="#padrinhos" role="menuitem" tabindex="-1">Padrinhos</a>
+    <a href="#lua" role="menuitem" tabindex="-1">Lua de Mel</a>
   </div>
 </nav>
 
 <main>
-
-
 
 <!-- Contagem regressiva -->
 <section id="contagem-regressiva">
@@ -476,24 +558,20 @@
 <!-- Nossa História -->
 <section id="historia">
   
-  <!-- Aqui insiro o carrossel novo -->
-<section id="carrossel" aria-label="Carrossel de fotos do casal">
-  <img src="foto1.jpg" alt="Foto do casal 1" class="active" />
-  <img src="foto2.jpg" alt="Foto do casal 2" />
-  <img src="foto3.jpg" alt="Foto do casal 3" />
-  <img src="foto4.jpg" alt="Foto do casal 4" />
-</section>
-  
+  <!-- Carrossel -->
+  <div id="carrossel" aria-label="Carrossel de fotos do casal">
+    <img src="https://i.imgur.com/mG4k3a6.jpeg" alt="Foto do casal 1" class="active" />
+    <img src="https://i.imgur.com/mG4k3a6.jpeg" alt="Foto do casal 2" />
+    <img src="https://i.imgur.com/mG4k3a6.jpeg" alt="Foto do casal 3" />
+    <img src="https://i.imgur.com/mG4k3a6.jpeg" alt="Foto do casal 4" />
+  </div>
   
   <h2>Nossa História</h2>
   <p>Nosso amor começou com um simples olhar que se transformou em uma linda jornada juntos. Estamos felizes em compartilhar este momento com você!</p>
   <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="Coração" />
-
- 
 </section>
 
-
-  <!-- Linha do Tempo do Relacionamento -->
+<!-- Linha do Tempo do Relacionamento -->
 <section id="linha-tempo">
   <h2>Linha do Tempo do Nosso Amor</h2>
   <div class="timeline">
@@ -523,133 +601,47 @@
     </div>
     <div class="container left">
       <div class="content">
-        <h3>31/12/2024</h3>
+        <h3>31/12/2025</h3>
         <p>O grande sim no altar 💍❤️</p>
       </div>
     </div>
   </div>
 </section>
 
-<style>
-/* ===== Linha do Tempo ===== */
-#linha-tempo {
-  margin-top: 40px;
-}
-.timeline {
-  position: relative;
-  max-width: 900px;
-  margin: 0 auto;
-}
-.timeline::after {
-  content: '';
-  position: absolute;
-  width: 4px;
-  background-color: #f1b7b1;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  margin-left: -2px;
-}
-.container {
-  padding: 10px 40px;
-  position: relative;
-  background-color: inherit;
-  width: 50%;
-}
-.container::after {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  right: -10px;
-  background-color: #a33b38;
-  border: 4px solid #fff7f4;
-  top: 15px;
-  border-radius: 50%;
-  z-index: 1;
-}
-.left {
-  left: 0;
-}
-.right {
-  left: 50%;
-}
-.right::after {
-  left: -10px;
-}
-.content {
-  padding: 15px 20px;
-  background-color: #fff7f4;
-  position: relative;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(163, 59, 56, 0.2);
-}
-.content h3 {
-  margin-bottom: 5px;
-  color: #a33b38;
-}
-.content p {
-  margin: 0;
-}
-
-/* Responsivo */
-@media screen and (max-width: 600px) {
-  .timeline::after {
-    left: 31px;
-  }
-  .container {
-    width: 100%;
-    padding-left: 70px;
-    padding-right: 25px;
-  }
-  .container::after {
-    left: 15px;
-  }
-  .right {
-    left: 0%;
-  }
-}
-</style>
-
-
 <!-- Presentes -->
 <section id="presentes">
   <h2>Presentes</h2>
   <div class="presentes">
-
     <div class="presente-item">
       <img src="https://cdn.pixabay.com/photo/2016/11/29/05/09/cookware-1869617_1280.jpg" alt="Jogo de Panelas" />
       <h3>Jogo de Panelas Inox</h3>
       <p><strong>Valor:</strong> R$ 250,00</p>
       <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
       <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551199999999952041234560000000000123456789520400005303986540325.005802BR5908André e Maria6009São Paulo61080540900062070503***6304ABCD</textarea>
-      <button class="copiarBtn" aria-label="Copiar PIX Jogo de Panelas">📋 Copiar PIX Copia e Cola</button>
+      <button class="copiarBtn" aria-label="Copiar PIX Jogo de Panelas">📋 Copiar PIX</button>
     </div>
-
     <div class="presente-item">
       <img src="https://cdn.pixabay.com/photo/2014/12/21/23/28/kitchen-575434_1280.jpg" alt="Liquidificador" />
       <h3>Liquidificador Moderno</h3>
       <p><strong>Valor:</strong> R$ 180,00</p>
       <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
       <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551198888888852041234560000000000123456789520400005303986540318.005802BR5908André e Maria6009São Paulo61080540900062070503***6304EFGH</textarea>
-      <button class="copiarBtn" aria-label="Copiar PIX Liquidificador">📋 Copiar PIX Copia e Cola</button>
+      <button class="copiarBtn" aria-label="Copiar PIX Liquidificador">📋 Copiar PIX</button>
     </div>
-
     <div class="presente-item">
       <img src="https://cdn.pixabay.com/photo/2017/08/02/01/01/kettle-2561035_1280.jpg" alt="Chaleira Elétrica" />
       <h3>Chaleira Elétrica</h3>
       <p><strong>Valor:</strong> R$ 120,00</p>
       <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code PIX" />
       <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551197777777752041234560000000000123456789520400005303986540312.005802BR5908André e Maria6009São Paulo61080540900062070503***6304IJKL</textarea>
-      <button class="copiarBtn" aria-label="Copiar PIX Chaleira">📋 Copiar PIX Copia e Cola</button>
+      <button class="copiarBtn" aria-label="Copiar PIX Chaleira">📋 Copiar PIX</button>
     </div>
-
   </div>
 </section>
 
-  <!-- Pagamento com Cartão -->
-<section id="cartao" style="max-width: 900px; margin: 30px auto; background: #fff7f4; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgb(163 59 56 / 0.3); text-align: center;">
-  <h2 style="color: #a33b38; font-family: 'Georgia', serif; margin-bottom: 15px;">Pagamento com Cartão de Crédito</h2>
+<!-- Pagamento com Cartão -->
+<section id="cartao-presentes" style="text-align: center;">
+  <h2>Pagamento com Cartão de Crédito</h2>
   <p style="font-weight: 600; margin-bottom: 20px; color: #800000;">
     Caso deseje, você também pode contribuir pelo cartão de crédito.
   </p>
@@ -659,13 +651,12 @@
   </a>
 </section>
 
-
 <!-- Local da Cerimônia -->
 <section id="local">
   <h2>Local da Cerimônia</h2>
   <div class="igrejas">
-    <img src="igreja1.jpg" alt="Igreja São Pedro" />
-    <img src="igreja2.jpg" alt="Igreja São João" />
+    <img src="https://i.imgur.com/mG4k3a6.jpeg" alt="Igreja São Pedro" />
+    <img src="https://i.imgur.com/mG4k3a6.jpeg" alt="Igreja São João" />
   </div>
 </section>
 
@@ -673,186 +664,187 @@
 <section id="padrinhos">
   <h2>Padrinhos</h2>
   <div class="padrinhos-fotos">
-    <img src="padrinho1.jpg" alt="Padrinho 1" />
-    <img src="padrinho2.jpg" alt="Padrinho 2" />
-    <img src="padrinho3.jpg" alt="Padrinho 3" />
-    <img src="padrinho4.jpg" alt="Padrinho 4" />
+    <img src="https://i.imgur.com/mG4k3a6.jpeg" alt="Padrinho 1" />
+    <img src="https://i.imgur.com/mG4k3a6.jpeg" alt="Padrinho 2" />
+    <img src="https://i.imgur.com/mG4k3a6.jpeg" alt="Padrinho 3" />
+    <img src="https://i.imgur.com/mG4k3a6.jpeg" alt="Padrinho 4" />
   </div>
 </section>
 
-  <!-- Sugestão de Trajes -->
+<!-- Sugestão de Trajes -->
 <section id="trajes">
   <h2>Sugestão de Trajes para Padrinhos e Madrinhas</h2>
   <p class="text-center">Queridos padrinhos e madrinhas...</p>
-
   <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:30px;max-width:900px;margin:0 auto;">
-    <!-- Trajes Madrinhas -->
     <div style="flex:1 1 300px;max-width:350px;text-align:center;">
       <h3 style="color:#a33b38;margin-bottom:10px;">Madrinhas</h3>
-      <img src="traje_madrinhas.jpg" alt="Sugestão de vestido para madrinhas" style="width:100%;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.1);margin-bottom:8px;">
+      <img src="https://i.imgur.com/mG4k3a6.jpeg" alt="Sugestão de vestido para madrinhas" style="width:100%;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.1);margin-bottom:8px;">
       <p>Vestidos longos em tons pasteis ou rosados, elegantes e harmoniosos.</p>
     </div>
-
-    <!-- Trajes Padrinhos -->
     <div style="flex:1 1 300px;max-width:350px;text-align:center;">
       <h3 style="color:#a33b38;margin-bottom:10px;">Padrinhos</h3>
-      <img src="traje_padrinhos.jpg" alt="Sugestão de terno para padrinhos" style="width:100%;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.1);margin-bottom:8px;">
+      <img src="https://i.imgur.com/mG4k3a6.jpeg" alt="Sugestão de terno para padrinhos" style="width:100%;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.1);margin-bottom:8px;">
       <p>Ternos em tons claros, com gravata em cor combinando com o tema do casamento.</p>
     </div>
   </div>
-</section> <!-- fecha corretamente a seção trajes -->
+</section>
 
 <!-- Lua de Mel -->
 <section id="lua">
   <h2>Lua de Mel</h2>
-  <img src="cruzeiro.jpg" alt="Navio de Cruzeiro" class="cruzeiro" />
-  <img class="qr" src="qr_lua_mel.png" alt="QR Code contribuição Lua de Mel" />
+  <img src="https://i.imgur.com/mG4k3a6.jpeg" alt="Navio de Cruzeiro" class="cruzeiro" />
+  <img class="qr" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code contribuição Lua de Mel" />
   <textarea readonly>00020126330014BR.GOV.BCB.PIX0114+551196666666652041234560000000000123456789520400005303986540310.005802BR5908André e Maria6009São Paulo61080540900062070503***6304MNOP</textarea>
-  <button class="copiarBtn" aria-label="Copiar PIX Lua de Mel">📋 Copiar PIX Copia e Cola</button>
+  <button class="copiarBtn" aria-label="Copiar PIX Lua de Mel">📋 Copiar PIX</button>
 </section>
-
-  <!-- Pagamento com Cartão -->
-<section id="cartao" style="max-width: 900px; margin: 30px auto; background: #fff7f4; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgb(163 59 56 / 0.3); text-align: center;">
-  <h2 style="color: #a33b38; font-family: 'Georgia', serif; margin-bottom: 15px;">Pagamento com Cartão de Crédito</h2>
-  <p style="font-weight: 600; margin-bottom: 20px; color: #800000;">
-    Caso deseje, você também pode contribuir pelo cartão de crédito.
-  </p>
-  <a href="https://link.mercadopago.com.br/andreemariacasou" target="_blank" rel="noopener" style="display: inline-block; text-decoration: none; color: #fff; background: #a33b38; padding: 12px 25px; border-radius: 8px; font-weight: 700; box-shadow: 0 0 8px #a33b38aa; transition: background 0.3s ease;">
-    <img src="https://cdn-icons-png.flaticon.com/512/633/633611.png" alt="Cartão de Crédito" style="width: 40px; vertical-align: middle; margin-right: 10px;" />
-    Clique aqui para pagar com cartão
-  </a>
-</section>
-
 
 </main>
 
 <button id="btnMusica" aria-label="Tocar / Pausar Música">▶️</button>
 
 <audio id="musica" preload="auto" loop>
-  <source src="prasonhar.mp3" type="audio/mpeg" />
+  <source src="https://cdn.pixabay.com/download/audio/2022/02/07/audio_a1b14a396c.mp3" type="audio/mpeg" />
   Seu navegador não suporta áudio.
 </audio>
 
 <script>
-  // Menu hamburguer toggle
+document.addEventListener('DOMContentLoaded', () => {
+  // --- CORREÇÃO 1: LÓGICA DO MENU HAMBÚRGUER ---
   const menuToggle = document.getElementById('menuToggle');
   const menuItems = document.getElementById('menuItems');
-  menuToggle.addEventListener('click', () => {
+  const menuLinks = document.querySelectorAll('#menuItems a');
+
+  // Função para abrir/fechar o menu
+  const toggleMenu = () => {
     menuItems.classList.toggle('show');
-    const expanded = menuItems.classList.contains('show');
-    menuItems.setAttribute('aria-hidden', !expanded);
-  });
+    const isExpanded = menuItems.classList.contains('show');
+    menuToggle.setAttribute('aria-expanded', isExpanded);
+    menuItems.setAttribute('aria-hidden', !isExpanded);
+    // Ajusta o tabindex dos links para acessibilidade
+    menuLinks.forEach(link => link.setAttribute('tabindex', isExpanded ? '0' : '-1'));
+  };
+
+  menuToggle.addEventListener('click', toggleMenu);
   menuToggle.addEventListener('keydown', (e) => {
-    if(e.key === 'Enter' || e.key === ' ') {
+    if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      menuToggle.click();
+      toggleMenu();
     }
   });
 
-  // Contagem regressiva para data do casamento (exemplo: 2025-12-31 16:00)
+  // Adiciona funcionalidade de rolagem suave e fecha o menu ao clicar no link
+  menuLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault(); // Previne o comportamento padrão de pular para a âncora
+      const targetId = link.getAttribute('href');
+      const targetSection = document.querySelector(targetId);
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      if (menuItems.classList.contains('show')) {
+        toggleMenu(); // Fecha o menu
+      }
+    });
+  });
+
+  // --- CORREÇÃO 4: CONTAGEM REGRESSIVA ---
+  let intervaloContagem; // Declarado fora para poder ser limpo
   function atualizarContagem() {
     const dataCasamento = new Date('2025-12-31T16:00:00-03:00').getTime();
-    const agora = Date.now();
+    const agora = new Date().getTime();
     const diff = dataCasamento - agora;
 
-    if(diff < 0) {
-      document.getElementById('contagem').innerHTML = '<p>O grande dia chegou!</p>';
-      clearInterval(intervaloContagem);
+    if (diff < 0) {
+      document.getElementById('contagem').innerHTML = '<p style="font-size: 1.2rem; color: #800000;">O grande dia chegou!</p>';
+      if (intervaloContagem) clearInterval(intervaloContagem);
       return;
     }
 
     const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000*60*60));
-    const minutos = Math.floor((diff % (1000*60*60)) / (1000*60));
-    const segundos = Math.floor((diff % (1000*60)) / 1000);
+    const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const segundos = Math.floor((diff % (1000 * 60)) / 1000);
 
     document.getElementById('dias').textContent = dias;
     document.getElementById('horas').textContent = horas;
     document.getElementById('minutos').textContent = minutos;
     document.getElementById('segundos').textContent = segundos;
   }
-  const intervaloContagem = setInterval(atualizarContagem, 1000);
-  atualizarContagem();
+  intervaloContagem = setInterval(atualizarContagem, 1000);
+  atualizarContagem(); // Chama uma vez para não esperar 1s
 
-  // Carrossel automático das fotos do casal
+  // Carrossel automático
   const carrosselImgs = document.querySelectorAll('#carrossel img');
   let indiceAtual = 0;
-  function trocarImagem() {
-    carrosselImgs[indiceAtual].classList.remove('active');
-    indiceAtual = (indiceAtual + 1) % carrosselImgs.length;
-    carrosselImgs[indiceAtual].classList.add('active');
+  if (carrosselImgs.length > 0) {
+    setInterval(() => {
+      carrosselImgs[indiceAtual].classList.remove('active');
+      indiceAtual = (indiceAtual + 1) % carrosselImgs.length;
+      carrosselImgs[indiceAtual].classList.add('active');
+    }, 3500);
   }
-  setInterval(trocarImagem, 3500); // troca a cada 3.5s
 
-  // Botão copiar PIX com animação no próprio botão
+  // Botão copiar PIX
   document.querySelectorAll('.copiarBtn').forEach(btn => {
+    const originalText = btn.textContent;
     btn.addEventListener('click', () => {
       const textarea = btn.previousElementSibling;
       textarea.select();
-      textarea.setSelectionRange(0, 99999);
-      try {
-        document.execCommand('copy');
-        // Animação no botão
-        const originalText = btn.textContent;
-        btn.textContent = '✔ Copiado!';
-        btn.disabled = true;
-        setTimeout(() => {
-          btn.textContent = originalText;
-          btn.disabled = false;
-        }, 1500);
-      } catch {
-        // fallback alert se copiar falhar
-        alert('Não foi possível copiar o PIX.');
-      }
+      document.execCommand('copy');
+      
+      btn.textContent = '✔ Copiado!';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }, 1500);
       window.getSelection().removeAllRanges();
     });
   });
 
-  // Botão de música
+  // --- CORREÇÃO 2 & 3: POP-UP E CONTROLE DE MÚSICA ---
   const btnMusica = document.getElementById('btnMusica');
   const musica = document.getElementById('musica');
 
-  btnMusica.addEventListener('click', () => {
-    if(musica.paused) {
-      musica.play();
+  // Função para tocar/pausar
+  const togglePlay = () => {
+    if (musica.paused) {
+      musica.play().catch(e => console.log("Autoplay foi bloqueado pelo navegador."));
       btnMusica.textContent = '⏸️';
     } else {
       musica.pause();
       btnMusica.textContent = '▶️';
     }
+  };
+  btnMusica.addEventListener('click', togglePlay);
+
+  // Cria e exibe o pop-up
+  const popup = document.createElement('div');
+  popup.id = 'popupMusica';
+  // CORREÇÃO DE SINTAXE AQUI: usei crases (`) para a string
+  popup.innerHTML = `
+    <div>
+      <h2>Quer ouvir a nossa música?</h2>
+      <p>Prepare o coração e entre no clima do nosso grande dia!</p>
+      <button id="btnSim">Sim, quero ouvir</button>
+      <button id="btnNao">Não, obrigado</button>
+    </div>
+  `;
+  document.body.appendChild(popup);
+
+  document.getElementById('btnSim').addEventListener('click', () => {
+    musica.play();
+    btnMusica.textContent = '⏸️';
+    popup.remove();
   });
 
-  // Pop-up para perguntar se quer ouvir música ou não
-  window.addEventListener('load', () => {
-    // Cria o pop-up dinamicamente
-    const popup = document.createElement('div');
-    popup.id = 'popupMusica';
-    popup.innerHTML = 
-      <div>
-        <h2>Quer ouvir a música?</h2>
-        <p>Deseja que a música toque enquanto navega no site?</p>
-        <button id="btnSim">Sim, quero ouvir</button>
-        <button id="btnNao">Não, prefiro sem som</button>
-      </div>
-    ;
-    document.body.appendChild(popup);
-
-    const btnSim = document.getElementById('btnSim');
-    const btnNao = document.getElementById('btnNao');
-
-    btnSim.addEventListener('click', () => {
-      musica.play();
-      btnMusica.textContent = '⏸️';
-      popup.remove();
-    });
-
-    btnNao.addEventListener('click', () => {
-      musica.pause();
-      btnMusica.textContent = '▶️';
-      popup.remove();
-    });
+  document.getElementById('btnNao').addEventListener('click', () => {
+    musica.pause();
+    btnMusica.textContent = '▶️';
+    popup.remove();
   });
+});
 </script>
 
 </body>
-</html>
+</html>```
